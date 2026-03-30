@@ -1,0 +1,1024 @@
+[
+  {
+    "title": "Must-Join Channels",
+    "sections": [
+      {
+        "title": null,
+        "channels": [
+          {
+            "channel": "#announcements",
+            "description": "Major announcements"
+          },
+          {
+            "channel": "#ceotalk",
+            "description": "Direct messages and updates from our CEO & COO"
+          },
+          {
+            "channel": "#random",
+            "description": "Fun and all things Nova"
+          },
+          {
+            "channel": "#novakid-updates",
+            "description": "Updates, key company news and info"
+          }
+        ]
+      },
+      {
+        "title": "Informative & Team Channels",
+        "channels": [
+          {
+            "channel": "#english-for-novakiders",
+            "description": "Boost your language skills"
+          },
+          {
+            "channel": "#jobs",
+            "description": "Openings and opportunities"
+          },
+          {
+            "channel": "#competition-inspiration_edutech_andmore",
+            "description": "Cool ideas and trends"
+          },
+          {
+            "channel": "#eat-your-own-dog-food",
+            "description": "Collect improvement ideas for our own products"
+          },
+          {
+            "channel": "#marketing_ops",
+            "description": "Marketing team updates"
+          },
+          {
+            "channel": "#product",
+            "description": "Product team updates"
+          },
+          {
+            "channel": "#teacher_ops",
+            "description": "Teacher Ops team updates"
+          },
+          {
+            "channel": "#engineering-official",
+            "description": "Tech updates"
+          },
+          {
+            "channel": "#sales_all_novakid",
+            "description": "Sales team updates"
+          },
+          {
+            "channel": "#client_service",
+            "description": "Client service updates"
+          },
+          {
+            "channel": "#content_ops",
+            "description": "Team and topic-focused insights"
+          },
+          {
+            "channel": "#experiment-hub",
+            "description": "All experiments"
+          },
+          {
+            "channel": "#helpdesk",
+            "description": "All IT support matters"
+          },
+          {
+            "channel": "#intercom_and_telephony_support",
+            "description": "help with tech problems onwork place and calls"
+          },
+          {
+            "channel": "#novakiders-saintpetersburg",
+            "description": "Location-based channel – Saint Petersburg"
+          },
+          {
+            "channel": "#novakiders-minsk",
+            "description": "Location-based channel – Minsk"
+          },
+          {
+            "channel": "#novakiders-moscow",
+            "description": "Location-based channel – Moscow"
+          },
+          {
+            "channel": "#novakiders-belgrade",
+            "description": "Location-based channel – Belgrade"
+          },
+          {
+            "channel": "#novakiders-vienna",
+            "description": "Location-based channel – Vienna"
+          },
+          {
+            "channel": "#novakiders-barcelona",
+            "description": "Location-based channel – Barcelona"
+          },
+          {
+            "channel": "#novakiders-istanbul-izmir",
+            "description": "Location-based channel – Istanbul & Izmir"
+          },
+          {
+            "channel": "#novakiders-asia",
+            "description": "Location-based channel – Asia"
+          },
+          {
+            "channel": "#novakiders-cairo-amman",
+            "description": "Location-based channel – Cairo & Amman"
+          },
+          {
+            "channel": "#novakiders-lisbon",
+            "description": "Location-based channel – Lisbon"
+          },
+          {
+            "channel": "#novakiders-nizhny",
+            "description": "Location-based channel – Nizhny"
+          },
+          {
+            "channel": "#novakiders-london",
+            "description": "Location-based channel – London"
+          },
+          {
+            "channel": "#novakiders-tbilisi",
+            "description": "Location-based channel – Tbilisi"
+          },
+          {
+            "channel": "#novakiders-valencia",
+            "description": "Location-based channel – Valencia"
+          },
+          {
+            "channel": "#novakiders-astana",
+            "description": "Location-based channel – Astana"
+          },
+          {
+            "channel": "#novakiders-madrid",
+            "description": "Location-based channel – Madrid"
+          },
+          {
+            "channel": "#novakiders-russia",
+            "description": "All novakiders in Russia"
+          }
+        ]
+      },
+      {
+        "title": "Social & Interest-Based Channels",
+        "channels": [
+          {
+            "channel": "#nova-travel",
+            "description": "Travel tips and stories"
+          },
+          {
+            "channel": "#nova-sport",
+            "description": "Sports and fitness chat"
+          },
+          {
+            "channel": "#nova-pets",
+            "description": "Show us your furry friends"
+          },
+          {
+            "channel": "#nova-gamer",
+            "description": "Gaming zone"
+          },
+          {
+            "channel": "#nova-cooking",
+            "description": "Recipes and foodie fun"
+          },
+          {
+            "channel": "#nova-books-and-movie-club",
+            "description": "What to read and watch"
+          },
+          {
+            "channel": "#nova-video-editor-club",
+            "description": "Video editing and sharing"
+          },
+          {
+            "channel": "#random-coffee",
+            "description": "Join random coffee and make new friends"
+          },
+          {
+            "channel": "#ai-for-all",
+            "description": "Latest trends in AI and how to use it in your work"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Sales Team Channels",
+    "sections": [
+      {
+        "title": null,
+        "channels": [
+          {
+            "channel": "sm_working_group_ro",
+            "description": "weekly reports all departments"
+          },
+          {
+            "channel": "sm_working_group_ru",
+            "description": "weekly reports all departments"
+          },
+          {
+            "channel": "sales all Novakid",
+            "description": ""
+          },
+          {
+            "channel": "crm_team_main",
+            "description": ""
+          },
+          {
+            "channel": "client service",
+            "description": ""
+          },
+          {
+            "channel": "secondary_sales",
+            "description": "Secondary Sales Team News and Updates"
+          },
+          {
+            "channel": "#telemarketing_team",
+            "description": "Telemarketing Team's News and Updates"
+          },
+          {
+            "channel": "#refund_warriors",
+            "description": "Refund Reports and Updates."
+          },
+          {
+            "channel": "#sm_working_group_arab",
+            "description": "weekly reports - Arab region"
+          },
+          {
+            "channel": "#sm_working_group_jp",
+            "description": "weekly reports - Japan region"
+          },
+          {
+            "channel": "#sm_working_group_il",
+            "description": "weekly reports - Israel region"
+          },
+          {
+            "channel": "#sales-manager-joins-after-the-trial-lesson",
+            "description": ""
+          },
+          {
+            "channel": "#exp_trial_promo",
+            "description": ""
+          },
+          {
+            "channel": "#borusan-novakid-b2b",
+            "description": "reports on Turkish B2B sales"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "TOps Team Channels",
+    "sections": [
+      {
+        "title": null,
+        "channels": [
+          {
+            "channel": "#teacher_ops",
+            "description": "Teacher Ops team updates"
+          },
+          {
+            "channel": "#buddy-tops",
+            "description": "Help from TO with CS topics"
+          },
+          {
+            "channel": "#teacher_availability",
+            "description": "Qs about teacher availability"
+          },
+          {
+            "channel": "#teacher_hub",
+            "description": "Qs about the Teacher Hub"
+          },
+          {
+            "channel": "#teacherops_onboarding_and_support_team",
+            "description": "Qs about hiring teachers"
+          },
+          {
+            "channel": "#teachers-all-hands",
+            "description": "Planning + Results of Teacher All Hands"
+          },
+          {
+            "channel": "#trial-inter-dept-team",
+            "description": "For discussions around trial improvement"
+          },
+          {
+            "channel": "#to_support_2nd_line",
+            "description": "For LA & methodological questions"
+          },
+          {
+            "channel": "#teacher_support",
+            "description": "General teacher support"
+          },
+          {
+            "channel": "#teacher_academy",
+            "description": "TEFL & other teacher courses"
+          },
+          {
+            "channel": "#exp-stem-for-tr",
+            "description": ""
+          },
+          {
+            "channel": "#smmbuddies",
+            "description": "SMM TeacherOps"
+          },
+          {
+            "channel": "#pilot-speaking-club-parents-2026",
+            "description": "Parent speaking club info"
+          },
+          {
+            "channel": "#exp_exam_prep",
+            "description": "All about Exam Prep pilot launch"
+          },
+          {
+            "channel": "#teacher-ops-communications",
+            "description": "All communications sent to teachers"
+          },
+          {
+            "channel": "#eaot-automation",
+            "description": "Qs about  teachers' onboarding"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Engeneering Team Channels",
+    "sections": [
+      {
+        "title": null,
+        "channels": [
+          {
+            "channel": "#devops",
+            "description": ""
+          },
+          {
+            "channel": "#it_release",
+            "description": ""
+          },
+          {
+            "channel": "#visitor-squad-public",
+            "description": "Visitor Squad: public communication & support"
+          },
+          {
+            "channel": "#development",
+            "description": "Engineering discussions, tech updates & global dev topics"
+          },
+          {
+            "channel": "#engineering-official",
+            "description": ""
+          },
+          {
+            "channel": "#novakid-localization",
+            "description": "Localization discussions, reporting issues, updates on the team working process, fixing translation bugs"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Client Service Channels",
+    "sections": [
+      {
+        "title": null,
+        "channels": [
+          {
+            "channel": "#it_support",
+            "description": "bugs reporting"
+          },
+          {
+            "channel": "#new_ask_ai",
+            "description": "AI knowledge base"
+          },
+          {
+            "channel": "#excellent_support",
+            "description": "main support official channel"
+          },
+          {
+            "channel": "#eat_your_own_dog_food",
+            "description": "feature requests"
+          },
+          {
+            "channel": "#only_support",
+            "description": "real time managment"
+          },
+          {
+            "channel": "#wka_transactions",
+            "description": "transactions according WKA"
+          },
+          {
+            "channel": "#qa_infohub",
+            "description": "information from QA department"
+          },
+          {
+            "channel": "#wka_feedback",
+            "description": "feedback from client's accordingto WKA classes"
+          },
+          {
+            "channel": "#dsat_cs_notification",
+            "description": "automatic notifications for DSAT follow up"
+          },
+          {
+            "channel": "#student_certificates",
+            "description": "Student and gift certificates (skills, levels, study confirmation)."
+          },
+          {
+            "channel": "#support_automation_team",
+            "description": "support automation inner channel"
+          },
+          {
+            "channel": "#client_service",
+            "description": "general client service channel (all teams)"
+          },
+          {
+            "channel": "#client_ops_automation",
+            "description": "cs automation inner channel (sales + support)"
+          },
+          {
+            "channel": "#content_ops",
+            "description": "report issues with content"
+          },
+          {
+            "channel": "#novakid-tr",
+            "description": "all Turkish managers"
+          },
+          {
+            "channel": "#novakid-tr-support",
+            "description": "news for support in TR region"
+          },
+          {
+            "channel": "#tr-inner-chat",
+            "description": "inner chat with Turkish teammates"
+          },
+          {
+            "channel": "#b2b-partnership",
+            "description": "project in B2B sector TR"
+          },
+          {
+            "channel": "#support-leaders-sync-up",
+            "description": ""
+          },
+          {
+            "channel": "#support-leaders",
+            "description": ""
+          },
+          {
+            "channel": "#inner-chat-eu_es_it_pl",
+            "description": "EU teams updates"
+          },
+          {
+            "channel": "#pl-support-heroes",
+            "description": "Pl team updates"
+          },
+          {
+            "channel": "#il_ru_asia_global_inner_chat",
+            "description": "IL RU ASIA GLOBAL Updates"
+          },
+          {
+            "channel": "#help_smart_answer",
+            "description": "tasks for Darina to improve knowledge base for bots"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Content Team Channels",
+    "sections": [
+      {
+        "title": null,
+        "channels": [
+          {
+            "channel": "#wka-streams-on-demand-prod",
+            "description": "Production channel for streams & on demand"
+          },
+          {
+            "channel": "#youtube-live-stream",
+            "description": "Public channel for request/info/support on streams"
+          },
+          {
+            "channel": "#content-operational",
+            "description": "Operational discussion and decisions in content"
+          },
+          {
+            "channel": "#content_ops",
+            "description": "Public channel for info/support anything content"
+          },
+          {
+            "channel": "content-product-dev-squad",
+            "description": "joint channel with product, dev and content for discussing tasks issues etc"
+          },
+          {
+            "channel": "content",
+            "description": "main content channel for the whole content team (vacations, big changes etc)"
+          },
+          {
+            "channel": "content_ai-penpal-pilot",
+            "description": "channel for our pilot project"
+          },
+          {
+            "channel": "content_and_to_chat",
+            "description": "join channel with content and TOPs"
+          },
+          {
+            "channel": "content_booster-course",
+            "description": "booster courses"
+          },
+          {
+            "channel": "content_bot",
+            "description": "channel for the 'lesson observation bot"
+          },
+          {
+            "channel": "content_casual",
+            "description": "just a fun channel for the team"
+          },
+          {
+            "channel": "content_china",
+            "description": "used for creating & tracking China content"
+          },
+          {
+            "channel": "content_churn",
+            "description": "churn research here"
+          },
+          {
+            "channel": "content_comps_curriculum",
+            "description": "new comps"
+          },
+          {
+            "channel": "content_exam_prep",
+            "description": "specific channel for the exam prep course"
+          },
+          {
+            "channel": "content_il_trial_test",
+            "description": "creating regional trials"
+          },
+          {
+            "channel": "content_lvl5_repositioning",
+            "description": "channel for all the project related decisions and discussion about the Lv5 repositioning"
+          },
+          {
+            "channel": "content_methodologists",
+            "description": "all things methodology discussed here"
+          },
+          {
+            "channel": "content_methods",
+            "description": "full team channel"
+          },
+          {
+            "channel": "content_ops",
+            "description": "Public channel for info/support anything content"
+          },
+          {
+            "channel": "content_opt_tool",
+            "description": "optimisation channel"
+          },
+          {
+            "channel": "content_pe_trials",
+            "description": "Parent Engagement in trials"
+          },
+          {
+            "channel": "content_rrsf",
+            "description": "reading readiness"
+          },
+          {
+            "channel": "content_t_collaboration",
+            "description": "dormant channel used when we had teachers to assess lessons"
+          },
+          {
+            "channel": "content_team_trial",
+            "description": "long term trial channel"
+          },
+          {
+            "channel": "content_team_ve",
+            "description": "to re-organise VE"
+          },
+          {
+            "channel": "content_tech_team",
+            "description": "internal tech team channel for our team tech discussions/tasks"
+          },
+          {
+            "channel": "content_technical-issues",
+            "description": "internal team for all content to post tech issues, tasks etc"
+          },
+          {
+            "channel": "content_world-day-lessons",
+            "description": "Tto discuss all things about World Day projects"
+          },
+          {
+            "channel": "content-art-zips-for-s-com",
+            "description": "channel for art team to post links to files needing to be added to slides.com library"
+          },
+          {
+            "channel": "content-co-ordination",
+            "description": "channel for internal team leads coordination tasks"
+          },
+          {
+            "channel": "content-fragments-fix",
+            "description": "to track & discuss fixing of fragments in slides.com"
+          },
+          {
+            "channel": "content-minecraft-tech",
+            "description": "channel for internal tech discussions about the minecraft setups (includes a freelancer)"
+          },
+          {
+            "channel": "content-operational",
+            "description": "Operational discussion and decisions in content"
+          },
+          {
+            "channel": "content-platform-checks-only",
+            "description": "channel for platform check requests only."
+          },
+          {
+            "channel": "content-updates",
+            "description": "for posting status updates about changes, releases etc to the team"
+          },
+          {
+            "channel": "content-vibe-coding",
+            "description": "channel for internal comms about our on-going Vibe coding projects"
+          },
+          {
+            "channel": "Channel name",
+            "description": "channel description"
+          },
+          {
+            "channel": "content-product-dev-squad",
+            "description": "joint channel with product, dev and content for discussing tasks issues etc"
+          },
+          {
+            "channel": "content",
+            "description": "main content channel for the whole content team (vacations, big changes etc)"
+          },
+          {
+            "channel": "content_ai-penpal-pilot",
+            "description": "channel for our pilot project"
+          },
+          {
+            "channel": "content_and_to_chat",
+            "description": "join channel with content and TOPs"
+          },
+          {
+            "channel": "content_booster-course",
+            "description": "booster courses"
+          },
+          {
+            "channel": "content_bot",
+            "description": "channel for the 'lesson observation bot"
+          },
+          {
+            "channel": "content_casual",
+            "description": "just a fun channel for the team"
+          },
+          {
+            "channel": "content_china",
+            "description": "used for creating & tracking China content"
+          },
+          {
+            "channel": "content_churn",
+            "description": "churn research here"
+          },
+          {
+            "channel": "content_comps_curriculum",
+            "description": "new comps"
+          },
+          {
+            "channel": "content_exam_prep",
+            "description": "specific channel for the exam prep course"
+          },
+          {
+            "channel": "content_il_trial_test",
+            "description": "creating regional trials"
+          },
+          {
+            "channel": "content_lvl5_repositioning",
+            "description": "channel for all the project related decisions and discussion about the Lv5 repositioning"
+          },
+          {
+            "channel": "content_methodologists",
+            "description": "all things methodology discussed here"
+          },
+          {
+            "channel": "content_methods",
+            "description": "full team channel"
+          },
+          {
+            "channel": "content_ops",
+            "description": "Public channel for info/support anything content"
+          },
+          {
+            "channel": "content_opt_tool",
+            "description": "optimisation channel"
+          },
+          {
+            "channel": "content_pe_trials",
+            "description": "Parent Engagement in trials"
+          },
+          {
+            "channel": "content_rrsf",
+            "description": "reading readiness"
+          },
+          {
+            "channel": "content_t_collaboration",
+            "description": "dormant channel used when we had teachers to assess lessons"
+          },
+          {
+            "channel": "content_team_trial",
+            "description": "long term trial channel"
+          },
+          {
+            "channel": "content_team_ve",
+            "description": "to re-organise VE"
+          },
+          {
+            "channel": "content_tech_team",
+            "description": "internal tech team channel for our team tech discussions/tasks"
+          },
+          {
+            "channel": "content_technical-issues",
+            "description": "internal team for all content to post tech issues, tasks etc"
+          },
+          {
+            "channel": "content_world-day-lessons",
+            "description": "Tto discuss all things about World Day projects"
+          },
+          {
+            "channel": "content-art-zips-for-s-com",
+            "description": "channel for art team to post links to files needing to be added to slides.com library"
+          },
+          {
+            "channel": "content-co-ordination",
+            "description": "channel for internal team leads coordination tasks"
+          },
+          {
+            "channel": "content-fragments-fix",
+            "description": "to track & discuss fixing of fragments in slides.com"
+          },
+          {
+            "channel": "content-minecraft-tech",
+            "description": "channel for internal tech discussions about the minecraft setups (includes a freelancer)"
+          },
+          {
+            "channel": "content-operational",
+            "description": "Operational discussion and decisions in content"
+          },
+          {
+            "channel": "content-platform-checks-only",
+            "description": "channel for platform check requests only."
+          },
+          {
+            "channel": "content-updates",
+            "description": "for posting status updates about changes, releases etc to the team"
+          },
+          {
+            "channel": "content-vibe-coding",
+            "description": "channel for internal comms about our on-going Vibe coding projects"
+          },
+          {
+            "channel": "#wka-streams-on-demand-prod",
+            "description": "Production channel for streams & on demand"
+          },
+          {
+            "channel": "#youtube-live-stream",
+            "description": "Public channel for request/info/support on streams"
+          },
+          {
+            "channel": "#on-demand-product-2025",
+            "description": ""
+          },
+          {
+            "channel": "#wka-elementary-content",
+            "description": ""
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Product Team Channels",
+    "sections": [
+      {
+        "title": null,
+        "channels": [
+          {
+            "channel": "#product",
+            "description": "Product team updates"
+          },
+          {
+            "channel": "#billing-refactoring",
+            "description": "Membership exp questions"
+          },
+          {
+            "channel": "#ka-squad-public",
+            "description": "Kids' Area Team: HW / AI Tutor +"
+          },
+          {
+            "channel": "#live-mode",
+            "description": "Anything relating to live classes"
+          },
+          {
+            "channel": "#nps",
+            "description": "Client NPS updates"
+          },
+          {
+            "channel": "#research_ux_consumer_insights",
+            "description": "UX/UI research updates"
+          },
+          {
+            "channel": "#unified_classroom",
+            "description": "Updates about Classroom environment"
+          },
+          {
+            "channel": "#upsell-working-group",
+            "description": "Updates about upsell projects"
+          },
+          {
+            "channel": "#visitor-squad-public",
+            "description": "Visitor team general"
+          },
+          {
+            "channel": "#wka_feedback",
+            "description": "Feedback around group classes"
+          },
+          {
+            "channel": "#bundles-and-wka",
+            "description": "General updates on group classes"
+          },
+          {
+            "channel": "#metabase",
+            "description": "All dashboards and analytics related questions"
+          },
+          {
+            "channel": "#kids-ux",
+            "description": "small dedicated channel for UX-research in KA"
+          },
+          {
+            "channel": "#artwork-planning",
+            "description": "artwork planning between Novapals & KA teams"
+          },
+          {
+            "channel": "#deconstruction-of-fun",
+            "description": "everything about kids engagement (wasn't updated for a while)"
+          },
+          {
+            "channel": "#experiment-hub",
+            "description": "About all experiments"
+          },
+          {
+            "channel": "#research_ux_consumer_insights",
+            "description": "Past UX reserach"
+          },
+          {
+            "channel": "#trust-pilot",
+            "description": "Clients reviews (not only Trustpilot)"
+          },
+          {
+            "channel": "#devops",
+            "description": "In addition to the board for collaboration with DevOps team"
+          },
+          {
+            "channel": "#marketing-analytics",
+            "description": "Mostly for collaboration on troubleshooting"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Marketing Team Channels",
+    "sections": [
+      {
+        "title": null,
+        "channels": [
+          {
+            "channel": "marketing-team (private)",
+            "description": "Key internal marketing business/org news"
+          },
+          {
+            "channel": "marketing-leaders (private)",
+            "description": "Key business/org topics among marketing team leaders"
+          },
+          {
+            "channel": "sm_working_group_arab",
+            "description": "all sales & marketing discussions for MENA"
+          },
+          {
+            "channel": "sm_working_group_cz",
+            "description": "all sales & marketing discussions for CZ"
+          },
+          {
+            "channel": "sm_working_group_de",
+            "description": "all sales & marketing discussions for DE"
+          },
+          {
+            "channel": "sm_working_group_es",
+            "description": "all sales & marketing discussions for ES"
+          },
+          {
+            "channel": "sm_working_group_fr",
+            "description": "all sales & marketing discussions for FR"
+          },
+          {
+            "channel": "sm_working_group_global",
+            "description": "all sales & marketing discussions for Global"
+          },
+          {
+            "channel": "sm_working_group_il",
+            "description": "all sales & marketing discussions for IL"
+          },
+          {
+            "channel": "sm_working_group_it",
+            "description": "all sales & marketing discussions for IT"
+          },
+          {
+            "channel": "sm_working_group_jp",
+            "description": "all sales & marketing discussions for JP"
+          },
+          {
+            "channel": "sm_working_group_kr",
+            "description": "all sales & marketing discussions for KR"
+          },
+          {
+            "channel": "sm_working_group_pl",
+            "description": "all sales & marketing discussions for PL"
+          },
+          {
+            "channel": "sm_working_group_ro",
+            "description": "all sales & marketing discussions for RO"
+          },
+          {
+            "channel": "sm_working_group_ru",
+            "description": "all sales & marketing discussions for RU"
+          },
+          {
+            "channel": "sm_working_group_tr",
+            "description": "all sales & marketing discussions for TR"
+          },
+          {
+            "channel": "influencers_ppc (private)",
+            "description": "Weekly & monthly alignments on influencer-related campaign needs"
+          },
+          {
+            "channel": "ppc_team (private)",
+            "description": "Daily alignments about PPC campaign optimizations"
+          },
+          {
+            "channel": "ppc_creatives (private)",
+            "description": "Announcements and alignments on new creatives"
+          },
+          {
+            "channel": "expandk_kakao_topup (with external party)",
+            "description": "kakao channel discussions with Korean agency expandk"
+          },
+          {
+            "channel": "expandk_nda_tech (with external party)",
+            "description": "naver display ads discussions with Korean agency expandk"
+          },
+          {
+            "channel": "expandk_nk_influencer (with external party)",
+            "description": "influencer mktng discussions with Korean agency expandk"
+          },
+          {
+            "channel": "expandk_novakid (with external party)",
+            "description": "general discussions with Korean agency expandk"
+          },
+          {
+            "channel": "marketing_ops (with external party)",
+            "description": "sharing department-wide key information with all stakeholders"
+          },
+          {
+            "channel": "ppc-uploading-videos-chat",
+            "description": "PPC videos upload to YT information exchange"
+          },
+          {
+            "channel": "ppc-v2026 (private)",
+            "description": "internal team discussions of PPC team (Aybars and his team)"
+          },
+          {
+            "channel": "paid-growth-team (private)",
+            "description": "internal team discussions of Growth team (Hebah and her team)"
+          },
+          {
+            "channel": "social_synergy_team",
+            "description": "A channel with fresh campaign update announcements from influencers"
+          },
+          {
+            "channel": "domain_migration_public",
+            "description": "announcements on the domain migration (now finalized, so it might be deleted or change its purpose)"
+          },
+          {
+            "channel": "partneships_gang (private)",
+            "description": "partnership team's updates"
+          },
+          {
+            "channel": "forecasting (private)",
+            "description": "Forecasting allignment of the marketing team"
+          },
+          {
+            "channel": "influencers_main (private)",
+            "description": "Internal work channel of the influencers team"
+          },
+          {
+            "channel": "b2b-partnership (private)",
+            "description": "Channel for general b2b partnership updates with other involved departments"
+          },
+          {
+            "channel": "borusan-novakid-b2b",
+            "description": "Channel for Borusan operations and updates"
+          }
+        ]
+      }
+    ]
+  }
+]

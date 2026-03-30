@@ -1,0 +1,15 @@
+{
+  "name": "slack-channels-map",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Slack /channels-map command with filters and modal",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "node index.js"
+  },
+  "dependencies": {
+    "@slack/bolt": "^3.19.0",
+    "dotenv": "^16.4.5"
+  }
+}
