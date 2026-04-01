@@ -46,3 +46,14 @@ Path("channels-data.json").write_text(
 )
 PY
 ```
+
+## Auto-update from Google Sheets
+
+If you want the app to read data directly from Google Sheets, set the env vars:
+
+```
+GOOGLE_SHEET_URL=https://docs.google.com/spreadsheets/d/<id>/edit?usp=sharing
+GOOGLE_SHEET_TAB=Sheet1
+```
+
+The sheet can be public (anyone with the link). The app caches results for 5 minutes.

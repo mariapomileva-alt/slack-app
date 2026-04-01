@@ -1,6 +1,14 @@
 require("dotenv").config();
 const { App, ExpressReceiver } = require("@slack/bolt");
-const data = require("./channels-data.json");
+const fs = require("fs");
+const path = require("path");
+const { parse } = require("csv-parse/sync");
+
+const LOCAL_DATA_PATH = path.join(__dirname, "channels-data.json");
+const SHEET_URL = process.env.GOOGLE_SHEET_URL;
+const SHEET_TAB = process.env.GOOGLE_SHEET_TAB || "";
+const CACHE_TTL_MS = 5 * 60 * 1000;
+let cached = { data: null, fetchedAt: 0 };
 
 const receiver = new ExpressReceiver({
   signingSecret: process.env.SLACK_SIGNING_SECRET,
@@ -19,11 +27,11 @@ function normalize(text) {
   return String(text || "").toLowerCase();
 }
 
-function getGroupTitles() {
+function getGroupTitles(data) {
   return data.map((g) => g.title).filter(Boolean);
 }
 
-function filterChannels({ keyword, groupTitle }) {
+function filterChannels({ data, keyword, groupTitle }) {
   const kw = normalize(keyword);
   const groupMatch = groupTitle && groupTitle !== "all";
 
@@ -59,14 +67,14 @@ function filterChannels({ keyword, groupTitle }) {
   return results;
 }
 
-function buildOptions() {
+function buildOptions(data) {
   const options = [
     {
       text: { type: "plain_text", text: "All groups" },
       value: "all",
     },
   ];
-  getGroupTitles().forEach((title) => {
+  getGroupTitles(data).forEach((title) => {
     options.push({
       text: { type: "plain_text", text: title },
       value: title,
@@ -75,8 +83,8 @@ function buildOptions() {
   return options;
 }
 
-function buildResultsBlocks({ keyword, groupTitle }) {
-  const results = filterChannels({ keyword, groupTitle });
+function buildResultsBlocks({ data, keyword, groupTitle }) {
+  const results = filterChannels({ data, keyword, groupTitle });
   let totalChannels = 0;
   results.forEach((g) =>
     g.sections.forEach((s) => (totalChannels += s.channels.length))
@@ -177,8 +185,8 @@ function buildResultsBlocks({ keyword, groupTitle }) {
   return blocks;
 }
 
-function buildView({ keyword = "", groupTitle = "all" } = {}) {
-  const options = buildOptions();
+function buildView({ data, keyword = "", groupTitle = "all" } = {}) {
+  const options = buildOptions(data);
   const initialOption = options.find((o) => o.value === groupTitle);
   return {
     type: "modal",
@@ -233,11 +241,119 @@ function buildView({ keyword = "", groupTitle = "all" } = {}) {
   };
 }
 
+function cleanCell(value) {
+  return String(value || "").replace(/\s+/g, " ").trim();
+}
+
+function parseSheetRows(rows) {
+  const headerRow = rows[0] || [];
+  const dataRows = rows.slice(1);
+  const blockCols = headerRow
+    .map((val, idx) => (cleanCell(val) ? idx : -1))
+    .filter((idx) => idx >= 0);
+
+  const getCell = (row, idx) => (row && row[idx] !== undefined ? row[idx] : "");
+
+  const nextNonEmptyValue = (col, startRow) => {
+    for (let i = startRow; i < dataRows.length; i += 1) {
+      const val = cleanCell(getCell(dataRows[i], col));
+      if (val) return val;
+    }
+    return "";
+  };
+
+  const blocks = [];
+  blockCols.forEach((col) => {
+    const title = cleanCell(headerRow[col]);
+    if (!title) return;
+
+    const sections = [];
+    let currentSection = { title: null, channels: [] };
+    sections.push(currentSection);
+
+    dataRows.forEach((row, idx) => {
+      const name = cleanCell(getCell(row, col));
+      const desc = cleanCell(getCell(row, col + 1));
+      if (!name && !desc) return;
+      if (name === "Channel" && (desc === "" || desc === "Description")) return;
+
+      if (name && !desc) {
+        const nextVal = nextNonEmptyValue(col, idx + 1);
+        if (nextVal === "Channel") {
+          currentSection = { title: name, channels: [] };
+          sections.push(currentSection);
+        } else {
+          currentSection.channels.push({ channel: name, description: "" });
+        }
+        return;
+      }
+
+      if (name) {
+        currentSection.channels.push({ channel: name, description: desc });
+      }
+    });
+
+    const filtered = sections.filter(
+      (section) => section.title || section.channels.length
+    );
+    blocks.push({ title, sections: filtered });
+  });
+
+  return blocks;
+}
+
+function sheetCsvUrl(sheetUrl, sheetTab) {
+  const match = sheetUrl.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/);
+  if (!match) return "";
+  const id = match[1];
+  const base = `https://docs.google.com/spreadsheets/d/${id}/gviz/tq?tqx=out:csv`;
+  if (!sheetTab) return base;
+  return `${base}&sheet=${encodeURIComponent(sheetTab)}`;
+}
+
+async function fetchCsvWithTimeout(url, timeoutMs) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetch(url, { signal: controller.signal });
+    if (!response.ok) {
+      throw new Error(`Sheet fetch failed: ${response.status}`);
+    }
+    return await response.text();
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+async function getData() {
+  if (!SHEET_URL) {
+    return JSON.parse(fs.readFileSync(LOCAL_DATA_PATH, "utf-8"));
+  }
+
+  const now = Date.now();
+  if (cached.data && now - cached.fetchedAt < CACHE_TTL_MS) {
+    return cached.data;
+  }
+
+  try {
+    const csvUrl = sheetCsvUrl(SHEET_URL, SHEET_TAB);
+    const csv = await fetchCsvWithTimeout(csvUrl, 2000);
+    const rows = parse(csv, { relax_quotes: true, relax_column_count: true });
+    const parsed = parseSheetRows(rows);
+    cached = { data: parsed, fetchedAt: now };
+    return parsed;
+  } catch (error) {
+    if (cached.data) return cached.data;
+    return JSON.parse(fs.readFileSync(LOCAL_DATA_PATH, "utf-8"));
+  }
+}
+
 app.command("/channels-map", async ({ ack, body, client }) => {
   await ack();
+  const data = await getData();
   await client.views.open({
     trigger_id: body.trigger_id,
-    view: buildView(),
+    view: buildView({ data }),
   });
 });
 
@@ -249,10 +365,11 @@ app.view("channels_map_filters", async ({ ack, body }) => {
     const groupTitle =
       state.group_block?.group_select?.selected_option?.value || "all";
 
-    const view = buildView({ keyword, groupTitle });
+    const data = await getData();
+    const view = buildView({ data, keyword, groupTitle });
     view.blocks = [
       ...view.blocks,
-      ...buildResultsBlocks({ keyword, groupTitle }),
+      ...buildResultsBlocks({ data, keyword, groupTitle }),
     ];
 
     await ack({
