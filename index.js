@@ -2,13 +2,22 @@ require("dotenv").config();
 const { App, ExpressReceiver } = require("@slack/bolt");
 const fs = require("fs");
 const path = require("path");
+const { google } = require("googleapis");
 const { parse } = require("csv-parse/sync");
 
 const LOCAL_DATA_PATH = path.join(__dirname, "channels-data.json");
+const METRICS_PATH = path.join(__dirname, "channels-metrics.json");
 const SHEET_URL = process.env.GOOGLE_SHEET_URL;
 const SHEET_TAB = process.env.GOOGLE_SHEET_TAB || "";
+const METRICS_SHEET_ID = process.env.GOOGLE_SHEETS_METRICS_SPREADSHEET_ID;
+const METRICS_SHEET_TAB = process.env.GOOGLE_SHEETS_METRICS_TAB || "Metrics";
+const METRICS_EXPORT_DEBOUNCE_MS = 5000;
+const STATS_APPS_SCRIPT_URL = process.env.STATS_APPS_SCRIPT_URL;
 const CACHE_TTL_MS = 5 * 60 * 1000;
 let cached = { data: null, fetchedAt: 0 };
+let metricsExportTimer = null;
+let metricsExportInFlight = false;
+let metricsExportPending = false;
 
 const receiver = new ExpressReceiver({
   signingSecret: process.env.SLACK_SIGNING_SECRET,
@@ -23,8 +32,181 @@ const MAX_RESULTS = 60;
 const MAX_LINES_PER_BLOCK = 18;
 const MAX_TEXT_LENGTH = 2800;
 
+function loadMetrics() {
+  try {
+    const stored = fs.readFileSync(METRICS_PATH, "utf-8");
+    return JSON.parse(stored);
+  } catch (error) {
+    return {
+      totalCommands: 0,
+      groupSelections: {},
+      lastUsedAt: null,
+      weekly: {},
+    };
+  }
+}
+
+function saveMetrics(metrics) {
+  try {
+    fs.writeFileSync(METRICS_PATH, JSON.stringify(metrics, null, 2), "utf-8");
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error("Failed to write metrics", error?.message || error);
+  }
+}
+
+function incrementMetric(metrics, groupTitle) {
+  metrics.totalCommands += 1;
+  metrics.lastUsedAt = new Date().toISOString();
+  if (groupTitle) {
+    metrics.groupSelections[groupTitle] =
+      (metrics.groupSelections[groupTitle] || 0) + 1;
+  }
+
+  const weekKey = getWeekKey();
+  if (!metrics.weekly) metrics.weekly = {};
+  if (!metrics.weekly[weekKey]) {
+    metrics.weekly[weekKey] = {
+      totalCommands: 0,
+      groupSelections: {},
+      lastUsedAt: null,
+    };
+  }
+
+  metrics.weekly[weekKey].totalCommands += 1;
+  metrics.weekly[weekKey].lastUsedAt = metrics.lastUsedAt;
+  if (groupTitle) {
+    metrics.weekly[weekKey].groupSelections[groupTitle] =
+      (metrics.weekly[weekKey].groupSelections[groupTitle] || 0) + 1;
+  }
+}
+
 function normalize(text) {
   return String(text || "").toLowerCase();
+}
+
+function getWeekKey(date = new Date()) {
+  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  const day = d.getUTCDay() || 7;
+  d.setUTCDate(d.getUTCDate() + 4 - day);
+  const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+  const weekNo = Math.ceil(((d - yearStart) / 86400000 + 1) / 7);
+  return `${d.getUTCFullYear()}-W${String(weekNo).padStart(2, "0")}`;
+}
+
+function isMetricsExportConfigured() {
+  return (
+    Boolean(METRICS_SHEET_ID) &&
+    Boolean(
+      process.env.GOOGLE_SERVICE_ACCOUNT_JSON ||
+        process.env.GOOGLE_SERVICE_ACCOUNT_PATH
+    )
+  );
+}
+
+function parseServiceAccount() {
+  const jsonValue = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
+  if (jsonValue) {
+    if (jsonValue.trim().startsWith("{")) {
+      return JSON.parse(jsonValue);
+    }
+    const decoded = Buffer.from(jsonValue, "base64").toString("utf-8");
+    return JSON.parse(decoded);
+  }
+  const filePath = process.env.GOOGLE_SERVICE_ACCOUNT_PATH;
+  if (filePath) {
+    const content = fs.readFileSync(filePath, "utf-8");
+    return JSON.parse(content);
+  }
+  return null;
+}
+
+async function exportWeeklyMetricsToSheets(metrics) {
+  if (!isMetricsExportConfigured()) return;
+  const credentials = parseServiceAccount();
+  if (!credentials) return;
+
+  const auth = new google.auth.JWT(
+    credentials.client_email,
+    null,
+    credentials.private_key,
+    ["https://www.googleapis.com/auth/spreadsheets"]
+  );
+  const sheets = google.sheets({ version: "v4", auth });
+
+  const header = ["Week", "Total Commands", "Group", "Count", "Last Used At"];
+  const rows = [header];
+  const weekly = metrics.weekly || {};
+  Object.keys(weekly)
+    .sort()
+    .forEach((weekKey) => {
+      const weekData = weekly[weekKey] || {};
+      const total = weekData.totalCommands || 0;
+      const lastUsed = weekData.lastUsedAt || "";
+      rows.push([weekKey, total, "ALL", total, lastUsed]);
+      const groupSelections = weekData.groupSelections || {};
+      Object.keys(groupSelections)
+        .sort()
+        .forEach((group) => {
+          rows.push([weekKey, total, group, groupSelections[group], lastUsed]);
+        });
+    });
+
+  await sheets.spreadsheets.values.clear({
+    spreadsheetId: METRICS_SHEET_ID,
+    range: METRICS_SHEET_TAB,
+  });
+  await sheets.spreadsheets.values.update({
+    spreadsheetId: METRICS_SHEET_ID,
+    range: `${METRICS_SHEET_TAB}!A1`,
+    valueInputOption: "RAW",
+    requestBody: { values: rows },
+  });
+}
+
+async function sendStatsEvent(eventType, payload) {
+  if (!STATS_APPS_SCRIPT_URL) return;
+  try {
+    await fetch(STATS_APPS_SCRIPT_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        eventType,
+        timestamp: new Date().toISOString(),
+        ...payload,
+      }),
+    });
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error("Stats webhook error", error?.message || error);
+  }
+}
+
+function scheduleMetricsExport() {
+  if (!isMetricsExportConfigured()) return;
+  if (metricsExportInFlight) {
+    metricsExportPending = true;
+    return;
+  }
+  if (metricsExportTimer) return;
+
+  metricsExportTimer = setTimeout(async () => {
+    metricsExportTimer = null;
+    metricsExportInFlight = true;
+    try {
+      const metrics = loadMetrics();
+      await exportWeeklyMetricsToSheets(metrics);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error("Metrics export failed", error?.message || error);
+    } finally {
+      metricsExportInFlight = false;
+      if (metricsExportPending) {
+        metricsExportPending = false;
+        scheduleMetricsExport();
+      }
+    }
+  }, METRICS_EXPORT_DEBOUNCE_MS);
 }
 
 function getGroupTitles(data) {
@@ -241,6 +423,21 @@ function buildView({ data, keyword = "", groupTitle = "all" } = {}) {
   };
 }
 
+function buildLoadingView({ data, keyword = "", groupTitle = "all" } = {}) {
+  const view = buildView({ data, keyword, groupTitle });
+  view.blocks = [
+    ...view.blocks,
+    {
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: ":hourglass_flowing_sand: Loading channels map...",
+      },
+    },
+  ];
+  return view;
+}
+
 function cleanCell(value) {
   return String(value || "").replace(/\s+/g, " ").trim();
 }
@@ -350,20 +547,63 @@ async function getData() {
 
 app.command("/channels-map", async ({ ack, body, client }) => {
   await ack();
-  const data = await getData();
-  await client.views.open({
-    trigger_id: body.trigger_id,
-    view: buildView({ data }),
+  const dataSnapshot = cached.data || [];
+  const metrics = loadMetrics();
+  incrementMetric(metrics, "all");
+  saveMetrics(metrics);
+  scheduleMetricsExport();
+  await sendStatsEvent("command_open", {
+    userId: body.user_id,
+    teamId: body.team_id,
+    channelId: body.channel_id,
   });
+  const openResult = await client.views.open({
+    trigger_id: body.trigger_id,
+    view: buildLoadingView({ data: dataSnapshot }),
+  });
+
+  try {
+    const data = await getData();
+    const view = buildView({ data });
+    await client.views.update({
+      view_id: openResult.view.id,
+      hash: openResult.view.hash,
+      view,
+    });
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.error("Failed to update view", error?.data || error);
+  }
 });
 
-app.view("channels_map_filters", async ({ ack, body }) => {
+app.view("channels_map_filters", async ({ ack, body, client }) => {
+  const state = body.view.state.values;
+  const keyword = state.keyword_block?.keyword_input?.value || "";
+  const groupTitle =
+    state.group_block?.group_select?.selected_option?.value || "all";
+
   try {
-    const state = body.view.state.values;
-    const keyword =
-      state.keyword_block?.keyword_input?.value || "";
-    const groupTitle =
-      state.group_block?.group_select?.selected_option?.value || "all";
+    const metrics = loadMetrics();
+    incrementMetric(metrics, groupTitle);
+    saveMetrics(metrics);
+    scheduleMetricsExport();
+    await sendStatsEvent("apply_filters", {
+      userId: body.user.id,
+      teamId: body.team?.id,
+      keyword,
+      groupTitle,
+    });
+
+    const dataSnapshot = cached.data || [];
+    const loadingView = buildLoadingView({
+      data: dataSnapshot,
+      keyword,
+      groupTitle,
+    });
+    await ack({
+      response_action: "update",
+      view: loadingView,
+    });
 
     const data = await getData();
     const view = buildView({ data, keyword, groupTitle });
@@ -371,9 +611,9 @@ app.view("channels_map_filters", async ({ ack, body }) => {
       ...view.blocks,
       ...buildResultsBlocks({ data, keyword, groupTitle }),
     ];
-
-    await ack({
-      response_action: "update",
+    await client.views.update({
+      view_id: body.view.id,
+      hash: body.view.hash,
       view,
     });
   } catch (error) {
