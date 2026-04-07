@@ -15,12 +15,14 @@ const METRICS_EXPORT_DEBOUNCE_MS = 5000;
 const STATS_APPS_SCRIPT_URL = process.env.STATS_APPS_SCRIPT_URL;
 const CACHE_TTL_MS = 5 * 60 * 1000;
 const CHANNEL_CACHE_TTL_MS = 6 * 60 * 60 * 1000;
+const USER_CACHE_TTL_MS = 6 * 60 * 60 * 1000;
 let cached = { data: null, fetchedAt: 0 };
 let metricsExportTimer = null;
 let metricsExportInFlight = false;
 let metricsExportPending = false;
 let warnedMissingStatsUrl = false;
 const channelCache = new Map();
+const userCache = new Map();
 
 const receiver = new ExpressReceiver({
   signingSecret: process.env.SLACK_SIGNING_SECRET,
@@ -129,6 +131,30 @@ async function resolveChannelInfo(client, channelId) {
         : "public",
     };
     channelCache.set(channelId, { data, fetchedAt: Date.now() });
+    return data;
+  } catch (error) {
+    return {};
+  }
+}
+
+async function resolveUserInfo(client, userId) {
+  if (!userId || !client) return {};
+  const cachedEntry = userCache.get(userId);
+  if (
+    cachedEntry &&
+    Date.now() - cachedEntry.fetchedAt < USER_CACHE_TTL_MS
+  ) {
+    return cachedEntry.data;
+  }
+  try {
+    const info = await client.users.info({ user: userId });
+    const user = info?.user || {};
+    const profile = user.profile || {};
+    const data = {
+      name: user.real_name || profile.real_name || user.name || "",
+      email: profile.email || "",
+    };
+    userCache.set(userId, { data, fetchedAt: Date.now() });
     return data;
   } catch (error) {
     return {};
@@ -627,6 +653,7 @@ app.command("/channels-map", async ({ ack, body, client }) => {
 
   try {
     const channelInfo = await resolveChannelInfo(client, body.channel_id);
+    const userInfo = await resolveUserInfo(client, body.user_id);
     const enrichedMetadata = {
       ...metadata,
       channelName: channelInfo.name || "",
@@ -634,6 +661,8 @@ app.command("/channels-map", async ({ ack, body, client }) => {
     };
     void sendStatsEvent("command_open", {
       userId: body.user_id,
+      userName: userInfo.name || "",
+      userEmail: userInfo.email || "",
       teamId: body.team_id,
       channelId: body.channel_id,
       channelName: channelInfo.name || "",
@@ -656,6 +685,7 @@ app.view("channels_map_filters", async ({ ack, body, client }) => {
   const state = body.view.state.values;
   const metadata = parseViewMetadata(body.view);
   const channelId = metadata.channelId || "";
+  const userId = body.user?.id || "";
   const keyword = state.keyword_block?.keyword_input?.value || "";
   const groupTitle =
     state.group_block?.group_select?.selected_option?.value || "all";
@@ -675,8 +705,11 @@ app.view("channels_map_filters", async ({ ack, body, client }) => {
       metadata.channelName || metadata.channelType
         ? { name: metadata.channelName || "", type: metadata.channelType || "" }
         : await resolveChannelInfo(client, channelId);
+    const userInfo = await resolveUserInfo(client, userId);
     void sendStatsEvent("apply_filters", {
-      userId: body.user.id,
+      userId,
+      userName: userInfo.name || "",
+      userEmail: userInfo.email || "",
       teamId: body.team?.id,
       keyword,
       groupTitle,

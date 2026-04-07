@@ -15,6 +15,7 @@ Slash command `/channels-map` opens a modal with filters and shows Slack channel
    - `commands`
    - `chat:write`
    - `conversations:read` (optional, for channel names in stats)
+   - `users:read` and `users:read.email` (optional, for user names/emails in stats)
 5. Install the app to your workspace and copy:
    - **Bot User OAuth Token**
    - **Signing Secret**
@@ -72,13 +73,15 @@ function doPost(e) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName(sheetName) || ss.insertSheet(sheetName);
   if (sheet.getLastRow() === 0) {
-    sheet.appendRow(['timestamp', 'eventType', 'userId', 'teamId', 'keyword', 'groupTitle', 'channelId', 'channelName', 'channelType']);
+    sheet.appendRow(['timestamp', 'eventType', 'userId', 'userName', 'userEmail', 'teamId', 'keyword', 'groupTitle', 'channelId', 'channelName', 'channelType']);
   }
   var body = JSON.parse(e.postData.contents || '{}');
   sheet.appendRow([
     body.timestamp || '',
     body.eventType || '',
     body.userId || '',
+    body.userName || '',
+    body.userEmail || '',
     body.teamId || '',
     body.keyword || '',
     body.groupTitle || '',
