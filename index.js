@@ -659,6 +659,12 @@ app.view("channels_map_filters", async ({ ack, body, client }) => {
   const keyword = state.keyword_block?.keyword_input?.value || "";
   const groupTitle =
     state.group_block?.group_select?.selected_option?.value || "all";
+  let acked = false;
+  const ackOnce = async (payload) => {
+    if (acked) return;
+    acked = true;
+    await ack(payload);
+  };
 
   try {
     const metrics = loadMetrics();
@@ -690,7 +696,7 @@ app.view("channels_map_filters", async ({ ack, body, client }) => {
         channelType: channelInfo.type || metadata.channelType || "",
       },
     });
-    await ack({
+    await ackOnce({
       response_action: "update",
       view: loadingView,
     });
@@ -703,13 +709,12 @@ app.view("channels_map_filters", async ({ ack, body, client }) => {
     ];
     await client.views.update({
       view_id: body.view.id,
-      hash: body.view.hash,
       view,
     });
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error("View submission error", error?.data || error);
-    await ack();
+    await ackOnce();
   }
 });
 
