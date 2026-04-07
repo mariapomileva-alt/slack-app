@@ -14,6 +14,7 @@ Slash command `/channels-map` opens a modal with filters and shows Slack channel
 4. Under **OAuth & Permissions**, add scopes:
    - `commands`
    - `chat:write`
+   - `conversations:read` (optional, for channel names in stats)
 5. Install the app to your workspace and copy:
    - **Bot User OAuth Token**
    - **Signing Secret**
@@ -71,7 +72,7 @@ function doPost(e) {
   var ss = SpreadsheetApp.getActiveSpreadsheet();
   var sheet = ss.getSheetByName(sheetName) || ss.insertSheet(sheetName);
   if (sheet.getLastRow() === 0) {
-    sheet.appendRow(['timestamp', 'eventType', 'userId', 'teamId', 'keyword', 'groupTitle', 'channelId']);
+    sheet.appendRow(['timestamp', 'eventType', 'userId', 'teamId', 'keyword', 'groupTitle', 'channelId', 'channelName', 'channelType']);
   }
   var body = JSON.parse(e.postData.contents || '{}');
   sheet.appendRow([
@@ -81,7 +82,9 @@ function doPost(e) {
     body.teamId || '',
     body.keyword || '',
     body.groupTitle || '',
-    body.channelId || ''
+    body.channelId || '',
+    body.channelName || '',
+    body.channelType || ''
   ]);
   return ContentService
     .createTextOutput(JSON.stringify({ ok: true }))

@@ -14,10 +14,13 @@ const METRICS_SHEET_TAB = process.env.GOOGLE_SHEETS_METRICS_TAB || "Metrics";
 const METRICS_EXPORT_DEBOUNCE_MS = 5000;
 const STATS_APPS_SCRIPT_URL = process.env.STATS_APPS_SCRIPT_URL;
 const CACHE_TTL_MS = 5 * 60 * 1000;
+const CHANNEL_CACHE_TTL_MS = 6 * 60 * 60 * 1000;
 let cached = { data: null, fetchedAt: 0 };
 let metricsExportTimer = null;
 let metricsExportInFlight = false;
 let metricsExportPending = false;
+let warnedMissingStatsUrl = false;
+const channelCache = new Map();
 
 const receiver = new ExpressReceiver({
   signingSecret: process.env.SLACK_SIGNING_SECRET,
@@ -94,6 +97,44 @@ function getWeekKey(date = new Date()) {
   return `${d.getUTCFullYear()}-W${String(weekNo).padStart(2, "0")}`;
 }
 
+function parseViewMetadata(view) {
+  if (!view?.private_metadata) return {};
+  try {
+    return JSON.parse(view.private_metadata);
+  } catch (error) {
+    return {};
+  }
+}
+
+async function resolveChannelInfo(client, channelId) {
+  if (!channelId || !client) return {};
+  const cachedEntry = channelCache.get(channelId);
+  if (
+    cachedEntry &&
+    Date.now() - cachedEntry.fetchedAt < CHANNEL_CACHE_TTL_MS
+  ) {
+    return cachedEntry.data;
+  }
+  try {
+    const info = await client.conversations.info({ channel: channelId });
+    const channel = info?.channel || {};
+    const data = {
+      name: channel.name || channel.user || channel.id || "",
+      type: channel.is_im
+        ? "im"
+        : channel.is_mpim
+        ? "mpim"
+        : channel.is_private
+        ? "private"
+        : "public",
+    };
+    channelCache.set(channelId, { data, fetchedAt: Date.now() });
+    return data;
+  } catch (error) {
+    return {};
+  }
+}
+
 function isMetricsExportConfigured() {
   return (
     Boolean(METRICS_SHEET_ID) &&
@@ -165,9 +206,16 @@ async function exportWeeklyMetricsToSheets(metrics) {
 }
 
 async function sendStatsEvent(eventType, payload) {
-  if (!STATS_APPS_SCRIPT_URL) return;
+  if (!STATS_APPS_SCRIPT_URL) {
+    if (!warnedMissingStatsUrl) {
+      warnedMissingStatsUrl = true;
+      // eslint-disable-next-line no-console
+      console.warn("STATS_APPS_SCRIPT_URL is not set; stats disabled.");
+    }
+    return;
+  }
   try {
-    await fetch(STATS_APPS_SCRIPT_URL, {
+    const response = await fetch(STATS_APPS_SCRIPT_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -176,6 +224,15 @@ async function sendStatsEvent(eventType, payload) {
         ...payload,
       }),
     });
+    if (!response.ok) {
+      const bodyText = await response.text().catch(() => "");
+      // eslint-disable-next-line no-console
+      console.error(
+        "Stats webhook failed",
+        response.status,
+        bodyText || "<no body>"
+      );
+    }
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error("Stats webhook error", error?.message || error);
@@ -367,12 +424,15 @@ function buildResultsBlocks({ data, keyword, groupTitle }) {
   return blocks;
 }
 
-function buildView({ data, keyword = "", groupTitle = "all" } = {}) {
+function buildView({ data, keyword = "", groupTitle = "all", metadata } = {}) {
   const options = buildOptions(data);
   const initialOption = options.find((o) => o.value === groupTitle);
   return {
     type: "modal",
     callback_id: "channels_map_filters",
+    ...(metadata
+      ? { private_metadata: JSON.stringify(metadata).slice(0, 3000) }
+      : {}),
     title: {
       type: "plain_text",
       text: "Channels Map",
@@ -423,8 +483,13 @@ function buildView({ data, keyword = "", groupTitle = "all" } = {}) {
   };
 }
 
-function buildLoadingView({ data, keyword = "", groupTitle = "all" } = {}) {
-  const view = buildView({ data, keyword, groupTitle });
+function buildLoadingView({
+  data,
+  keyword = "",
+  groupTitle = "all",
+  metadata,
+} = {}) {
+  const view = buildView({ data, keyword, groupTitle, metadata });
   view.blocks = [
     ...view.blocks,
     {
@@ -548,23 +613,34 @@ async function getData() {
 app.command("/channels-map", async ({ ack, body, client }) => {
   await ack();
   const dataSnapshot = cached.data || [];
+  const metadata = {
+    channelId: body.channel_id || "",
+  };
   const metrics = loadMetrics();
   incrementMetric(metrics, "all");
   saveMetrics(metrics);
   scheduleMetricsExport();
-  await sendStatsEvent("command_open", {
-    userId: body.user_id,
-    teamId: body.team_id,
-    channelId: body.channel_id,
-  });
   const openResult = await client.views.open({
     trigger_id: body.trigger_id,
-    view: buildLoadingView({ data: dataSnapshot }),
+    view: buildLoadingView({ data: dataSnapshot, metadata }),
   });
 
   try {
+    const channelInfo = await resolveChannelInfo(client, body.channel_id);
+    const enrichedMetadata = {
+      ...metadata,
+      channelName: channelInfo.name || "",
+      channelType: channelInfo.type || "",
+    };
+    void sendStatsEvent("command_open", {
+      userId: body.user_id,
+      teamId: body.team_id,
+      channelId: body.channel_id,
+      channelName: channelInfo.name || "",
+      channelType: channelInfo.type || "",
+    });
     const data = await getData();
-    const view = buildView({ data });
+    const view = buildView({ data, metadata: enrichedMetadata });
     await client.views.update({
       view_id: openResult.view.id,
       hash: openResult.view.hash,
@@ -578,6 +654,8 @@ app.command("/channels-map", async ({ ack, body, client }) => {
 
 app.view("channels_map_filters", async ({ ack, body, client }) => {
   const state = body.view.state.values;
+  const metadata = parseViewMetadata(body.view);
+  const channelId = metadata.channelId || "";
   const keyword = state.keyword_block?.keyword_input?.value || "";
   const groupTitle =
     state.group_block?.group_select?.selected_option?.value || "all";
@@ -587,11 +665,18 @@ app.view("channels_map_filters", async ({ ack, body, client }) => {
     incrementMetric(metrics, groupTitle);
     saveMetrics(metrics);
     scheduleMetricsExport();
-    await sendStatsEvent("apply_filters", {
+    const channelInfo =
+      metadata.channelName || metadata.channelType
+        ? { name: metadata.channelName || "", type: metadata.channelType || "" }
+        : await resolveChannelInfo(client, channelId);
+    void sendStatsEvent("apply_filters", {
       userId: body.user.id,
       teamId: body.team?.id,
       keyword,
       groupTitle,
+      channelId,
+      channelName: channelInfo.name || "",
+      channelType: channelInfo.type || "",
     });
 
     const dataSnapshot = cached.data || [];
@@ -599,6 +684,11 @@ app.view("channels_map_filters", async ({ ack, body, client }) => {
       data: dataSnapshot,
       keyword,
       groupTitle,
+      metadata: {
+        ...metadata,
+        channelName: channelInfo.name || metadata.channelName || "",
+        channelType: channelInfo.type || metadata.channelType || "",
+      },
     });
     await ack({
       response_action: "update",
@@ -606,7 +696,7 @@ app.view("channels_map_filters", async ({ ack, body, client }) => {
     });
 
     const data = await getData();
-    const view = buildView({ data, keyword, groupTitle });
+    const view = buildView({ data, keyword, groupTitle, metadata });
     view.blocks = [
       ...view.blocks,
       ...buildResultsBlocks({ data, keyword, groupTitle }),
