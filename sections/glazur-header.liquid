@@ -1,0 +1,80 @@
+<div id="promo-bar" class="promo-bar">
+  <a href="#" id="promo-open-modal">
+    <span id="promo-headline">{{ settings.promo_bar_text | escape }}</span>
+  </a>
+  <button type="button" class="promo-bar__close" id="promo-close" aria-label="Dismiss promotion">×</button>
+</div>
+
+<header class="site-header site-header--mirror site-header--shopru">
+  <div class="site-header__inner site-header__inner--shopru">
+    <nav class="nav" id="site-nav" aria-label="Primary">
+      <a href="{% if pages.about != blank %}{{ pages.about.url }}{% else %}#{% endif %}">About</a>
+      <details class="nav-details">
+        <summary class="nav-details__summary">Catalog</summary>
+        <div class="nav-details__panel" role="group" aria-label="Catalog categories">
+          <a href="{% render 'glazur-collection-url', key: 'blouses' %}">Blouses</a>
+          <a href="{% render 'glazur-collection-url', key: 'stripes' %}">Striped tops</a>
+          <a href="{% render 'glazur-collection-url', key: 'skirts' %}">Skirts</a>
+          <a href="{% render 'glazur-collection-url', key: 'dresses' %}">Dresses</a>
+          <a href="{% render 'glazur-collection-url', key: 'knitwear' %}">Knitwear</a>
+          <a href="{% render 'glazur-collection-url', key: 'default' %}">Full collection</a>
+        </div>
+      </details>
+      <a href="{% render 'glazur-collection-url', key: 'new_arrivals' %}">New in</a>
+      <a class="js-config-mailto" href="mailto:{{ settings.contact_email | escape }}">Contact</a>
+      <a href="{% if pages.about != blank %}{{ pages.about.url }}{% else %}#{% endif %}">Stories</a>
+      <div class="nav__cta">
+        <a class="btn btn--fill" href="{{ routes.all_products_collection_url }}">Order</a>
+      </div>
+    </nav>
+    <a class="logo" href="{{ routes.root_url }}">
+      <img
+        class="logo__img"
+        src="{{ 'glazur-logo-yellow-swan.png' | asset_url }}"
+        width="256"
+        height="50"
+        alt="{{ shop.name }}"
+        decoding="async"
+        loading="eager"
+      >
+    </a>
+    <div class="header-social" aria-label="Messengers and email">
+      {% if settings.social_telegram != blank %}
+        <a class="header-social__link" href="{{ settings.social_telegram }}" target="_blank" rel="noopener noreferrer" aria-label="Telegram">TG</a>
+      {% endif %}
+      {% if settings.social_vk != blank %}
+        <a class="header-social__link" href="{{ settings.social_vk }}" target="_blank" rel="noopener noreferrer" aria-label="VK">VK</a>
+      {% endif %}
+      {% if settings.social_whatsapp != blank %}
+        <a class="header-social__link" href="{{ settings.social_whatsapp }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">WA</a>
+      {% endif %}
+      <a class="header-social__link header-social__link--mail js-config-mailto" href="mailto:{{ settings.contact_email | escape }}" aria-label="Email">@</a>
+    </div>
+    <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+  </div>
+</header>
+
+<div id="promo-modal" class="promo-modal" hidden>
+  <div class="promo-modal__overlay" aria-hidden="true"></div>
+  <div class="promo-modal__panel" role="dialog" aria-modal="true" aria-labelledby="promo-dialog-title">
+    <button type="button" class="promo-modal__close" aria-label="Close">×</button>
+    <h2 id="promo-dialog-title">{{ settings.promo_modal_title | escape }}</h2>
+    <p class="sub" id="promo-subline">{{ settings.promo_modal_subline | escape }}</p>
+    <form id="promo-form">
+      <label class="sr-only" for="promo-email">Email</label>
+      <input id="promo-email" type="email" required placeholder="Your email" autocomplete="email">
+      <button type="submit" class="btn btn--fill" style="width: 100%;" id="promo-cta">{{ settings.promo_modal_cta | escape }}</button>
+      <p class="legal" id="promo-legal-modal">{{ settings.promo_legal | escape }}</p>
+    </form>
+    <p id="promo-success" class="success" hidden>{{ settings.promo_success_message | escape }}</p>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Glazur header",
+  "class": "section-glazur-header",
+  "settings": [],
+  "presets": [{ "name": "Glazur header" }]
+}
+{% endschema %}
