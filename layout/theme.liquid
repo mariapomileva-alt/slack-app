@@ -29,11 +29,11 @@
   data-promo-success="{{ settings.promo_success_message | escape }}"
 >
   <a class="skip-to-content-link sr-only" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
-  {% sections 'header-group' %}
+  {% section 'glazur-header' %}
   <main id="MainContent" class="glazur-main" tabindex="-1">
     {{ content_for_layout }}
   </main>
-  {% sections 'footer-group' %}
+  {% section 'glazur-footer' %}
   <script src="{{ 'glazur.js' | asset_url }}" defer></script>
 </body>
 </html>
