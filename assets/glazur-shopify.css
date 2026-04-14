@@ -27,46 +27,147 @@
   margin: 0;
 }
 
-/* Shopify policy pages (/policies/*) */
+/* Shopify policy pages (/policies/*) + help pages (same layout) */
 .shopify-policy__container {
-  max-width: min(760px, 92vw);
-  margin: 0 auto;
-  padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 1.5rem);
+  --glazur-doc-pad: clamp(1.75rem, 4.5vw, 2.75rem);
+  max-width: min(720px, 94vw);
+  margin: clamp(1.25rem, 4vw, 2.5rem) auto clamp(2.5rem, 6vw, 4rem);
+  padding: var(--glazur-doc-pad);
+  background: linear-gradient(
+    165deg,
+    var(--color-surface, #fff) 0%,
+    var(--color-cream-pale, #faf6ed) 48%,
+    rgba(245, 237, 212, 0.55) 100%
+  );
+  border: 1px solid var(--color-line, #e8c4d4);
+  border-radius: clamp(10px, 2vw, 16px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.85) inset,
+    0 18px 48px rgba(74, 21, 54, 0.06);
+}
+
+.shopify-policy__container::before {
+  content: "";
+  display: block;
+  width: clamp(3rem, 12vw, 5.5rem);
+  height: 4px;
+  border-radius: 4px;
+  margin: 0 0 1.25rem;
+  background: linear-gradient(
+    90deg,
+    var(--color-pack-lime-deep, #72a82e),
+    var(--color-blush, #e58bad)
+  );
 }
 
 .shopify-policy__title,
 .shopify-policy__container h1 {
   font-family: var(--font-heading, "Syne", sans-serif);
-  font-size: clamp(1.5rem, 4.5vw, 2.2rem);
-  line-height: 1.15;
-  letter-spacing: 0.06em;
+  font-size: clamp(1.55rem, 4.2vw, 2.15rem);
+  line-height: 1.12;
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   overflow-wrap: anywhere;
+  color: var(--color-plum, #4a1536);
+  margin: 0 0 0.35rem;
+  max-width: 20ch;
+}
+
+.shopify-policy__container > p:first-of-type,
+.shopify-policy__container .prose > p:first-of-type {
+  font-family: var(--font-body, Georgia, serif);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--color-ink-muted, #5c4550);
+  margin-top: 0.25rem;
+  margin-bottom: 1.5rem;
+  max-width: 38rem;
 }
 
 .shopify-policy__container h2,
 .shopify-policy__container h3 {
   font-family: var(--font-heading, "Syne", sans-serif);
-  line-height: 1.18;
+  line-height: 1.2;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   overflow-wrap: anywhere;
+  color: var(--color-plum, #4a1536);
 }
 
 .shopify-policy__container h2 {
-  font-size: clamp(1.2rem, 3.6vw, 1.85rem);
+  font-size: clamp(1.05rem, 2.8vw, 1.55rem);
+  margin: 2rem 0 0.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(232, 196, 212, 0.65);
+}
+
+.shopify-policy__container .prose > h2:first-child,
+.shopify-policy__container .rte > h2:first-child {
+  margin-top: 1.15rem;
+  padding-top: 0;
+  border-top: none;
 }
 
 .shopify-policy__container h3 {
-  font-size: clamp(1.05rem, 2.9vw, 1.35rem);
+  font-size: clamp(0.95rem, 2.2vw, 1.2rem);
+  margin: 1.35rem 0 0.45rem;
+  color: var(--color-plum-mid, #5c2746);
 }
 
-/* CMS pages that reuse policy layout (care, faq, size-guide, shipping-returns) */
+.shopify-policy__container p,
+.shopify-policy__container li {
+  font-family: var(--font-body, Georgia, serif);
+  line-height: 1.65;
+  color: var(--color-ink-muted, #5c4550);
+}
+
+.shopify-policy__container a {
+  color: var(--color-plum, #4a1536);
+  font-weight: 600;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.15s ease;
+}
+
+.shopify-policy__container a:hover {
+  color: var(--color-accent, #d4146b);
+}
+
+.shopify-policy__container ul {
+  padding-left: 1.2rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.shopify-policy__container li {
+  margin-bottom: 0.4rem;
+}
+
+/* CMS help pages: prose + FAQ inside the card */
 .shopify-policy__container.glazur-page--policy-like .prose {
-  margin-top: 0.5rem;
+  margin-top: 0.35rem;
 }
 
 .shopify-policy__container.glazur-page--policy-like .faq-list {
-  margin-top: 1.25rem;
+  margin-top: 0.5rem;
+  max-width: none;
   text-align: left;
+}
+
+.shopify-policy__container.glazur-page--policy-like .faq-item {
+  border-bottom-color: rgba(232, 196, 212, 0.85);
+}
+
+.shopify-policy__container.glazur-page--policy-like .faq-item button {
+  padding: 1.05rem 0.35rem 1.05rem 0;
+  font-size: 0.98rem;
+  border-radius: 0;
+}
+
+.shopify-policy__container.glazur-page--policy-like .faq-item button:hover {
+  color: var(--color-plum, #4a1536);
+}
+
+.shopify-policy__container.glazur-page--policy-like .faq-panel {
+  padding-left: 0.15rem;
+  padding-right: 0.5rem;
 }
