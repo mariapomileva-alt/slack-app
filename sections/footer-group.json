@@ -1,0 +1,11 @@
+{
+  "name": "Footer",
+  "type": "footer",
+  "sections": {
+    "glazur_footer": {
+      "type": "glazur-footer",
+      "settings": {}
+    }
+  },
+  "order": ["glazur_footer"]
+}
