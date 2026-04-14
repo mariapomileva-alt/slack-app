@@ -1,6 +1,17 @@
 <article class="section-main-page container rte" style="padding: 2rem 1rem; max-width: 800px; margin: 0 auto;">
   <h1 style="font-family: var(--font-heading, Syne, sans-serif);">{{ page.title }}</h1>
-  {{ page.content }}
+
+  {% if page.handle == 'care' %}
+    {% render 'glazur-page-body-care' %}
+  {% elsif page.handle == 'size-guide' %}
+    {% render 'glazur-page-body-size-guide' %}
+  {% elsif page.handle == 'shipping-returns' %}
+    {% render 'glazur-page-body-shipping-returns' %}
+  {% elsif page.handle == 'faq' %}
+    {% render 'glazur-page-body-faq' %}
+  {% else %}
+    {{ page.content }}
+  {% endif %}
 </article>
 
 {% schema %}

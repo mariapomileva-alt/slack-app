@@ -1,0 +1,108 @@
+{%- assign mail = settings.contact_email | default: shop.email -%}
+<div class="prose rte">
+  <h2>Shipping</h2>
+  <h3>Domestic (U.S.)</h3>
+  <p>We offer complimentary standard shipping on all U.S. orders over $250 USD (before tax).</p>
+  <p>For orders under $250 USD, we charge a flat rate of $10 USD for standard shipping. Shipping charges are non-refundable.</p>
+  <p>All orders are shipped from our warehouse in Boca Raton, Florida.</p>
+  <p>
+    Orders are typically processed within 1–3 business days and delivered within 2–5 business days after shipment, depending on your location.
+  </p>
+  <p>
+    We ship via trusted carriers such as FedEx, UPS, and USPS. Carrier selection may vary based on destination and package size.
+  </p>
+  <p>
+    Expedited and overnight shipping options are available at checkout. Orders must be placed by 1:00 PM ET to be shipped the same business day.
+  </p>
+  <p>Once an order has been placed, we are unable to modify or combine shipments.</p>
+
+  <h3>International</h3>
+  <p>We offer international shipping worldwide.</p>
+  <ul>
+    <li>Free international shipping on orders over $400 USD</li>
+    <li>Shipping rates for orders below this threshold are calculated at checkout</li>
+  </ul>
+  <p>
+    International orders are typically shipped via DHL Express and delivered within 3–7 business days, depending on destination.
+  </p>
+  <p>Duties and taxes may be applied upon delivery and are the responsibility of the customer unless prepaid at checkout.</p>
+  <ul>
+    <li>Duties, taxes, and shipping fees are non-refundable</li>
+    <li>We recommend reviewing your country’s import policies prior to placing an order</li>
+  </ul>
+
+  <h2>Discounts &amp; promotions</h2>
+  <h3>Final sale</h3>
+  <p>Items marked Final Sale or discounted 30% or more are not eligible for return, exchange, or store credit.</p>
+  <p>Price adjustments are only available within 7 days of purchase and do not apply to sale items.</p>
+  <p>Discount codes cannot be combined or applied to already discounted items.</p>
+  <h3>Promotions</h3>
+  <p>Promotional offers cannot be applied retroactively to previous orders.</p>
+  <p>Certain promotions may restrict eligibility for refunds and allow only store credit or exchanges.</p>
+
+  <h2>Returns &amp; exchanges</h2>
+  <h3>General policy</h3>
+  <p>We accept returns within 14 days of delivery.</p>
+  <p>To be eligible:</p>
+  <ul>
+    <li>Items must be unworn, unwashed, and in original condition</li>
+    <li>All tags must be attached</li>
+  </ul>
+  <p>Returns that do not meet these conditions will not be accepted.</p>
+
+  <h3>How to initiate a return</h3>
+  <p>
+    To start a return, please email us at
+    <a href="mailto:{{ mail | escape }}">{{ mail | escape }}</a>
+    within 14 days of receiving your order.
+  </p>
+  <p>Please include:</p>
+  <ul>
+    <li>Your order number</li>
+    <li>Your tracking number (return shipment)</li>
+  </ul>
+  <p>Our team will provide further instructions for your return.</p>
+
+  <h3>Domestic returns (U.S.)</h3>
+  <ul>
+    <li>Returns must be initiated within 14 days of delivery</li>
+    <li>Customers are responsible for return shipping unless the item is defective or incorrect</li>
+  </ul>
+  <p><strong>Refund options:</strong></p>
+  <ul>
+    <li>Store Credit — free of charge (full item value)</li>
+    <li>Refund to original payment method — subject to a $10 return fee</li>
+  </ul>
+  <p>Original shipping charges are non-refundable.</p>
+  <p>Returns are processed within 7–10 business days after arrival at our warehouse.</p>
+
+  <h3>Domestic exchanges</h3>
+  <p>We offer size exchanges for U.S. orders (subject to availability).</p>
+  <p>
+    To request an exchange, please contact us at
+    <a href="mailto:{{ mail | escape }}">{{ mail | escape }}</a>.
+  </p>
+  <p>Exchange orders are processed once the returned item is received and inspected.</p>
+
+  <h3>International returns</h3>
+  <p>International customers may return items within 14 days of delivery.</p>
+  <ul>
+    <li>Return shipping costs are the responsibility of the customer</li>
+    <li>Refunds are issued to the original payment method only</li>
+    <li>Exchanges are not available for international orders</li>
+  </ul>
+  <ul>
+    <li>Duties and taxes are non-refundable</li>
+    <li>Original shipping fees are non-refundable</li>
+  </ul>
+
+  <h2>Important notes</h2>
+  <ul>
+    <li>We are not responsible for lost or delayed packages once marked as delivered</li>
+    <li>Orders forwarded by third-party services are not eligible for claims or support</li>
+    <li>
+      For any questions, please contact us at
+      <a href="mailto:{{ mail | escape }}">{{ mail | escape }}</a>
+    </li>
+  </ul>
+</div>

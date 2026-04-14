@@ -1,0 +1,47 @@
+{%- assign mail = settings.contact_email | default: shop.email -%}
+<div class="prose rte">
+  <p>
+    At Glazur, we use natural fabrics such as cotton and linen. These materials are breathable, beautiful, and long-lasting — but they require thoughtful care to preserve their shape, texture, and color over time.
+  </p>
+
+  <h2>Hand washing (recommended)</h2>
+  <p>Hand washing is the best option for maintaining the quality of your garments, especially for delicate pieces.</p>
+  <ul>
+    <li>Fill a sink or basin with cold water</li>
+    <li>Add a natural, biodegradable detergent free of artificial fragrance, bleach, optical brighteners, sulfates, and dioxane</li>
+    <li>Submerge the garment fully in water</li>
+    <li>Gently swirl and lightly squeeze — do not wring or twist</li>
+    <li>Drain and rinse with cold water (skip if using a no-rinse detergent)</li>
+    <li>Gently press out excess water without stretching the fabric</li>
+  </ul>
+
+  <h2>Machine washing</h2>
+  <p>Machine washing is a convenient option when done with care.</p>
+  <ul>
+    <li>Wash only when you have a full load to reduce environmental impact</li>
+    <li>Select a cold water setting to prevent shrinking, fading, and fiber damage</li>
+    <li>Use a delicate or gentle cycle for lighter fabrics</li>
+    <li>Choose a high spin setting to remove excess water before drying</li>
+    <li>Use a natural, biodegradable detergent free of harsh chemicals</li>
+  </ul>
+
+  <h2>Drying</h2>
+  <ul>
+    <li>Air drying is highly recommended to preserve fabric integrity</li>
+    <li>Lay garments flat or hang to dry</li>
+    <li>Avoid tumble drying when possible, as heat can shrink and weaken natural fibers</li>
+  </ul>
+
+  <h2>Additional care tips</h2>
+  <ul>
+    <li>Avoid bleach and harsh chemicals</li>
+    <li>Wash light and dark colors separately</li>
+    <li>Iron on low to medium heat if needed (especially for linen)</li>
+    <li>Store garments in a cool, dry place</li>
+  </ul>
+
+  <p>
+    Questions? Email
+    <a href="mailto:{{ mail | escape }}">{{ mail | escape }}</a>.
+  </p>
+</div>
