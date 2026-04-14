@@ -30,13 +30,25 @@
       <h3>Help &amp; policies</h3>
       <ul>
         <li>
-          <a href="{% render 'glazur-page-url', handle: 'size-guide' %}">Size guide</a>
+          <a
+            href="{% if settings.footer_page_size_guide != blank %}{{ settings.footer_page_size_guide.url }}{% else %}{% render 'glazur-page-url', handle: 'size-guide' %}{% endif %}"
+          >
+            Size guide
+          </a>
         </li>
         <li>
-          <a href="{% render 'glazur-page-url', handle: 'care' %}">Care</a>
+          <a
+            href="{% if settings.footer_page_care != blank %}{{ settings.footer_page_care.url }}{% else %}{% render 'glazur-page-url', handle: 'care' %}{% endif %}"
+          >
+            Care
+          </a>
         </li>
         <li>
-          <a href="{% render 'glazur-page-url', handle: 'faq' %}">FAQ</a>
+          <a
+            href="{% if settings.footer_page_faq != blank %}{{ settings.footer_page_faq.url }}{% else %}{% render 'glazur-page-url', handle: 'faq' %}{% endif %}"
+          >
+            FAQ
+          </a>
         </li>
         <li>
           <a href="{% if shop.privacy_policy != blank %}{{ shop.privacy_policy.url }}{% else %}{{ routes.root_url }}policies/privacy-policy{% endif %}">

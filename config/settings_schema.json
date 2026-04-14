@@ -87,6 +87,29 @@
         "type": "collection",
         "id": "collection_knitwear",
         "label": "Knitwear"
+      },
+      {
+        "type": "header",
+        "content": "Help pages (footer)"
+      },
+      {
+        "type": "paragraph",
+        "content": "Pick the store pages for Size guide, Care, and FAQ. Until pages exist, create them under Online Store → Pages, then select them here. If left empty, links use /pages/size-guide, /pages/care, and /pages/faq."
+      },
+      {
+        "type": "page",
+        "id": "footer_page_size_guide",
+        "label": "Size guide page"
+      },
+      {
+        "type": "page",
+        "id": "footer_page_care",
+        "label": "Care page"
+      },
+      {
+        "type": "page",
+        "id": "footer_page_faq",
+        "label": "FAQ page"
       }
     ]
   },
