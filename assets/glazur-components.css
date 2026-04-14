@@ -718,6 +718,64 @@ body.has-promo .site-header {
   font-style: italic;
 }
 
+/* 404 */
+.not-found-page {
+  padding: clamp(3.5rem, 10vw, 5.5rem) 1rem clamp(4rem, 12vw, 6rem);
+  text-align: center;
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.not-found-page__eyebrow {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-plum-mid, #8a6b78);
+  margin: 0 0 0.75rem;
+}
+
+.not-found-page__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 4.5vw, 2.35rem);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-plum, #2c1220);
+  margin: 0 0 1rem;
+  line-height: 1.15;
+}
+
+.not-found-page__lead {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--color-ink-muted);
+  margin: 0 0 1.75rem;
+}
+
+.not-found-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  justify-content: center;
+  margin-bottom: 1.75rem;
+}
+
+.not-found-page__hint {
+  font-size: 0.95rem;
+  color: var(--color-ink-muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.not-found-page__hint a {
+  color: var(--color-plum);
+  font-weight: 600;
+  text-underline-offset: 3px;
+}
+
 .social-proof {
   text-align: center;
 }

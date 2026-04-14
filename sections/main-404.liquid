@@ -1,6 +1,21 @@
-<section class="container" style="padding: 4rem 1rem; text-align: center;">
-  <h1 style="font-family: var(--font-heading, Syne, sans-serif);">Page not found</h1>
-  <p><a href="{{ routes.root_url }}">Back to home</a></p>
+<section class="not-found-page container" aria-labelledby="not-found-title">
+  <p class="not-found-page__eyebrow">404</p>
+  <h1 id="not-found-title" class="not-found-page__title">Page not found</h1>
+  <p class="not-found-page__lead">
+    This page may have been removed or the link is outdated. You can go back home, open the catalog, or try a search.
+  </p>
+  <div class="not-found-page__actions">
+    <a class="btn btn--fill" href="{{ routes.root_url }}">Back to home</a>
+    <a class="btn" href="{{ routes.all_products_collection_url }}">All products</a>
+    <a class="btn" href="{% render 'glazur-collection-url', key: 'default' %}">Full collection</a>
+    <a class="btn" href="{{ routes.search_url }}">Search</a>
+  </div>
+  <p class="not-found-page__hint">
+    Need help?
+    <a class="js-config-mailto" href="mailto:{{ settings.contact_email | default: shop.email | escape }}">Contact us</a>
+    or see
+    <a href="{% render 'glazur-page-url', handle: 'faq' %}">FAQ</a>.
+  </p>
 </section>
 
 {% schema %}
