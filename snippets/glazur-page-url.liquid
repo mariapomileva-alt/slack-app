@@ -1,0 +1,9 @@
+{%- comment -%}
+  Page URL by handle, or /pages/{handle} so the link works once the page exists in admin.
+  @param handle {String} required
+{%- endcomment -%}
+{%- if pages[handle] != blank -%}
+  {{- pages[handle].url -}}
+{%- else -%}
+  {{- routes.root_url -}}pages/{{ handle }}
+{%- endif -%}
