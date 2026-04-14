@@ -1,18 +1,29 @@
-<article class="section-main-page container rte" style="padding: 2rem 1rem; max-width: 800px; margin: 0 auto;">
-  <h1 style="font-family: var(--font-heading, Syne, sans-serif);">{{ page.title }}</h1>
+{% liquid
+  assign policy_like = false
+  if page.handle == 'care' or page.handle == 'faq' or page.handle == 'size-guide' or page.handle == 'shipping-returns'
+    assign policy_like = true
+  endif
+%}
 
-  {% if page.handle == 'care' %}
-    {% render 'glazur-page-body-care' %}
-  {% elsif page.handle == 'size-guide' %}
-    {% render 'glazur-page-body-size-guide' %}
-  {% elsif page.handle == 'shipping-returns' %}
-    {% render 'glazur-page-body-shipping-returns' %}
-  {% elsif page.handle == 'faq' %}
-    {% render 'glazur-page-body-faq' %}
-  {% else %}
+{% if policy_like %}
+  <div class="shopify-policy__container rte glazur-page--policy-like">
+    <h1 class="shopify-policy__title">{{ page.title }}</h1>
+    {% if page.handle == 'care' %}
+      {% render 'glazur-page-body-care' %}
+    {% elsif page.handle == 'size-guide' %}
+      {% render 'glazur-page-body-size-guide' %}
+    {% elsif page.handle == 'shipping-returns' %}
+      {% render 'glazur-page-body-shipping-returns' %}
+    {% elsif page.handle == 'faq' %}
+      {% render 'glazur-page-body-faq' %}
+    {% endif %}
+  </div>
+{% else %}
+  <article class="section-main-page container rte" style="padding: 2rem 1rem; max-width: 800px; margin: 0 auto;">
+    <h1 style="font-family: var(--font-heading, Syne, sans-serif);">{{ page.title }}</h1>
     {{ page.content }}
-  {% endif %}
-</article>
+  </article>
+{% endif %}
 
 {% schema %}
 {

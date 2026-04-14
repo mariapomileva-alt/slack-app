@@ -10,7 +10,11 @@
         <li><a href="{{ routes.all_products_collection_url }}">All products</a></li>
         <li><a href="{% render 'glazur-collection-url', key: 'default' %}">Full collection</a></li>
         <li>
-          <a href="{% render 'glazur-page-url', handle: 'shipping-returns' %}">Delivery &amp; returns</a>
+          <a
+            href="{% if shop.shipping_policy != blank %}{{ shop.shipping_policy.url }}{% else %}{% render 'glazur-page-url', handle: 'shipping-returns' %}{% endif %}"
+          >
+            Delivery &amp; returns
+          </a>
         </li>
         <li>
           <a

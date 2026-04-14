@@ -60,3 +60,13 @@
 .shopify-policy__container h3 {
   font-size: clamp(1.05rem, 2.9vw, 1.35rem);
 }
+
+/* CMS pages that reuse policy layout (care, faq, size-guide, shipping-returns) */
+.shopify-policy__container.glazur-page--policy-like .prose {
+  margin-top: 0.5rem;
+}
+
+.shopify-policy__container.glazur-page--policy-like .faq-list {
+  margin-top: 1.25rem;
+  text-align: left;
+}
