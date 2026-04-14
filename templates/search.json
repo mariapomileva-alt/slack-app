@@ -1,0 +1,8 @@
+{
+  "sections": {
+    "header": { "type": "glazur-header", "settings": {} },
+    "main": { "type": "main-search", "settings": {} },
+    "footer": { "type": "glazur-footer", "settings": {} }
+  },
+  "order": ["header", "main", "footer"]
+}

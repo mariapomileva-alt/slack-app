@@ -1,0 +1,134 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Glazur (Greku Future)",
+    "theme_version": "0.1.0",
+    "theme_author": "Maria Greku",
+    "theme_documentation_url": "https://github.com/",
+    "theme_support_url": "https://help.shopify.com/"
+  },
+  {
+    "name": "Brand & contact",
+    "settings": [
+      {
+        "type": "text",
+        "id": "contact_email",
+        "label": "Contact email",
+        "default": "info@glazurshop.com"
+      },
+      {
+        "type": "header",
+        "content": "Social links (header/footer)"
+      },
+      {
+        "type": "url",
+        "id": "social_instagram",
+        "label": "Instagram"
+      },
+      {
+        "type": "url",
+        "id": "social_threads",
+        "label": "Threads"
+      },
+      {
+        "type": "url",
+        "id": "social_facebook",
+        "label": "Facebook"
+      },
+      {
+        "type": "url",
+        "id": "social_youtube",
+        "label": "YouTube"
+      },
+      {
+        "type": "url",
+        "id": "social_pinterest",
+        "label": "Pinterest"
+      },
+      {
+        "type": "header",
+        "content": "Catalog collections (optional)"
+      },
+      {
+        "type": "paragraph",
+        "content": "Pick collections for each line in the nav and catalog band. If empty, links fall back to All products."
+      },
+      {
+        "type": "collection",
+        "id": "collection_default",
+        "label": "Full collection / default"
+      },
+      {
+        "type": "collection",
+        "id": "collection_new_arrivals",
+        "label": "New in"
+      },
+      {
+        "type": "collection",
+        "id": "collection_blouses",
+        "label": "Blouses"
+      },
+      {
+        "type": "collection",
+        "id": "collection_stripes",
+        "label": "Parisian stripe tops"
+      },
+      {
+        "type": "collection",
+        "id": "collection_skirts",
+        "label": "Skirts"
+      },
+      {
+        "type": "collection",
+        "id": "collection_dresses",
+        "label": "Dresses"
+      },
+      {
+        "type": "collection",
+        "id": "collection_knitwear",
+        "label": "Knitwear"
+      }
+    ]
+  },
+  {
+    "name": "Promo bar & modal",
+    "settings": [
+      {
+        "type": "text",
+        "id": "promo_bar_text",
+        "label": "Promo bar text",
+        "default": "Transform Your Day — Get 10% Off Your First Order"
+      },
+      {
+        "type": "text",
+        "id": "promo_modal_title",
+        "label": "Modal title",
+        "default": "Bonjour!"
+      },
+      {
+        "type": "textarea",
+        "id": "promo_modal_subline",
+        "label": "Modal subline",
+        "default": "Subscribe to receive your personal code and discover how Glazur can make everyday beautiful."
+      },
+      {
+        "type": "text",
+        "id": "promo_modal_cta",
+        "label": "Modal button",
+        "default": "Get My 10% Off"
+      },
+      {
+        "type": "textarea",
+        "id": "promo_legal",
+        "label": "Legal line (modal & footer)",
+        "default": "By subscribing, you agree to receive marketing emails. Unsubscribe anytime."
+      },
+      {
+        "type": "text",
+        "id": "promo_success_message",
+        "label": "Success message (after signup attempt)",
+        "default": "Thank you — check your inbox."
+      }
+    ]
+  }
+]

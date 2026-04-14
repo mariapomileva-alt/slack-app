@@ -1,0 +1,60 @@
+<section class="section-main-product container" style="padding: 2rem 1rem;">
+  <div style="display: grid; gap: 2rem; max-width: 1100px; margin: 0 auto;">
+    {% if product.featured_media %}
+      <div>
+        {% assign img_alt = product.featured_media.alt | default: product.title %}
+        {{
+          product.featured_media
+          | image_url: width: 1200
+          | image_tag: loading: 'lazy', alt: img_alt, class: 'product-main-image'
+        }}
+      </div>
+    {% endif %}
+    <div>
+      <h1 style="font-family: var(--font-heading, Syne, sans-serif);">{{ product.title }}</h1>
+      <p class="product__price" style="font-size: 1.25rem; margin: 1rem 0;">{{ product.selected_or_first_available_variant.price | money }}</p>
+      <div class="rte" style="margin-bottom: 1.5rem;">{{ product.description }}</div>
+      {% form 'product', product, class: 'product-form' %}
+        <select name="id" aria-label="Variant">
+          {% for variant in product.variants %}
+            <option
+              value="{{ variant.id }}"
+              {% if variant == product.selected_or_first_available_variant %}
+                selected
+              {% endif %}
+              {% unless variant.available %}
+                disabled
+              {% endunless %}
+            >
+              {{ variant.title }} — {{ variant.price | money }}
+            </option>
+          {% endfor %}
+        </select>
+        <button
+          type="submit"
+          name="add"
+          class="btn btn--fill"
+          style="margin-top: 1rem; display: block;"
+          {% unless product.selected_or_first_available_variant.available %}
+            disabled
+          {% endunless %}
+        >
+          {% if product.selected_or_first_available_variant.available %}
+            {{ 'products.product.add_to_cart' | t }}
+          {% else %}
+            {{ 'products.product.sold_out' | t }}
+          {% endif %}
+        </button>
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product",
+  "tag": "section",
+  "class": "section-main-product",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,13 @@
+<article class="section-main-page container rte" style="padding: 2rem 1rem; max-width: 800px; margin: 0 auto;">
+  <h1 style="font-family: var(--font-heading, Syne, sans-serif);">{{ page.title }}</h1>
+  {{ page.content }}
+</article>
+
+{% schema %}
+{
+  "name": "Page",
+  "tag": "section",
+  "class": "section-main-page",
+  "settings": []
+}
+{% endschema %}

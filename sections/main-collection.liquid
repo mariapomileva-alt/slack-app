@@ -1,0 +1,36 @@
+<section class="section-main-collection container" style="padding: 2rem 1rem;">
+  <h1 style="font-family: var(--font-heading, Syne, sans-serif); margin-bottom: 1.5rem;">{{ collection.title }}</h1>
+  {% if collection.description != blank %}
+    <div class="rte" style="margin-bottom: 2rem;">{{ collection.description }}</div>
+  {% endif %}
+  <div
+    class="collection-grid"
+    style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;"
+  >
+    {% for product in collection.products %}
+      <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
+        {% if product.featured_media %}
+          {% assign card_alt = product.featured_media.alt | default: product.title %}
+          {{
+            product.featured_media
+            | image_url: width: 600
+            | image_tag: loading: 'lazy', alt: card_alt, class: 'collection-card-image'
+          }}
+        {% endif %}
+        <p style="margin: 0.5rem 0 0; font-weight: 600;">{{ product.title }}</p>
+        <p style="margin: 0.25rem 0 0;">{{ product.price_min | money }}</p>
+      </a>
+    {% else %}
+      <p>No products in this collection yet.</p>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Collection",
+  "tag": "section",
+  "class": "section-main-collection",
+  "settings": []
+}
+{% endschema %}

@@ -1,0 +1,47 @@
+<section class="section-main-cart container" style="padding: 2rem 1rem; max-width: 800px; margin: 0 auto;">
+  <h1 style="font-family: var(--font-heading, Syne, sans-serif);">{{ 'cart.general.title' | t }}</h1>
+  {% if cart.item_count == 0 %}
+    <p>{{ 'cart.general.empty' | t }}</p>
+    <p><a href="{{ routes.all_products_collection_url }}">Continue shopping</a></p>
+  {% else %}
+    <form action="{{ routes.cart_url }}" method="post">
+      <table style="width: 100%; border-collapse: collapse;">
+        <thead>
+          <tr>
+            <th style="text-align: left; padding: 0.5rem;">Item</th>
+            <th style="text-align: right; padding: 0.5rem;">Qty</th>
+            <th style="text-align: right; padding: 0.5rem;">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in cart.items %}
+            <tr>
+              <td style="padding: 0.75rem 0.5rem;">
+                <a href="{{ item.url }}">{{ item.product.title }}</a>
+                {% unless item.product.has_only_default_variant %}
+                  <div style="font-size: 0.9rem; opacity: 0.8;">{{ item.variant.title }}</div>
+                {% endunless %}
+              </td>
+              <td style="text-align: right;">
+                <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="Quantity for {{ item.title }}">
+              </td>
+              <td style="text-align: right;">{{ item.line_price | money }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <p style="text-align: right; font-weight: 600;">Total: {{ cart.total_price | money }}</p>
+      <button type="submit" name="update" class="btn" style="margin-right: 0.5rem;">Update</button>
+      <button type="submit" name="checkout" class="btn btn--fill">{{ 'cart.general.checkout' | t }}</button>
+    </form>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Cart",
+  "tag": "section",
+  "class": "section-main-cart",
+  "settings": []
+}
+{% endschema %}

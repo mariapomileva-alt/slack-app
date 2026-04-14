@@ -1,0 +1,62 @@
+.product-main-image {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  display: block;
+}
+
+.collection-card-image {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 4px;
+  display: block;
+}
+
+.skip-to-content-link:focus {
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  padding: 1rem;
+  background: var(--color-surface, #fff);
+  color: var(--color-ink, #2c1220);
+  clip: auto;
+  width: auto;
+  height: auto;
+  margin: 0;
+}
+
+/* Shopify policy pages (/policies/*) */
+.shopify-policy__container {
+  max-width: min(760px, 92vw);
+  margin: 0 auto;
+  padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1rem, 3vw, 1.5rem);
+}
+
+.shopify-policy__title,
+.shopify-policy__container h1 {
+  font-family: var(--font-heading, "Syne", sans-serif);
+  font-size: clamp(1.5rem, 4.5vw, 2.2rem);
+  line-height: 1.15;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.shopify-policy__container h2,
+.shopify-policy__container h3 {
+  font-family: var(--font-heading, "Syne", sans-serif);
+  line-height: 1.18;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+.shopify-policy__container h2 {
+  font-size: clamp(1.2rem, 3.6vw, 1.85rem);
+}
+
+.shopify-policy__container h3 {
+  font-size: clamp(1.05rem, 2.9vw, 1.35rem);
+}

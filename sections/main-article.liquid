@@ -1,0 +1,19 @@
+<article class="container rte" style="padding: 2rem 1rem; max-width: 800px; margin: 0 auto;">
+  <h1 style="font-family: var(--font-heading, Syne, sans-serif);">{{ article.title }}</h1>
+  <p style="font-size: 0.9rem; opacity: 0.8;">{{ article.published_at | date: '%B %e, %Y' }}</p>
+  {% if article.image %}
+    <div style="margin: 1.5rem 0;">
+      {% assign article_img_alt = article.image.alt | default: article.title %}
+      {{ article.image | image_url: width: 1200 | image_tag: loading: 'lazy', alt: article_img_alt }}
+    </div>
+  {% endif %}
+  {{ article.content }}
+</article>
+
+{% schema %}
+{
+  "name": "Article",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

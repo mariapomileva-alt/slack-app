@@ -1,0 +1,25 @@
+{%- liquid
+  assign fallback = routes.all_products_collection_url
+  assign col = false
+  case key
+    when 'default'
+      assign col = settings.collection_default
+    when 'new_arrivals'
+      assign col = settings.collection_new_arrivals
+    when 'blouses'
+      assign col = settings.collection_blouses
+    when 'stripes'
+      assign col = settings.collection_stripes
+    when 'skirts'
+      assign col = settings.collection_skirts
+    when 'dresses'
+      assign col = settings.collection_dresses
+    when 'knitwear'
+      assign col = settings.collection_knitwear
+  endcase
+  if col != blank
+    echo col.url
+  else
+    echo fallback
+  endif
+-%}

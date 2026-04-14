@@ -1,0 +1,35 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>
+    {{ page_title }}
+    {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
+    {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
+    {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+  </title>
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+  {{ content_for_header }}
+  <link rel="icon" href="{{ 'glazur-favicon.svg' | asset_url }}" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
+  {{ 'glazur-fonts.css' | asset_url | stylesheet_tag }}
+  {{ 'glazur-tokens.css' | asset_url | stylesheet_tag }}
+  {{ 'glazur-base.css' | asset_url | stylesheet_tag }}
+  {{ 'glazur-components.css' | asset_url | stylesheet_tag }}
+  {{ 'glazur-shopify.css' | asset_url | stylesheet_tag }}
+</head>
+<body
+  class="template-{{ template.name }}{% if template.name == 'index' %} page-home{% endif %}"
+  data-contact-email="{{ settings.contact_email | escape }}"
+  data-promo-success="{{ settings.promo_success_message | escape }}"
+>
+  <a class="skip-to-content-link sr-only" href="#MainContent">{{ 'general.accessibility.skip_to_content' | t }}</a>
+  {{ content_for_layout }}
+  <script src="{{ 'glazur.js' | asset_url }}" defer></script>
+</body>
+</html>

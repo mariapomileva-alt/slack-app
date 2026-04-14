@@ -1,0 +1,65 @@
+/**
+ * Glazur — палитра сезона (упаковка: лайм крышки + розовый тираж лебедей).
+ * Бордо / слива — глубокий акцент и «осень», не основной фон первого экрана.
+ * LT Remark → Syne как веб-замена.
+ */
+:root {
+  /* Упаковка: лайм + роза */
+  --color-pack-lime: #8dc63f;
+  --color-pack-lime-deep: #72a82e;
+  --color-pack-pink: #e58bad;
+  --color-pack-pink-mid: #e58bad;
+  --color-hero-panel: var(--color-pack-lime);
+
+  /* Бордо / сезонный акцент (футер, кнопки, контраст) */
+  --color-hero-plum: #6b1d4f;
+  --color-plum: #4a1536;
+  --color-plum-mid: #5c2746;
+
+  /* Текст */
+  --color-ink: #2c1220;
+  --color-ink-muted: #5c4550;
+
+  /* Золото / крем — как на зелёной крышке коробки */
+  --color-gold: #e8d5a8;
+  --color-cream: #f5edd4;
+
+  /* Фоны страницы (светлая «витрина» как glazurshop.ru) */
+  --color-bg: #fdf8fa;
+  --color-blush: #e58bad;
+  --color-surface: #ffffff;
+  --color-cream-pale: #faf6ed;
+  --color-line: #e8c4d4;
+
+  /* Витрина как glazurshop.ru: розовая шапка, кремовый герой */
+  --color-shop-header: #e58bad;
+  --color-shop-header-border: rgba(255, 255, 255, 0.22);
+  --color-hero-cream: #faf6ef;
+  --color-hero-ink: #4a3228;
+  --color-hero-cta: #e58bad;
+  --color-hero-cta-hover: #e58bad;
+
+  /* Акценты */
+  --color-accent: #d4146b;
+  --color-accent-hover: #b01058;
+  --color-accent-soft: #e58bad;
+  --color-magenta: #d70c7a;
+  --color-olive: var(--color-pack-lime-deep);
+  --color-lavender: var(--color-pack-pink-mid);
+  --color-rose-ui: #e58bad;
+
+  /* Паттерн-вектор (архив) */
+  --color-pattern-surface: #e58bad;
+  --color-pattern-deep: #d70c7a;
+
+  --font-heading: "Syne", system-ui, sans-serif;
+  --font-ui: "Syne", system-ui, sans-serif;
+  --font-body: "Ysabeau", Georgia, "Times New Roman", serif;
+  --font-display: var(--font-heading);
+
+  --max: 1180px;
+  --radius: 2px;
+  --header-h: 64px;
+  --promo-h: 44px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}

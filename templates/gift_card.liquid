@@ -1,0 +1,19 @@
+{% layout none %}
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{{ gift_card.balance | money }} — {{ shop.name }}</title>
+  {{ content_for_header }}
+  {{ 'glazur-tokens.css' | asset_url | stylesheet_tag }}
+  {{ 'glazur-base.css' | asset_url | stylesheet_tag }}
+</head>
+<body style="padding: 2rem; font-family: var(--font-body, serif); background: var(--color-bg, #fdf8fa);">
+  <h1 style="font-family: var(--font-heading, Syne, sans-serif);">Gift card</h1>
+  <p style="font-size: 1.5rem; font-weight: 600;">{{ gift_card.balance | money }}</p>
+  {% if gift_card.enabled %}
+    <p>Use code: <strong>{{ gift_card.code | format_code }}</strong></p>
+  {% endif %}
+</body>
+</html>

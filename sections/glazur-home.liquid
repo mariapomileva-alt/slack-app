@@ -1,0 +1,209 @@
+<div id="MainContent" tabindex="-1">
+  <section class="ru-hero" aria-labelledby="hero-title">
+    <div class="ru-hero__grid">
+      <div class="ru-hero__copy">
+        <p class="ru-hero__eyebrow">Natural fabrics · Paris-designed</p>
+        <h1 id="hero-title">{{ section.settings.hero_heading | escape }}</h1>
+        <p class="ru-hero__lead">{{ section.settings.hero_lead | escape }}</p>
+        <div class="ru-hero__actions">
+          <a class="btn btn--hero-pink" href="{% render 'glazur-collection-url', key: 'default' %}">View catalog</a>
+          <a class="btn" href="#story">Read more</a>
+        </div>
+      </div>
+      <figure class="ru-hero__figure">
+        {% if section.settings.hero_image != blank %}
+          {% assign hero_alt = section.settings.hero_image.alt | default: shop.name %}
+          {{
+            section.settings.hero_image
+            | image_url: width: 1200
+            | image_tag: class: 'ru-hero__img', loading: 'eager', decoding: 'async', alt: hero_alt
+          }}
+        {% else %}
+          <img
+            class="ru-hero__img"
+            src="{{ 'glazur-hero-pink-studio.png' | asset_url }}"
+            width="538"
+            height="716"
+            alt="{{ shop.name }} — hero"
+            loading="eager"
+            decoding="async"
+          >
+        {% endif %}
+      </figure>
+    </div>
+  </section>
+
+  <section class="ru-muses" aria-labelledby="muses-title">
+    <div class="container">
+      <p class="ru-muses__eyebrow">Your reviews</p>
+      <h2 id="muses-title" class="ru-muses__title">You in Glazur</h2>
+      <p class="ru-muses__sub">our beautiful muses</p>
+      <div class="ru-muses__gallery">
+        <figure>
+          <img
+            src="{{ 'glazur-muse-1.png' | asset_url }}"
+            width="768"
+            height="1024"
+            alt="Glazur muse — pink striped top with floral applique and white skirt on a blue sofa"
+            loading="lazy"
+            decoding="async"
+          >
+        </figure>
+        <figure>
+          <img
+            src="{{ 'glazur-muse-4.png' | asset_url }}"
+            width="682"
+            height="1024"
+            alt="Glazur muse 2"
+            loading="lazy"
+            decoding="async"
+          >
+        </figure>
+        <figure>
+          <img
+            src="{{ 'glazur-muse-3.png' | asset_url }}"
+            width="768"
+            height="1024"
+            alt="Glazur muse 3"
+            loading="lazy"
+            decoding="async"
+          >
+        </figure>
+      </div>
+      <div class="ru-muses__footer">
+        {% if settings.social_instagram != blank %}
+          <a class="btn" href="{{ settings.social_instagram }}" target="_blank" rel="noopener noreferrer">Load more</a>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <section id="story" class="ru-philosophy">
+    <div class="container">
+      <h2 class="ru-philosophy__h"><span class="ru-hash">#</span> Soft transformation</h2>
+      <div class="ru-philosophy__body">
+        {% if section.settings.story_richtext != blank %}
+          {{ section.settings.story_richtext }}
+        {% else %}
+          {% render 'glazur-story-default' %}
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <section id="about-products" class="ru-products" aria-labelledby="products-title">
+    <div class="container">
+      <p class="ru-products__eyebrow">Products</p>
+      <h2 id="products-title" class="ru-products__title">Featured pieces</h2>
+      <p class="ru-products__lead">A few favorites from the current line — tap through to the shop.</p>
+      <div class="ru-products__grid">
+        <article class="ru-product-card">
+          <a class="ru-product-card__link" href="{% render 'glazur-collection-url', key: 'stripes' %}">
+            <figure class="ru-product-card__figure">
+              <img
+                class="ru-product-card__img"
+                src="{{ 'glazur-featured-stripes-violet.png' | asset_url }}"
+                width="768"
+                height="1024"
+                alt="Violet striped top"
+                loading="lazy"
+                decoding="async"
+              >
+            </figure>
+            <div class="ru-product-card__meta">
+              <h3 class="ru-product-card__name">Violet striped top</h3>
+              <p class="ru-product-card__tag">Parisian stripe tops</p>
+            </div>
+          </a>
+        </article>
+        <article class="ru-product-card">
+          <a class="ru-product-card__link" href="{% render 'glazur-collection-url', key: 'blouses' %}">
+            <figure class="ru-product-card__figure">
+              <img
+                class="ru-product-card__img"
+                src="{{ 'glazur-muse-1.png' | asset_url }}"
+                width="768"
+                height="1024"
+                alt="Embroidered white blouse detail"
+                loading="lazy"
+                decoding="async"
+              >
+            </figure>
+            <div class="ru-product-card__meta">
+              <h3 class="ru-product-card__name">Embroidered white blouse</h3>
+              <p class="ru-product-card__tag">Blouses</p>
+            </div>
+          </a>
+        </article>
+        <article class="ru-product-card">
+          <a class="ru-product-card__link" href="{% render 'glazur-collection-url', key: 'skirts' %}">
+            <figure class="ru-product-card__figure">
+              <img
+                class="ru-product-card__img"
+                src="{{ 'glazur-muse-5.png' | asset_url }}"
+                width="768"
+                height="1024"
+                alt="Sculpted skirt story"
+                loading="lazy"
+                decoding="async"
+              >
+            </figure>
+            <div class="ru-product-card__meta">
+              <h3 class="ru-product-card__name">Sculpted skirt story</h3>
+              <p class="ru-product-card__tag">Skirts</p>
+            </div>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="ru-catalog" aria-labelledby="catalog-title">
+    <div class="container ru-catalog__inner">
+      <h2 id="catalog-title" class="ru-catalog__title">Catalog</h2>
+      <nav class="ru-catalog__links" aria-label="Product categories">
+        <a href="{% render 'glazur-collection-url', key: 'blouses' %}">Blouses</a>
+        <a href="{% render 'glazur-collection-url', key: 'stripes' %}">Parisian stripe tops</a>
+        <a href="{% render 'glazur-collection-url', key: 'skirts' %}">Skirts</a>
+        <a href="{% render 'glazur-collection-url', key: 'default' %}">Full collection</a>
+      </nav>
+      <p class="ru-catalog__note">
+        Use the same categories across your storefront — set collection URLs in theme settings.
+      </p>
+    </div>
+  </section>
+</div>
+
+{% schema %}
+{
+  "name": "Glazur home",
+  "tag": "section",
+  "class": "section-glazur-home",
+  "settings": [
+    {
+      "type": "text",
+      "id": "hero_heading",
+      "label": "Hero heading",
+      "default": "This is your fairy tale"
+    },
+    {
+      "type": "textarea",
+      "id": "hero_lead",
+      "label": "Hero lead",
+      "default": "Clothing that makes you feel different. Natural fabrics, comfort that never competes with beauty, and silhouettes that build a look without effort."
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image (optional — falls back to theme asset)"
+    },
+    {
+      "type": "richtext",
+      "id": "story_richtext",
+      "label": "Story / philosophy",
+      "default": "<p>Glazur is a gentle shift in how you see yourself and move through your day. We believe in soft transformation—not a dramatic reinvention, but a quiet return to what already feels right: natural fabrics, clean silhouettes, and thoughtful details you notice when you slow down.</p><p>Like glaze on a dessert, a subtle finish can change the entire impression. Our pieces work the same way—they elevate your look without pulling focus from you.</p><p>We work in cotton, linen, and tactile fabrics you'll want to reach for on repeat. Lace, embroidery, a carefully placed button—each piece carries a signature detail, something small that makes an everyday moment feel a little more considered.</p><p>We're not here to chase trends. We're after a quieter kind of femininity: ease, confidence, and letting beauty live in the details. From a busy morning to a slower afternoon, it's not just what you wear—it's how your day feels when everything falls into place.</p>"
+    }
+  ],
+  "presets": [{ "name": "Glazur home" }]
+}
+{% endschema %}

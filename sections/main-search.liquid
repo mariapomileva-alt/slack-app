@@ -1,0 +1,25 @@
+<section class="container" style="padding: 2rem 1rem;">
+  <h1 style="font-family: var(--font-heading, Syne, sans-serif);">Search</h1>
+  <form action="{{ routes.search_url }}" method="get" role="search" style="margin: 1rem 0 2rem;">
+    <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="Search" aria-label="Search">
+    <button type="submit" class="btn btn--fill" style="margin-left: 0.5rem;">Search</button>
+  </form>
+  {% if search.performed %}
+    <p>{{ search.results_count }} results for “{{ search.terms | escape }}”</p>
+    <div style="display: grid; gap: 1rem;">
+      {% for item in search.results %}
+        <div>
+          <a href="{{ item.url }}">{{ item.title }}</a>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</section>
+
+{% schema %}
+{
+  "name": "Search",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

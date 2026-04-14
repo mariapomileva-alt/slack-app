@@ -1,0 +1,22 @@
+<section class="container" style="padding: 2rem 1rem; max-width: 900px; margin: 0 auto;">
+  <h1 style="font-family: var(--font-heading, Syne, sans-serif);">{{ blog.title }}</h1>
+  <div style="display: grid; gap: 2rem; margin-top: 2rem;">
+    {% for article in blog.articles %}
+      <article>
+        <h2><a href="{{ article.url }}">{{ article.title }}</a></h2>
+        <p style="font-size: 0.9rem; opacity: 0.8;">{{ article.published_at | date: '%B %e, %Y' }}</p>
+        {% if article.excerpt != blank %}
+          <div class="rte">{{ article.excerpt }}</div>
+        {% endif %}
+      </article>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Blog",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}

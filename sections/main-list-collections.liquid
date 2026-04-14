@@ -1,0 +1,21 @@
+<section class="container" style="padding: 2rem 1rem;">
+  <h1 style="font-family: var(--font-heading, Syne, sans-serif);">Collections</h1>
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2rem;">
+    {% for collection in collections %}
+      <a href="{{ collection.url }}" style="text-decoration: none; color: inherit;">
+        {% if collection.featured_image %}
+          {{ collection.featured_image | image_url: width: 600 | image_tag: loading: 'lazy', alt: collection.title, class: 'collection-card-image' }}
+        {% endif %}
+        <p style="margin: 0.5rem 0 0; font-weight: 600;">{{ collection.title }}</p>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "List collections",
+  "tag": "section",
+  "settings": []
+}
+{% endschema %}
