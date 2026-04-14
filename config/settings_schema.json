@@ -46,6 +46,31 @@
         "label": "Pinterest"
       },
       {
+        "type": "paragraph",
+        "content": "Header uses round icons (Telegram, VK, email, WhatsApp, account). Fill URLs below; empty icons are hidden except email and account."
+      },
+      {
+        "type": "url",
+        "id": "social_telegram",
+        "label": "Telegram (header)"
+      },
+      {
+        "type": "url",
+        "id": "social_vk",
+        "label": "VK (header)"
+      },
+      {
+        "type": "url",
+        "id": "social_whatsapp",
+        "label": "WhatsApp (https://wa.me/… )"
+      },
+      {
+        "type": "url",
+        "id": "social_profile_url",
+        "label": "Account / profile link",
+        "info": "If empty, uses the store customer login URL."
+      },
+      {
         "type": "header",
         "content": "Catalog collections (optional)"
       },

@@ -1175,6 +1175,51 @@ body.has-promo .site-header {
   font-size: 0.72rem;
 }
 
+/* Круглые «штамп»-иконки в шапке магазина (Telegram, VK, почта, WA, аккаунт) */
+.site-header--shopru .header-social--stamp {
+  gap: 0.42rem;
+}
+
+.site-header--shopru .header-social__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.55rem;
+  height: 2.55rem;
+  border-radius: 50%;
+  background: #fff;
+  color: var(--color-shop-header);
+  text-decoration: none;
+  flex-shrink: 0;
+  box-shadow:
+    0 1px 3px rgba(44, 18, 32, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.65) inset;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.site-header--shopru .header-social__btn:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    0 4px 12px rgba(44, 18, 32, 0.14),
+    0 0 0 1px rgba(255, 255, 255, 0.8) inset;
+  background: #fffefb;
+}
+
+.site-header--shopru .header-social__btn--profile {
+  color: var(--color-plum, #4a1536);
+}
+
+.site-header--shopru .header-social__svg {
+  display: block;
+  width: 52%;
+  height: 52%;
+}
+
+.site-header--shopru .header-social__btn--profile .header-social__svg {
+  width: 56%;
+  height: 56%;
+}
+
 @media (min-width: 901px) {
   .site-header--shopru .site-header__inner--shopru {
     display: grid;

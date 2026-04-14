@@ -35,13 +35,7 @@
         loading="eager"
       >
     </a>
-    <div class="header-social" aria-label="Social and email">
-      <a class="header-social__link" href="{{ settings.social_instagram | default: 'https://www.instagram.com/glazurshop_com' }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
-      <a class="header-social__link" href="{{ settings.social_threads | default: 'https://www.threads.net/@glazurshop_com' }}" target="_blank" rel="noopener noreferrer" aria-label="Threads">TH</a>
-      <a class="header-social__link" href="{{ settings.social_pinterest | default: 'https://www.pinterest.com/glazurshop_com' }}" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">PT</a>
-      <a class="header-social__link" href="{{ settings.social_youtube | default: 'https://www.youtube.com/@glazurshop_com' }}" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YT</a>
-      <a class="header-social__link header-social__link--mail js-config-mailto" href="mailto:{{ settings.contact_email | escape }}" aria-label="Email">@</a>
-    </div>
+    {% render 'glazur-social-round-icons' %}
     <button type="button" class="nav-toggle" id="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
   </div>
 </header>
