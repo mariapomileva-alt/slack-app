@@ -4,3 +4,6 @@
 
 # Nested theme repo (tracked separately: github.com/.../glazur)
 glazur-site/
+
+# Generated catalog import (large binaries — keep CSV only in git)
+exports/glazur-product-images/

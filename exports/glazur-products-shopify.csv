@@ -1,0 +1,81 @@
+Handle,Title,Body (HTML),Vendor,Type,Tags,Published,Option1 Name,Option1 Value,Variant SKU,Variant Inventory Tracker,Variant Inventory Qty,Variant Inventory Policy,Variant Fulfillment Service,Variant Price,Variant Requires Shipping,Variant Taxable
+glz-ss26-bl01-si,The Sienna Ease Blouse,"<p><strong>Fabric</strong><br>90% cotton, 10% linen</p>
+<p><strong>Size</strong><br>One size</p>
+<p><strong>Measurements</strong><br>Bust: 40 in<br>
+Waist: 27.5 in<br>
+Length: 24.8 in<br>
+Sleeve Length from Neck: 22 in<br>
+Neck Circumference: 18 in</p>
+<p><strong>Legend</strong><br>Created from the belief that clothing should support a woman, not restrain her. The Sienna Ease Blouse was designed as a quiet alternative to structured dressing — softer, lighter, more intuitive.<br>
+Description<br>
+A fluid silhouette with refined embroidery and a modern three-quarter sleeve. Breathable fabric allows movement and ease, while subtle detailing adds character without excess.<br>
+Effortless elegance for everyday presence.</p>",Glazur,Blouse,"glazur-ss26, category-blouses, import-xlsx",TRUE,Title,Default Title,GLZ-SS26-BL01-SI,shopify,10,deny,manual,100.0,TRUE,TRUE
+glz-ss26-bl02-in,The Indigo Open Blouse,"<p><strong>Fabric</strong><br>90% cotton, 10% linen</p>
+<p><strong>Size</strong><br>One size</p>
+<p><strong>Measurements</strong><br>Bust: 45.7 in<br>
+Waist: 55 in<br>
+Length: 23.6 in<br>
+Sleeve Length from Shoulder: 18 in<br>
+Shoulder Width: 3.5 in<br>
+Neckline: 21.3 in</p>
+<p><strong>Legend</strong><br>This piece reflects a simple question: why choose between comfort and refinement? The Indigo Open Blouse was designed to remove what feels unnecessary and keep what feels essential.<br>
+Description<br>
+A clean, collarless neckline and balanced proportions create a look that feels open and modern. Delicate stitching adds depth without interrupting the simplicity.<br>
+Polished, yet completely at ease.</p>",Glazur,Blouse,"glazur-ss26, category-blouses, import-xlsx",TRUE,Title,Default Title,GLZ-SS26-BL02-IN,shopify,10,deny,manual,100.0,TRUE,TRUE
+glz-ss26-sk01-lu,The Luna Flow Skirt,"<p><strong>Fabric</strong><br>90% cotton, 10% linen</p>
+<p><strong>Size</strong><br>One size</p>
+<p><strong>Measurements</strong><br>Waist: 27.6 in<br>
+Length: 35 in</p>
+<p><strong>Legend</strong><br>Movement is a language. The Luna Flow Skirt was created to speak it fluently — softly, confidently, without exaggeration.<br>
+Description<br>
+Light structure and a lace-finished hem create graceful motion with every step. Feminine without fragility, expressive without effort.<br>
+A foundation piece that feels alive in motion.</p>",Glazur,Skirt,"glazur-ss26, category-skirts, import-xlsx",TRUE,Title,Default Title,GLZ-SS26-SK01-LU,shopify,10,deny,manual,159.0,TRUE,TRUE
+glz-ss26-bl03-bl,The Blush Balance Blouse,"<p><strong>Fabric</strong><br>90% cotton, 10% linen</p>
+<p><strong>Size</strong><br>One size</p>
+<p><strong>Measurements</strong><br>Bust: 48.8 in<br>
+Waist: 27.6 in<br>
+Length: 23.6 in<br>
+Sleeve Length from Shoulder: 11.8 in<br>
+Shoulder Width: 4 in<br>
+Cuff Width: 11 in<br>
+Neckline: 23.6 in</p>
+<p><strong>Legend</strong><br>Inspired by the duality of modern femininity — strength and softness existing at once.<br>
+Description<br>
+A defined collar meets delicate embroidery in a warm blush tone. The silhouette is composed but never rigid.<br>
+Designed for women who lead with quiet confidence.</p>",Glazur,Blouse,"glazur-ss26, category-blouses, import-xlsx",TRUE,Title,Default Title,GLZ-SS26-BL03-BL,shopify,12,deny,manual,95.0,TRUE,TRUE
+glz-ss26-st01-db,Desert Bloom Glazur Stripe,"<p><strong>Fabric</strong><br>95% cotton, 5% spandex</p>
+<p><strong>Size</strong><br>One size</p>
+<p><strong>Measurements</strong><br>Bust: 45.7 in<br>
+Length: 25.2 in<br>
+Sleeve Length from Neck: 26.4 in</p>
+<p><strong>Legend</strong><br>The ranunculus is not a flower you understand at first glance. Layer upon layer, it reveals depth — just like a woman.<br>
+Description<br>
+A warm, sun-softened stripe reimagined in a breathable, balanced silhouette. Finished with our signature ranunculus detail — subtle, sculptural, unmistakably Glazur.<br>
+Soft strength in everyday form.</p>",Glazur,Stripe top,"glazur-ss26, category-stripes, import-xlsx",TRUE,Title,Default Title,GLZ-SS26-ST01-DB,shopify,20,deny,manual,140.0,TRUE,TRUE
+glz-ss26-st02-wi,Wild Iris Glazur Stripe,"<p><strong>Fabric</strong><br>95% cotton, 5% spandex</p>
+<p><strong>Size</strong><br>One size</p>
+<p><strong>Measurements</strong><br>Bust: 45.7 in<br>
+Length: 25.2 in<br>
+Sleeve Length from Neck: 26.4 in</p>
+<p><strong>Legend</strong><br>We didn’t design the ranunculus to replicate its shape. We designed it to capture its movement — its softness and living texture.<br>
+Description<br>
+A deeper, more expressive stripe balanced by clean structure. The signature floral detail adds dimension without overpowering the simplicity.<br>
+Nuanced. Grounded. Distinct.</p>",Glazur,Stripe top,"glazur-ss26, category-stripes, import-xlsx",TRUE,Title,Default Title,GLZ-SS26-ST02-WI,shopify,20,deny,manual,140.0,TRUE,TRUE
+glz-ss26-st03-cr,Crimson Current Glazur Stripe,"<p><strong>Fabric</strong><br>95% cotton, 5% spandex</p>
+<p><strong>Size</strong><br>One size</p>
+<p><strong>Measurements</strong><br>Bust: 45.7 in<br>
+Length: 25.2 in<br>
+Sleeve Length from Neck: 26.4 in</p>
+<p><strong>Legend</strong><br>The stripe has always belonged to women who carry quiet independence. This version honors that spirit — with warmth and vitality.<br>
+Description<br>
+Confident color meets fluid construction and our layered ranunculus signature. Structured yet breathable. Strong yet feminine.<br>
+Energy, refined.</p>",Glazur,Stripe top,"glazur-ss26, category-stripes, import-xlsx",TRUE,Title,Default Title,GLZ-SS26-ST03-CR,shopify,20,deny,manual,140.0,TRUE,TRUE
+glz-ss26-st04-mp,Midnight Porcelain Glazur Stripe,"<p><strong>Fabric</strong><br>95% cotton, 5% spandex</p>
+<p><strong>Size</strong><br>One size</p>
+<p><strong>Measurements</strong><br>Bust: 45.7 in<br>
+Length: 25.2 in<br>
+Sleeve Length from Neck: 26.4 in</p>
+<p><strong>Legend</strong><br>Timeless patterns endure because they adapt. Character is what makes them unforgettable.<br>
+Description<br>
+Classic contrast reinterpreted with sculptural floral detail and intentional proportion. Crisp lines softened by movement.<br>
+A modern essential with depth.</p>",Glazur,Stripe top,"glazur-ss26, category-stripes, import-xlsx",TRUE,Title,Default Title,GLZ-SS26-ST04-MP,shopify,20,deny,manual,140.0,TRUE,TRUE

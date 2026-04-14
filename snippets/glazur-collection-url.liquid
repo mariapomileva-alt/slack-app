@@ -8,10 +8,19 @@
       assign col = settings.collection_new_arrivals
     when 'blouses'
       assign col = settings.collection_blouses
+      if col == blank and collections['blouses'] != blank
+        assign col = collections['blouses']
+      endif
     when 'stripes'
       assign col = settings.collection_stripes
+      if col == blank and collections['stripes'] != blank
+        assign col = collections['stripes']
+      endif
     when 'skirts'
       assign col = settings.collection_skirts
+      if col == blank and collections['skirts'] != blank
+        assign col = collections['skirts']
+      endif
     when 'dresses'
       assign col = settings.collection_dresses
     when 'knitwear'
