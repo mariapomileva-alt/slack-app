@@ -1,8 +1,6 @@
 {
   "sections": {
-    "header": { "type": "glazur-header", "settings": {} },
-    "main": { "type": "main-collection", "settings": {} },
-    "footer": { "type": "glazur-footer", "settings": {} }
+    "main": { "type": "main-collection", "settings": {} }
   },
-  "order": ["header", "main", "footer"]
+  "order": ["main"]
 }
