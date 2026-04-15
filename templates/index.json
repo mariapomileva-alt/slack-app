@@ -9,5 +9,7 @@
       }
     }
   },
-  "order": ["home"]
+  "order": [
+    "home"
+  ]
 }
