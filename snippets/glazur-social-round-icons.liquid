@@ -13,55 +13,51 @@
     assign wa_digits = tel_core | remove: '+'
     assign header_wa = 'https://wa.me/' | append: wa_digits
   endif
+  assign ig_href = settings.social_instagram | default: 'https://www.instagram.com/'
+  assign th_href = settings.social_threads | default: 'https://www.threads.net/'
+  assign pt_href = settings.social_pinterest | default: 'https://www.pinterest.com/'
+  assign yt_href = settings.social_youtube | default: 'https://www.youtube.com/'
 -%}
 <div class="header-social header-social--stamp" aria-label="Social and email">
-  {% if settings.social_instagram != blank %}
-    <a
-      class="header-social__btn"
-      href="{{ settings.social_instagram }}"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Instagram"
-    >
-      <span class="header-social__abbr">IG</span>
-    </a>
-  {% endif %}
+  <a
+    class="header-social__btn"
+    href="{{ ig_href | escape }}"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Instagram"
+  >
+    <span class="header-social__abbr">IG</span>
+  </a>
 
-  {% if settings.social_threads != blank %}
-    <a
-      class="header-social__btn"
-      href="{{ settings.social_threads }}"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Threads"
-    >
-      <span class="header-social__abbr">TH</span>
-    </a>
-  {% endif %}
+  <a
+    class="header-social__btn"
+    href="{{ th_href | escape }}"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Threads"
+  >
+    <span class="header-social__abbr">TH</span>
+  </a>
 
-  {% if settings.social_pinterest != blank %}
-    <a
-      class="header-social__btn"
-      href="{{ settings.social_pinterest }}"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Pinterest"
-    >
-      <span class="header-social__abbr">PT</span>
-    </a>
-  {% endif %}
+  <a
+    class="header-social__btn"
+    href="{{ pt_href | escape }}"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="Pinterest"
+  >
+    <span class="header-social__abbr">PT</span>
+  </a>
 
-  {% if settings.social_youtube != blank %}
-    <a
-      class="header-social__btn"
-      href="{{ settings.social_youtube }}"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="YouTube"
-    >
-      <span class="header-social__abbr">YT</span>
-    </a>
-  {% endif %}
+  <a
+    class="header-social__btn"
+    href="{{ yt_href | escape }}"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="YouTube"
+  >
+    <span class="header-social__abbr">YT</span>
+  </a>
 
   {% if settings.social_facebook != blank %}
     <a

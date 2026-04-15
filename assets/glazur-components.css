@@ -1188,7 +1188,7 @@ body.has-promo .site-header {
   height: 2.55rem;
   border-radius: 50%;
   background: #fff;
-  color: var(--color-shop-header);
+  color: var(--color-plum-mid, #5c4550);
   text-decoration: none;
   flex-shrink: 0;
   box-shadow:
@@ -1203,6 +1203,7 @@ body.has-promo .site-header {
     0 4px 12px rgba(44, 18, 32, 0.14),
     0 0 0 1px rgba(255, 255, 255, 0.8) inset;
   background: #fffefb;
+  color: var(--color-plum, #4a1536);
 }
 
 .site-header--shopru .header-social__btn--profile {
@@ -1293,6 +1294,7 @@ body.has-promo .site-header {
     grid-column: 3;
     grid-row: 1;
     justify-self: end;
+    justify-content: flex-end;
   }
 
   .site-header--shopru .nav-toggle {

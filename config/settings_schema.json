@@ -47,7 +47,7 @@
       },
       {
         "type": "paragraph",
-        "content": "Header uses round icons (Telegram, VK, email, WhatsApp, account). Fill URLs below; empty icons are hidden except email and account."
+        "content": "Header shows IG, TH, PT, YT, @, WhatsApp, and account. Instagram/Threads/Pinterest/YouTube use your URLs below; if a field is empty, a safe homepage fallback is used — replace with your profile links. Telegram and VK appear when their URLs are set."
       },
       {
         "type": "url",
