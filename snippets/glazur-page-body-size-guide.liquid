@@ -3,7 +3,23 @@
 {%- assign sg_chest = settings.size_guide_img_chest -%}
 {%- assign sg_waist = settings.size_guide_img_waist -%}
 {%- assign sg_hips = settings.size_guide_img_hips -%}
+{%- assign sg_any = false -%}
+{%- if sg_full != blank or sg_chest != blank or sg_waist != blank or sg_hips != blank -%}
+  {%- assign sg_any = true -%}
+{%- endif -%}
 <div class="prose rte">
+  {%- if request.design_mode and sg_any == false -%}
+    <p
+      class="size-guide-admin-hint"
+      style="padding:0.75rem 1rem;background:#f4f0eb;border-radius:10px;font-size:0.9rem;margin-bottom:1rem;"
+    >
+      <strong>Size guide images:</strong>
+      Theme settings → Brand &amp; contact → scroll to
+      <strong>Size guide — diagrams</strong>
+      and upload images, then Save.
+    </p>
+  {%- endif -%}
+
   <p>
     We are obsessed with fit and want you to feel your best, no matter what you’re dressing for. Every style is perfected by our in-house garment tech team until we’re happy that each seam sits exactly right. Our product pages include specific sizing information; the following is a general guide. If you need further assistance, email
     <a href="mailto:{{ mail | escape }}">Customer Care</a>.
@@ -14,90 +30,85 @@
     To ensure each piece fits beautifully and you feel confident and comfortable, please take your measurements carefully. Use a soft measuring tape and avoid pulling too tightly.
   </p>
 
+  {%- if sg_full != blank -%}
+    {%- assign sg_full_alt = sg_full.alt | default: 'How to measure — size diagram' -%}
+    <figure class="size-guide-visual size-guide-visual--full" style="margin:1rem 0 1.25rem;">
+      <img
+        src="{{ sg_full | image_url: width: 1200 }}"
+        srcset="{{ sg_full | image_url: width: 600 }} 600w, {{ sg_full | image_url: width: 1200 }} 1200w, {{ sg_full | image_url: width: 1600 }} 1600w"
+        sizes="(min-width: 990px) 900px, 100vw"
+        alt="{{ sg_full_alt | escape }}"
+        loading="lazy"
+        decoding="async"
+        width="{{ sg_full.width }}"
+        height="{{ sg_full.height }}"
+        style="width:100%;max-width:100%;height:auto;border:1px solid var(--color-line, #e8e0dc);border-radius:10px;display:block;"
+      >
+    </figure>
+  {%- endif -%}
+
   <h3>1. Chest</h3>
   <p>
     Measure around the fullest part of your bust while wearing the bra you would normally wear with this garment. Keep the tape horizontal and do not pull too tight.
   </p>
+  {%- if sg_chest != blank -%}
+    {%- assign sg_chest_alt = sg_chest.alt | default: 'Chest measurement diagram' -%}
+    <figure style="margin:0.75rem 0 1.25rem;">
+      <img
+        src="{{ sg_chest | image_url: width: 800 }}"
+        srcset="{{ sg_chest | image_url: width: 400 }} 400w, {{ sg_chest | image_url: width: 800 }} 800w, {{ sg_chest | image_url: width: 1200 }} 1200w"
+        sizes="(min-width: 900px) 480px, 100vw"
+        alt="{{ sg_chest_alt | escape }}"
+        loading="lazy"
+        decoding="async"
+        width="{{ sg_chest.width }}"
+        height="{{ sg_chest.height }}"
+        style="width:100%;max-width:520px;height:auto;border:1px solid var(--color-line, #e8e0dc);border-radius:10px;display:block;"
+      >
+      <figcaption style="font-size:0.82rem;margin-top:0.35rem;">Chest</figcaption>
+    </figure>
+  {%- endif -%}
 
   <h3>2. Waist</h3>
   <p>Measure around your natural waist — the narrowest part of your torso, just below your rib cage.</p>
+  {%- if sg_waist != blank -%}
+    {%- assign sg_waist_alt = sg_waist.alt | default: 'Waist measurement diagram' -%}
+    <figure style="margin:0.75rem 0 1.25rem;">
+      <img
+        src="{{ sg_waist | image_url: width: 800 }}"
+        srcset="{{ sg_waist | image_url: width: 400 }} 400w, {{ sg_waist | image_url: width: 800 }} 800w, {{ sg_waist | image_url: width: 1200 }} 1200w"
+        sizes="(min-width: 900px) 480px, 100vw"
+        alt="{{ sg_waist_alt | escape }}"
+        loading="lazy"
+        decoding="async"
+        width="{{ sg_waist.width }}"
+        height="{{ sg_waist.height }}"
+        style="width:100%;max-width:520px;height:auto;border:1px solid var(--color-line, #e8e0dc);border-radius:10px;display:block;"
+      >
+      <figcaption style="font-size:0.82rem;margin-top:0.35rem;">Waist</figcaption>
+    </figure>
+  {%- endif -%}
 
   <h3>3. Hips</h3>
   <p>
     Measure around the widest part of your hips. Do not wear shapewear, even if you would normally wear it with the garment. Keep the tape level all the way around.
   </p>
-
-  {%- if sg_full != blank -%}
-    {%- assign sg_full_alt = sg_full.alt | default: 'How to measure — size diagram' -%}
-    <figure class="size-guide-visual size-guide-visual--full" style="margin:1rem 0 1.25rem;">
-      {{
-        sg_full
-        | image_url: width: 1600
-        | image_tag:
-          loading: 'lazy',
-          alt: sg_full_alt,
-          widths: '400,800,1200,1600',
-          sizes: '(min-width: 990px) 900px, 100vw',
-          class: 'size-guide-visual__img',
-          style: 'width:100%;max-width:100%;height:auto;border:1px solid var(--color-line, #e8e0dc);border-radius:10px;display:block;'
-      }}
+  {%- if sg_hips != blank -%}
+    {%- assign sg_hips_alt = sg_hips.alt | default: 'Hips measurement diagram' -%}
+    <figure style="margin:0.75rem 0 1.25rem;">
+      <img
+        src="{{ sg_hips | image_url: width: 800 }}"
+        srcset="{{ sg_hips | image_url: width: 400 }} 400w, {{ sg_hips | image_url: width: 800 }} 800w, {{ sg_hips | image_url: width: 1200 }} 1200w"
+        sizes="(min-width: 900px) 480px, 100vw"
+        alt="{{ sg_hips_alt | escape }}"
+        loading="lazy"
+        decoding="async"
+        width="{{ sg_hips.width }}"
+        height="{{ sg_hips.height }}"
+        style="width:100%;max-width:520px;height:auto;border:1px solid var(--color-line, #e8e0dc);border-radius:10px;display:block;"
+      >
+      <figcaption style="font-size:0.82rem;margin-top:0.35rem;">Hips</figcaption>
     </figure>
-  {%- endif -%}
-
-  {%- if sg_chest != blank or sg_waist != blank or sg_hips != blank -%}
-    <div
-      class="size-guide-visuals"
-      style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0.85rem;margin:1rem 0 1.25rem;"
-    >
-      {%- if sg_chest != blank -%}
-        {%- assign sg_chest_alt = sg_chest.alt | default: 'Chest measurement diagram' -%}
-        <figure style="margin:0;">
-          {{
-            sg_chest
-            | image_url: width: 900
-            | image_tag:
-              loading: 'lazy',
-              alt: sg_chest_alt,
-              widths: '300,600,900',
-              sizes: '(min-width: 900px) 280px, 90vw',
-              style: 'width:100%;height:auto;border:1px solid var(--color-line, #e8e0dc);border-radius:10px;display:block;'
-          }}
-          <figcaption style="font-size:0.82rem;margin-top:0.35rem;">Chest</figcaption>
-        </figure>
-      {%- endif -%}
-      {%- if sg_waist != blank -%}
-        {%- assign sg_waist_alt = sg_waist.alt | default: 'Waist measurement diagram' -%}
-        <figure style="margin:0;">
-          {{
-            sg_waist
-            | image_url: width: 900
-            | image_tag:
-              loading: 'lazy',
-              alt: sg_waist_alt,
-              widths: '300,600,900',
-              sizes: '(min-width: 900px) 280px, 90vw',
-              style: 'width:100%;height:auto;border:1px solid var(--color-line, #e8e0dc);border-radius:10px;display:block;'
-          }}
-          <figcaption style="font-size:0.82rem;margin-top:0.35rem;">Waist</figcaption>
-        </figure>
-      {%- endif -%}
-      {%- if sg_hips != blank -%}
-        {%- assign sg_hips_alt = sg_hips.alt | default: 'Hips measurement diagram' -%}
-        <figure style="margin:0;">
-          {{
-            sg_hips
-            | image_url: width: 900
-            | image_tag:
-              loading: 'lazy',
-              alt: sg_hips_alt,
-              widths: '300,600,900',
-              sizes: '(min-width: 900px) 280px, 90vw',
-              style: 'width:100%;height:auto;border:1px solid var(--color-line, #e8e0dc);border-radius:10px;display:block;'
-          }}
-          <figcaption style="font-size:0.82rem;margin-top:0.35rem;">Hips</figcaption>
-        </figure>
-      {%- endif -%}
-    </div>
   {%- endif -%}
 
   <h3>4. Garment length — skirts</h3>
