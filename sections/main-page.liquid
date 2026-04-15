@@ -1,6 +1,14 @@
 {% liquid
+  assign size_page_setting = settings.footer_page_size_guide
+  assign is_glazur_size_guide = false
+  if page.handle == 'size-guide'
+    assign is_glazur_size_guide = true
+  elsif size_page_setting != blank and size_page_setting.id == page.id
+    assign is_glazur_size_guide = true
+  endif
+
   assign policy_like = false
-  if page.handle == 'care' or page.handle == 'faq' or page.handle == 'size-guide' or page.handle == 'shipping-returns'
+  if page.handle == 'care' or page.handle == 'faq' or is_glazur_size_guide or page.handle == 'shipping-returns'
     assign policy_like = true
   endif
 %}
@@ -10,7 +18,7 @@
     <h1 class="shopify-policy__title">{{ page.title }}</h1>
     {% if page.handle == 'care' %}
       {% render 'glazur-page-body-care' %}
-    {% elsif page.handle == 'size-guide' %}
+    {% elsif is_glazur_size_guide %}
       {% render 'glazur-page-body-size-guide' %}
     {% elsif page.handle == 'shipping-returns' %}
       {% render 'glazur-page-body-shipping-returns' %}
