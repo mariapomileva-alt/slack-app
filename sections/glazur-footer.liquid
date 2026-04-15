@@ -11,7 +11,7 @@
         <li><a href="{% render 'glazur-collection-url', key: 'default' %}">Full collection</a></li>
         <li>
           <a
-            href="{% if shop.shipping_policy != blank %}{{ shop.shipping_policy.url }}{% else %}{% render 'glazur-page-url', handle: 'shipping-returns' %}{% endif %}"
+            href="{% if shop.shipping_policy != blank %}{{ shop.shipping_policy.url }}{% else %}{{ routes.root_url }}policies/shipping-policy{% endif %}"
           >
             Delivery &amp; returns
           </a>
