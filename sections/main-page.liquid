@@ -1,7 +1,9 @@
 {% liquid
   assign size_page_setting = settings.footer_page_size_guide
   assign is_glazur_size_guide = false
-  if page.handle == 'size-guide'
+  if page.handle == 'size-guide' or page.handle == 'sizeguide'
+    assign is_glazur_size_guide = true
+  elsif page.handle contains 'size-guide'
     assign is_glazur_size_guide = true
   elsif size_page_setting != blank and size_page_setting.id == page.id
     assign is_glazur_size_guide = true
