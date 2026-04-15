@@ -135,6 +135,35 @@
         "type": "page",
         "id": "footer_page_faq",
         "label": "FAQ page"
+      },
+      {
+        "type": "header",
+        "content": "Size guide — diagrams"
+      },
+      {
+        "type": "paragraph",
+        "content": "Images appear on the Size guide page after the Chest, Waist, and Hips text. Upload placeholders now and replace with final size graphics anytime — no code edits."
+      },
+      {
+        "type": "image_picker",
+        "id": "size_guide_diagram_full",
+        "label": "Full-width diagram (optional)",
+        "info": "One wide illustration (e.g. full body / all measurements). Shown above the three-column row when set."
+      },
+      {
+        "type": "image_picker",
+        "id": "size_guide_img_chest",
+        "label": "Image — Chest / bust"
+      },
+      {
+        "type": "image_picker",
+        "id": "size_guide_img_waist",
+        "label": "Image — Waist"
+      },
+      {
+        "type": "image_picker",
+        "id": "size_guide_img_hips",
+        "label": "Image — Hips"
       }
     ]
   },

@@ -1,11 +1,15 @@
 {%- assign mail = settings.contact_email | default: shop.email -%}
+{%- assign sg_full = settings.size_guide_diagram_full -%}
+{%- assign sg_chest = settings.size_guide_img_chest -%}
+{%- assign sg_waist = settings.size_guide_img_waist -%}
+{%- assign sg_hips = settings.size_guide_img_hips -%}
 <div class="prose rte">
   <p>
-    We are obsessed with fit and want you to feel your best, no matter what you’re dressing for. Every style is perfected by our in-house garment tech team until we’re happy that each seam sits exactly right. Our product page includes specific sizing information but the following is a general guide. If you need any further assistance, you can call, email or chat with
+    We are obsessed with fit and want you to feel your best, no matter what you’re dressing for. Every style is perfected by our in-house garment tech team until we’re happy that each seam sits exactly right. Our product pages include specific sizing information; the following is a general guide. If you need further assistance, email
     <a href="mailto:{{ mail | escape }}">Customer Care</a>.
   </p>
 
-  <h2>Glazur Size Guide</h2>
+  <h2>Glazur size guide</h2>
   <p>
     To ensure each piece fits beautifully and you feel confident and comfortable, please take your measurements carefully. Use a soft measuring tape and avoid pulling too tightly.
   </p>
@@ -22,47 +26,88 @@
   <p>
     Measure around the widest part of your hips. Do not wear shapewear, even if you would normally wear it with the garment. Keep the tape level all the way around.
   </p>
-  <div class="size-guide-visuals" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:0.85rem; margin:1rem 0 1.25rem;">
-    <figure style="margin:0;">
-      <img
-        src="{{ 'glazur-muse-1.png' | asset_url }}"
-        alt="Size guide placeholder visual — chest"
-        loading="lazy"
-        decoding="async"
-        style="width:100%; height:auto; border:1px solid var(--color-line); border-radius:10px;"
-      >
-      <figcaption style="font-size:0.82rem; margin-top:0.35rem;">Placeholder: chest measurement visual</figcaption>
-    </figure>
-    <figure style="margin:0;">
-      <img
-        src="{{ 'glazur-muse-2.png' | asset_url }}"
-        alt="Size guide placeholder visual — waist"
-        loading="lazy"
-        decoding="async"
-        style="width:100%; height:auto; border:1px solid var(--color-line); border-radius:10px;"
-      >
-      <figcaption style="font-size:0.82rem; margin-top:0.35rem;">Placeholder: waist measurement visual</figcaption>
-    </figure>
-    <figure style="margin:0;">
-      <img
-        src="{{ 'glazur-muse-3.png' | asset_url }}"
-        alt="Size guide placeholder visual — hips"
-        loading="lazy"
-        decoding="async"
-        style="width:100%; height:auto; border:1px solid var(--color-line); border-radius:10px;"
-      >
-      <figcaption style="font-size:0.82rem; margin-top:0.35rem;">Placeholder: hips measurement visual</figcaption>
-    </figure>
-  </div>
 
-  <h3>4. Garment Length — Skirts</h3>
+  {%- if sg_full != blank -%}
+    {%- assign sg_full_alt = sg_full.alt | default: 'How to measure — size diagram' -%}
+    <figure class="size-guide-visual size-guide-visual--full" style="margin:1rem 0 1.25rem;">
+      {{
+        sg_full
+        | image_url: width: 1600
+        | image_tag:
+          loading: 'lazy',
+          alt: sg_full_alt,
+          widths: '400,800,1200,1600',
+          sizes: '(min-width: 990px) 900px, 100vw',
+          class: 'size-guide-visual__img',
+          style: 'width:100%;max-width:100%;height:auto;border:1px solid var(--color-line, #e8e0dc);border-radius:10px;display:block;'
+      }}
+    </figure>
+  {%- endif -%}
+
+  {%- if sg_chest != blank or sg_waist != blank or sg_hips != blank -%}
+    <div
+      class="size-guide-visuals"
+      style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:0.85rem;margin:1rem 0 1.25rem;"
+    >
+      {%- if sg_chest != blank -%}
+        {%- assign sg_chest_alt = sg_chest.alt | default: 'Chest measurement diagram' -%}
+        <figure style="margin:0;">
+          {{
+            sg_chest
+            | image_url: width: 900
+            | image_tag:
+              loading: 'lazy',
+              alt: sg_chest_alt,
+              widths: '300,600,900',
+              sizes: '(min-width: 900px) 280px, 90vw',
+              style: 'width:100%;height:auto;border:1px solid var(--color-line, #e8e0dc);border-radius:10px;display:block;'
+          }}
+          <figcaption style="font-size:0.82rem;margin-top:0.35rem;">Chest</figcaption>
+        </figure>
+      {%- endif -%}
+      {%- if sg_waist != blank -%}
+        {%- assign sg_waist_alt = sg_waist.alt | default: 'Waist measurement diagram' -%}
+        <figure style="margin:0;">
+          {{
+            sg_waist
+            | image_url: width: 900
+            | image_tag:
+              loading: 'lazy',
+              alt: sg_waist_alt,
+              widths: '300,600,900',
+              sizes: '(min-width: 900px) 280px, 90vw',
+              style: 'width:100%;height:auto;border:1px solid var(--color-line, #e8e0dc);border-radius:10px;display:block;'
+          }}
+          <figcaption style="font-size:0.82rem;margin-top:0.35rem;">Waist</figcaption>
+        </figure>
+      {%- endif -%}
+      {%- if sg_hips != blank -%}
+        {%- assign sg_hips_alt = sg_hips.alt | default: 'Hips measurement diagram' -%}
+        <figure style="margin:0;">
+          {{
+            sg_hips
+            | image_url: width: 900
+            | image_tag:
+              loading: 'lazy',
+              alt: sg_hips_alt,
+              widths: '300,600,900',
+              sizes: '(min-width: 900px) 280px, 90vw',
+              style: 'width:100%;height:auto;border:1px solid var(--color-line, #e8e0dc);border-radius:10px;display:block;'
+          }}
+          <figcaption style="font-size:0.82rem;margin-top:0.35rem;">Hips</figcaption>
+        </figure>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+
+  <h3>4. Garment length — skirts</h3>
   <p>Measure from the center of your waist down the front of the skirt to the desired length.</p>
 
-  <h3>5. Garment Length — Dresses, Tops, Blouses, Jackets</h3>
+  <h3>5. Garment length — dresses, tops, blouses, jackets</h3>
   <p>Measure from the point where your neck meets your shoulder down the front of the garment to the hem.</p>
 
   <p>
-    <strong>Glazur Tip:</strong> If you’re unsure about your size, contact us at
+    <strong>Glazur tip:</strong> If you’re unsure about your size, contact us at
     <a href="mailto:{{ mail | escape }}">{{ mail | escape }}</a> — we’re happy to help you find your perfect fit.
   </p>
 </div>
