@@ -51,17 +51,17 @@
           </a>
         </li>
         <li>
-          <a href="{% if shop.privacy_policy != blank %}{{ shop.privacy_policy.url }}{% else %}{{ routes.root_url }}policies/privacy-policy{% endif %}">
+          <a href="{% if shop.privacy_policy != blank %}{{ shop.privacy_policy.url }}{% else %}/policies/privacy-policy{% endif %}">
             Privacy policy
           </a>
         </li>
         <li>
-          <a href="{% if shop.refund_policy != blank %}{{ shop.refund_policy.url }}{% else %}{{ routes.root_url }}policies/refund-policy{% endif %}">
+          <a href="{% if shop.refund_policy != blank %}{{ shop.refund_policy.url }}{% else %}/policies/refund-policy{% endif %}">
             Refund policy
           </a>
         </li>
         <li>
-          <a href="{% if shop.terms_of_service != blank %}{{ shop.terms_of_service.url }}{% else %}{{ routes.root_url }}policies/terms-of-service{% endif %}">
+          <a href="{% if shop.terms_of_service != blank %}{{ shop.terms_of_service.url }}{% else %}/policies/terms-of-service{% endif %}">
             Terms of service
           </a>
         </li>
