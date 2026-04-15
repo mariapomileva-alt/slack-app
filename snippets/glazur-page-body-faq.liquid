@@ -2,7 +2,7 @@
 <div class="prose rte">
   <p>
     Quick answers on shipping, returns, care, and sizing (from our customer documents). For full detail pages:
-    <a href="{% if shop.shipping_policy != blank %}{{ shop.shipping_policy.url }}{% else %}{{ routes.root_url }}policies/shipping-policy{% endif %}">Delivery &amp; returns</a>,
+    <a href="{% render 'glazur-page-url', handle: 'shipping-returns' %}">Delivery &amp; returns</a>,
     <a href="{% render 'glazur-page-url', handle: 'care' %}">Care</a>, and
     <a href="{% render 'glazur-page-url', handle: 'size-guide' %}">Size guide</a>.
   </p>
