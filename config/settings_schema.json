@@ -171,6 +171,12 @@
     "name": "Promo bar & modal",
     "settings": [
       {
+        "type": "checkbox",
+        "id": "promo_bar_enabled",
+        "label": "Show top promo bar & signup modal",
+        "default": true
+      },
+      {
         "type": "text",
         "id": "promo_bar_text",
         "label": "Promo bar text",

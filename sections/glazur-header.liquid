@@ -1,9 +1,11 @@
-<div id="promo-bar" class="promo-bar">
-  <button type="button" class="promo-bar__open" id="promo-open-modal" aria-haspopup="dialog">
-    <span id="promo-headline">{{ settings.promo_bar_text | escape }}</span>
-  </button>
-  <button type="button" class="promo-bar__close" id="promo-close" aria-label="Dismiss promotion">×</button>
-</div>
+{%- unless settings.promo_bar_enabled == false -%}
+  <div id="promo-bar" class="promo-bar">
+    <button type="button" class="promo-bar__open" id="promo-open-modal" aria-haspopup="dialog">
+      <span id="promo-headline">{{ settings.promo_bar_text | escape }}</span>
+    </button>
+    <button type="button" class="promo-bar__close" id="promo-close" aria-label="Dismiss promotion">×</button>
+  </div>
+{%- endunless -%}
 
 <header class="site-header site-header--mirror site-header--shopru">
   <div class="site-header__inner site-header__inner--shopru">
@@ -40,21 +42,23 @@
   </div>
 </header>
 
-<div id="promo-modal" class="promo-modal" hidden>
-  <div class="promo-modal__overlay" aria-hidden="true"></div>
-  <div class="promo-modal__panel" role="dialog" aria-modal="true" aria-labelledby="promo-dialog-title">
-    <button type="button" class="promo-modal__close" aria-label="Close">×</button>
-    <h2 id="promo-dialog-title">{{ settings.promo_modal_title | escape }}</h2>
-    <p class="sub" id="promo-subline">{{ settings.promo_modal_subline | escape }}</p>
-    <form id="promo-form">
-      <label class="sr-only" for="promo-email">Email</label>
-      <input id="promo-email" type="email" required placeholder="Your email" autocomplete="email">
-      <button type="submit" class="btn btn--fill" style="width: 100%;" id="promo-cta">{{ settings.promo_modal_cta | escape }}</button>
-      <p class="legal" id="promo-legal-modal">{{ settings.promo_legal | escape }}</p>
-    </form>
-    <p id="promo-success" class="success" hidden>{{ settings.promo_success_message | escape }}</p>
+{%- unless settings.promo_bar_enabled == false -%}
+  <div id="promo-modal" class="promo-modal" hidden>
+    <div class="promo-modal__overlay" aria-hidden="true"></div>
+    <div class="promo-modal__panel" role="dialog" aria-modal="true" aria-labelledby="promo-dialog-title">
+      <button type="button" class="promo-modal__close" aria-label="Close">×</button>
+      <h2 id="promo-dialog-title">{{ settings.promo_modal_title | escape }}</h2>
+      <p class="sub" id="promo-subline">{{ settings.promo_modal_subline | escape }}</p>
+      <form id="promo-form">
+        <label class="sr-only" for="promo-email">Email</label>
+        <input id="promo-email" type="email" required placeholder="Your email" autocomplete="email">
+        <button type="submit" class="btn btn--fill" style="width: 100%;" id="promo-cta">{{ settings.promo_modal_cta | escape }}</button>
+        <p class="legal" id="promo-legal-modal">{{ settings.promo_legal | escape }}</p>
+      </form>
+      <p id="promo-success" class="success" hidden>{{ settings.promo_success_message | escape }}</p>
+    </div>
   </div>
-</div>
+{%- endunless -%}
 
 {% schema %}
 {
