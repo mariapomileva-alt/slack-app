@@ -1220,6 +1220,22 @@ body.has-promo .site-header {
   height: 56%;
 }
 
+.site-header--shopru .header-social__abbr {
+  font-family: var(--font-ui, Syne, sans-serif);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: inherit;
+}
+
+.site-header--shopru .header-social__abbr--at {
+  font-size: 0.85rem;
+  letter-spacing: 0;
+  font-weight: 800;
+}
+
 @media (min-width: 901px) {
   .site-header--shopru .site-header__inner--shopru {
     display: grid;
