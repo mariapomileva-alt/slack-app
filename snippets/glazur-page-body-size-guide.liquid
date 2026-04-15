@@ -1,14 +1,6 @@
 {%- assign mail = settings.contact_email | default: shop.email -%}
 <div class="prose rte">
   <p>
-    <small
-      >Fit reference (how we approach measurements):
-      <a href="https://rixolondon.com/en-eu/pages/size-guide" target="_blank" rel="noopener noreferrer"
-        >Rixo London — size guide</a
-      ></small
-    >
-  </p>
-  <p>
     We are obsessed with fit and want you to feel your best, no matter what you’re dressing for. Every style is perfected by our in-house garment tech team until we’re happy that each seam sits exactly right. Our product pages include specific sizing information; the following is a general guide. If you need further assistance, email
     <a href="mailto:{{ mail | escape }}">Customer Care</a>.
   </p>
@@ -30,6 +22,38 @@
   <p>
     Measure around the widest part of your hips. Do not wear shapewear, even if you would normally wear it with the garment. Keep the tape level all the way around.
   </p>
+  <div class="size-guide-visuals" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:0.85rem; margin:1rem 0 1.25rem;">
+    <figure style="margin:0;">
+      <img
+        src="{{ 'glazur-muse-1.png' | asset_url }}"
+        alt="Size guide placeholder visual — chest"
+        loading="lazy"
+        decoding="async"
+        style="width:100%; height:auto; border:1px solid var(--color-line); border-radius:10px;"
+      >
+      <figcaption style="font-size:0.82rem; margin-top:0.35rem;">Placeholder: chest measurement visual</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img
+        src="{{ 'glazur-muse-2.png' | asset_url }}"
+        alt="Size guide placeholder visual — waist"
+        loading="lazy"
+        decoding="async"
+        style="width:100%; height:auto; border:1px solid var(--color-line); border-radius:10px;"
+      >
+      <figcaption style="font-size:0.82rem; margin-top:0.35rem;">Placeholder: waist measurement visual</figcaption>
+    </figure>
+    <figure style="margin:0;">
+      <img
+        src="{{ 'glazur-muse-3.png' | asset_url }}"
+        alt="Size guide placeholder visual — hips"
+        loading="lazy"
+        decoding="async"
+        style="width:100%; height:auto; border:1px solid var(--color-line); border-radius:10px;"
+      >
+      <figcaption style="font-size:0.82rem; margin-top:0.35rem;">Placeholder: hips measurement visual</figcaption>
+    </figure>
+  </div>
 
   <h3>4. Garment length — skirts</h3>
   <p>Measure from the center of your waist down the front of the skirt to the desired length.</p>
