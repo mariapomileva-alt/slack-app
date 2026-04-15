@@ -47,7 +47,7 @@
       },
       {
         "type": "paragraph",
-        "content": "Header shows IG, TH, PT, YT, @, WhatsApp, and account. Instagram/Threads/Pinterest/YouTube use your URLs below; if a field is empty, a safe homepage fallback is used — replace with your profile links. Telegram and VK appear when their URLs are set."
+        "content": "Header shows five compact links: IG, TH, PT, YT, and email (@). Set URLs below; empty fields use safe homepage fallbacks — replace with your profile links. WhatsApp, account, and other channels stay in the floating contact button if enabled."
       },
       {
         "type": "url",

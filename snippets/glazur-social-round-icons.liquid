@@ -1,18 +1,4 @@
 {%- liquid
-  assign profile_href = settings.social_profile_url
-  if profile_href == blank
-    assign profile_href = routes.account_login_url
-  endif
-  assign header_wa = settings.social_whatsapp
-  if header_wa == blank
-    assign fab_phone = settings.fab_chat_phone | strip
-    if fab_phone == blank
-      assign fab_phone = '+1 (786) 212-5294'
-    endif
-    assign tel_core = fab_phone | replace: ' ', '' | replace: '(', '' | replace: ')', '' | replace: '-', ''
-    assign wa_digits = tel_core | remove: '+'
-    assign header_wa = 'https://wa.me/' | append: wa_digits
-  endif
   assign ig_href = settings.social_instagram | default: 'https://www.instagram.com/'
   assign th_href = settings.social_threads | default: 'https://www.threads.net/'
   assign pt_href = settings.social_pinterest | default: 'https://www.pinterest.com/'
@@ -59,63 +45,7 @@
     <span class="header-social__abbr">YT</span>
   </a>
 
-  {% if settings.social_facebook != blank %}
-    <a
-      class="header-social__btn"
-      href="{{ settings.social_facebook }}"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Facebook"
-    >
-      <span class="header-social__abbr">FB</span>
-    </a>
-  {% endif %}
-
   <a class="header-social__btn js-config-mailto" href="mailto:{{ settings.contact_email | escape }}" aria-label="Email">
     <span class="header-social__abbr header-social__abbr--at" aria-hidden="true">@</span>
-  </a>
-
-  {% if settings.social_telegram != blank %}
-    <a
-      class="header-social__btn"
-      href="{{ settings.social_telegram }}"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Telegram"
-    >
-      <svg class="header-social__svg" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <path fill="currentColor" d="M2.01 21L23 12L2.01 3L2 10l15 2l-15 2z"/>
-      </svg>
-    </a>
-  {% endif %}
-
-  {% if settings.social_vk != blank %}
-    <a
-      class="header-social__btn"
-      href="{{ settings.social_vk }}"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="VK"
-    >
-      <svg class="header-social__svg" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-        <path fill="currentColor" d="M15.684 0H8.316C1.592 0 0 1.592 0 8.316v7.368C0 22.408 1.592 24 8.316 24h7.368C22.408 24 24 22.408 24 15.684V8.316C24 1.592 22.408 0 15.684 0zm3.692 17.717h-1.744c-.66 0-.864-.525-2.05-1.727-1.033-1-1.49-1.135-1.744-1.135-.356 0-.458.102-.458.593v1.575c0 .424-.135.678-1.253.678-1.846 0-3.896-1.118-5.335-3.202C4.624 10.857 4.03 8.57 4.03 8.096c0-.254.102-.491.593-.491h1.744c.441 0 .61.203.78.678.864 2.49 2.303 4.675 2.896 4.675.22 0 .322-.102.322-.66V9.721c-.068-1.186-.695-1.287-.695-1.71 0-.203.17-.407.441-.407h2.744c.525 0 .712.254.712.644v4.168c0 .372.17.593.542.593.272 0 .542-.17 1.135-1.084.356-.593.678-1.27.678-1.27.186-.356.305-.593.78-.593h1.744c.593 0 .712.305.593.712-.254 1.186-2.54 3.473-2.54 4.067 0 .186.068.339.525.593 1.033.593 1.977 1.71 2.54 3.134.186.593-.102.847-.593.847z"/>
-      </svg>
-    </a>
-  {% endif %}
-
-  <a
-    class="header-social__btn"
-    href="{{ header_wa | escape }}"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="WhatsApp"
-  >
-    <span class="header-social__abbr">WA</span>
-  </a>
-
-  <a class="header-social__btn header-social__btn--profile" href="{{ profile_href }}" aria-label="{% if customer %}Account{% else %}Log in{% endif %}">
-    <svg class="header-social__svg" width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-      <path fill="currentColor" d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-    </svg>
   </a>
 </div>
