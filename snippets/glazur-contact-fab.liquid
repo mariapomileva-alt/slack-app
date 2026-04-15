@@ -19,7 +19,7 @@
   {%- assign tg_href = settings.social_telegram -%}
   {%- assign fab_title = settings.fab_chat_title | strip -%}
   {%- if fab_title == blank -%}
-    {%- assign fab_title = 'Мы всегда рядом!' -%}
+    {%- assign fab_title = "We're always here!" -%}
   {%- endif -%}
 
   <div class="glazur-fab" id="glazur-contact-fab">
@@ -47,7 +47,7 @@
     >
       <div class="glazur-fab__backdrop" id="glazur-fab-backdrop" tabindex="-1"></div>
       <div class="glazur-fab__sheet">
-        <button type="button" class="glazur-fab__close" id="glazur-fab-close" aria-label="Закрыть">
+        <button type="button" class="glazur-fab__close" id="glazur-fab-close" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
         <h2 class="glazur-fab__title" id="glazur-fab-title">{{ fab_title | escape }}</h2>
@@ -69,7 +69,7 @@
               <span class="glazur-fab__circle glazur-fab__circle--phone" aria-hidden="true">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path fill="#fff" d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
               </span>
-              <span class="glazur-fab__label">Телефон</span>
+              <span class="glazur-fab__label">Phone</span>
             </a>
           </li>
           <li>

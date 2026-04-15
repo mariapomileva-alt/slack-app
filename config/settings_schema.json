@@ -227,7 +227,7 @@
         "type": "text",
         "id": "fab_chat_title",
         "label": "Panel title",
-        "default": "Мы всегда рядом!"
+        "default": "We're always here!"
       },
       {
         "type": "text",
