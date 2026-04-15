@@ -164,12 +164,45 @@
     if (yEl) yEl.textContent = String(new Date().getFullYear());
   }
 
+  function contactFab() {
+    var openBtn = $("#glazur-fab-open");
+    var modal = $("#glazur-fab-panel");
+    if (!openBtn || !modal) return;
+    var closeBtn = $("#glazur-fab-close");
+    var backdrop = $("#glazur-fab-backdrop");
+
+    function open() {
+      modal.hidden = false;
+      openBtn.setAttribute("aria-expanded", "true");
+      document.body.style.overflow = "hidden";
+    }
+    function close() {
+      modal.hidden = true;
+      openBtn.setAttribute("aria-expanded", "false");
+      document.body.style.overflow = "";
+      try {
+        openBtn.focus();
+      } catch (e) {}
+    }
+
+    openBtn.addEventListener("click", function () {
+      if (modal.hidden) open();
+      else close();
+    });
+    if (closeBtn) closeBtn.addEventListener("click", close);
+    if (backdrop) backdrop.addEventListener("click", close);
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !modal.hidden) close();
+    });
+  }
+
   function init() {
     yearFooter();
     storyNavFromHeader();
     navToggle();
     promoBar();
     promoModal();
+    contactFab();
     footerNewsletter();
     faqAccordion();
   }

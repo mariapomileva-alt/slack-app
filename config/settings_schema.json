@@ -207,5 +207,32 @@
         "default": "Thank you — check your inbox."
       }
     ]
+  },
+  {
+    "name": "Floating contact",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "fab_chat_enabled",
+        "label": "Show floating contact button",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "fab_chat_title",
+        "label": "Panel title",
+        "default": "Мы всегда рядом!"
+      },
+      {
+        "type": "text",
+        "id": "fab_chat_phone",
+        "label": "Phone (tap-to-call & WhatsApp)",
+        "default": "+1 (786) 212-5294"
+      },
+      {
+        "type": "paragraph",
+        "content": "Telegram uses the “Telegram (header)” URL under Brand & contact. If “WhatsApp” URL there is empty, WhatsApp opens wa.me using the phone number above."
+      }
+    ]
   }
 ]

@@ -1720,3 +1720,142 @@ body.has-promo .site-header {
   max-width: 520px;
   margin: 0 auto;
 }
+
+/* Floating contact (messengers) */
+.glazur-fab {
+  position: fixed;
+  z-index: 280;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.glazur-fab__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.35rem;
+  height: 3.35rem;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(145deg, #ff8a4c, #ff6b35);
+  color: #fff;
+  box-shadow: 0 4px 20px rgba(255, 107, 53, 0.45);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.glazur-fab__trigger:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 24px rgba(255, 107, 53, 0.55);
+}
+
+.glazur-fab__modal[hidden] {
+  display: none !important;
+}
+
+.glazur-fab__modal:not([hidden]) {
+  display: block;
+}
+
+.glazur-fab__modal {
+  position: fixed;
+  inset: 0;
+  z-index: 281;
+}
+
+.glazur-fab__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(40, 28, 32, 0.35);
+  backdrop-filter: blur(2px);
+}
+
+.glazur-fab__sheet {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(22rem, calc(100vw - 2rem));
+  background: #fff;
+  border-radius: 16px;
+  padding: 1.75rem 1.25rem 1.5rem;
+  box-shadow: 0 16px 48px rgba(80, 50, 60, 0.18);
+}
+
+.glazur-fab__close {
+  position: absolute;
+  top: 0.65rem;
+  right: 0.65rem;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  background: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-ink-muted, #6b5a62);
+  border-radius: 8px;
+}
+
+.glazur-fab__close:hover {
+  color: var(--color-plum, #5c2d50);
+  background: rgba(92, 45, 80, 0.06);
+}
+
+.glazur-fab__title {
+  font-family: var(--font-heading, Syne, sans-serif);
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 0 1.5rem 1.25rem;
+  color: var(--color-plum, #5c2d50);
+}
+
+.glazur-fab__actions {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.glazur-fab__action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--color-ink, #3d2a32);
+  font-family: var(--font-body, Syne, sans-serif);
+  font-size: 0.78rem;
+  font-weight: 600;
+  min-width: 4.5rem;
+}
+
+.glazur-fab__action:hover .glazur-fab__label {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.glazur-fab__circle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+}
+
+.glazur-fab__circle--tg {
+  background: #229ed9;
+}
+
+.glazur-fab__circle--phone {
+  background: #1a1a1a;
+}
+
+.glazur-fab__circle--wa {
+  background: #25d366;
+}
