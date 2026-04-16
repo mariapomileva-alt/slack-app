@@ -13,7 +13,16 @@
     <meta name="description" content="{{ page_description | escape }}">
   {% endif %}
   {{ content_for_header }}
-  <link rel="icon" href="{{ 'glazur-favicon.svg' | asset_url }}" type="image/svg+xml">
+  {%- comment -%}
+    SVG favicon works in many desktop browsers; iOS/Android often need PNG + apple-touch-icon.
+    Upload a square PNG (180×180 or larger) in Theme settings → Favicon (PNG for mobile).
+  {%- endcomment -%}
+  {% if settings.glazur_favicon_png != blank %}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ settings.glazur_favicon_png | image_url: width: 32 }}">
+    <link rel="icon" type="image/png" sizes="48x48" href="{{ settings.glazur_favicon_png | image_url: width: 48 }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ settings.glazur_favicon_png | image_url: width: 180 }}">
+  {% endif %}
+  <link rel="icon" href="{{ 'glazur-favicon.svg' | asset_url }}" type="image/svg+xml" sizes="any">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700&display=swap" rel="stylesheet">
