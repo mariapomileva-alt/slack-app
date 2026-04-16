@@ -40,34 +40,61 @@
       <p class="ru-muses__sub">our beautiful muses</p>
       <div class="ru-muses__gallery">
         <figure>
-          <img
-            src="{{ 'glazur-muse-1.png' | asset_url }}"
-            width="768"
-            height="1024"
-            alt="Glazur muse — pink striped top with floral applique and white skirt on a blue sofa"
-            loading="lazy"
-            decoding="async"
-          >
+          {% if section.settings.muse_image_1 != blank %}
+            {% assign muse_alt_1 = section.settings.muse_image_1.alt | default: 'Glazur muse 1' %}
+            {{
+              section.settings.muse_image_1
+              | image_url: width: 900
+              | image_tag: width: 768, loading: 'lazy', decoding: 'async', alt: muse_alt_1
+            }}
+          {% else %}
+            <img
+              src="{{ 'glazur-muse-1.png' | asset_url }}"
+              width="768"
+              height="1024"
+              alt="Glazur muse — pink striped top with floral applique and white skirt on a blue sofa"
+              loading="lazy"
+              decoding="async"
+            >
+          {% endif %}
         </figure>
         <figure>
-          <img
-            src="{{ 'glazur-muse-4.png' | asset_url }}"
-            width="682"
-            height="1024"
-            alt="Glazur muse 2"
-            loading="lazy"
-            decoding="async"
-          >
+          {% if section.settings.muse_image_2 != blank %}
+            {% assign muse_alt_2 = section.settings.muse_image_2.alt | default: 'Glazur muse 2' %}
+            {{
+              section.settings.muse_image_2
+              | image_url: width: 900
+              | image_tag: width: 682, loading: 'lazy', decoding: 'async', alt: muse_alt_2
+            }}
+          {% else %}
+            <img
+              src="{{ 'glazur-muse-4.png' | asset_url }}"
+              width="682"
+              height="1024"
+              alt="Glazur muse 2"
+              loading="lazy"
+              decoding="async"
+            >
+          {% endif %}
         </figure>
         <figure>
-          <img
-            src="{{ 'glazur-muse-3.png' | asset_url }}"
-            width="768"
-            height="1024"
-            alt="Glazur muse 3"
-            loading="lazy"
-            decoding="async"
-          >
+          {% if section.settings.muse_image_3 != blank %}
+            {% assign muse_alt_3 = section.settings.muse_image_3.alt | default: 'Glazur muse 3' %}
+            {{
+              section.settings.muse_image_3
+              | image_url: width: 900
+              | image_tag: width: 768, loading: 'lazy', decoding: 'async', alt: muse_alt_3
+            }}
+          {% else %}
+            <img
+              src="{{ 'glazur-muse-3.png' | asset_url }}"
+              width="768"
+              height="1024"
+              alt="Glazur muse 3"
+              loading="lazy"
+              decoding="async"
+            >
+          {% endif %}
         </figure>
       </div>
       <div class="ru-muses__footer">
@@ -202,6 +229,25 @@
       "id": "story_richtext",
       "label": "Story / philosophy",
       "default": "<p>Glazur is a gentle shift in how you see yourself and move through your day. We believe in soft transformation—not a dramatic reinvention, but a quiet return to what already feels right: natural fabrics, clean silhouettes, and thoughtful details you notice when you slow down.</p><p>Like glaze on a dessert, a subtle finish can change the entire impression. Our pieces work the same way—they elevate your look without pulling focus from you.</p><p>We work in cotton, linen, and tactile fabrics you'll want to reach for on repeat. Lace, embroidery, a carefully placed button—each piece carries a signature detail, something small that makes an everyday moment feel a little more considered.</p><p>We're not here to chase trends. We're after a quieter kind of femininity: ease, confidence, and letting beauty live in the details. From a busy morning to a slower afternoon, it's not just what you wear—it's how your day feels when everything falls into place.</p>"
+    },
+    {
+      "type": "header",
+      "content": "You in Glazur gallery"
+    },
+    {
+      "type": "image_picker",
+      "id": "muse_image_1",
+      "label": "Muse image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "muse_image_2",
+      "label": "Muse image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "muse_image_3",
+      "label": "Muse image 3"
     }
   ],
   "presets": [{ "name": "Glazur home" }]
