@@ -127,15 +127,24 @@
         <article class="ru-product-card">
           <a class="ru-product-card__link" href="{% render 'glazur-collection-url', key: 'stripes' %}">
             <figure class="ru-product-card__figure">
-              <img
-                class="ru-product-card__img"
-                src="{{ 'glazur-featured-stripes-violet.png' | asset_url }}"
-                width="768"
-                height="1024"
-                alt="Violet striped top"
-                loading="lazy"
-                decoding="async"
-              >
+              {% if section.settings.featured_image_1 != blank %}
+                {% assign featured_alt_1 = section.settings.featured_image_1.alt | default: 'Violet striped top' %}
+                {{
+                  section.settings.featured_image_1
+                  | image_url: width: 900
+                  | image_tag: class: 'ru-product-card__img', width: 768, loading: 'lazy', decoding: 'async', alt: featured_alt_1
+                }}
+              {% else %}
+                <img
+                  class="ru-product-card__img"
+                  src="{{ 'glazur-featured-stripes-violet.png' | asset_url }}"
+                  width="768"
+                  height="1024"
+                  alt="Violet striped top"
+                  loading="lazy"
+                  decoding="async"
+                >
+              {% endif %}
             </figure>
             <div class="ru-product-card__meta">
               <h3 class="ru-product-card__name">Violet striped top</h3>
@@ -146,15 +155,24 @@
         <article class="ru-product-card">
           <a class="ru-product-card__link" href="{% render 'glazur-collection-url', key: 'blouses' %}">
             <figure class="ru-product-card__figure">
-              <img
-                class="ru-product-card__img"
-                src="{{ 'glazur-muse-1.png' | asset_url }}"
-                width="768"
-                height="1024"
-                alt="Embroidered white blouse detail"
-                loading="lazy"
-                decoding="async"
-              >
+              {% if section.settings.featured_image_2 != blank %}
+                {% assign featured_alt_2 = section.settings.featured_image_2.alt | default: 'Embroidered white blouse detail' %}
+                {{
+                  section.settings.featured_image_2
+                  | image_url: width: 900
+                  | image_tag: class: 'ru-product-card__img', width: 768, loading: 'lazy', decoding: 'async', alt: featured_alt_2
+                }}
+              {% else %}
+                <img
+                  class="ru-product-card__img"
+                  src="{{ 'glazur-muse-1.png' | asset_url }}"
+                  width="768"
+                  height="1024"
+                  alt="Embroidered white blouse detail"
+                  loading="lazy"
+                  decoding="async"
+                >
+              {% endif %}
             </figure>
             <div class="ru-product-card__meta">
               <h3 class="ru-product-card__name">Embroidered white blouse</h3>
@@ -165,15 +183,24 @@
         <article class="ru-product-card">
           <a class="ru-product-card__link" href="{% render 'glazur-collection-url', key: 'skirts' %}">
             <figure class="ru-product-card__figure">
-              <img
-                class="ru-product-card__img"
-                src="{{ 'glazur-muse-5.png' | asset_url }}"
-                width="768"
-                height="1024"
-                alt="Sculpted skirt story"
-                loading="lazy"
-                decoding="async"
-              >
+              {% if section.settings.featured_image_3 != blank %}
+                {% assign featured_alt_3 = section.settings.featured_image_3.alt | default: 'Sculpted skirt story' %}
+                {{
+                  section.settings.featured_image_3
+                  | image_url: width: 900
+                  | image_tag: class: 'ru-product-card__img', width: 768, loading: 'lazy', decoding: 'async', alt: featured_alt_3
+                }}
+              {% else %}
+                <img
+                  class="ru-product-card__img"
+                  src="{{ 'glazur-muse-5.png' | asset_url }}"
+                  width="768"
+                  height="1024"
+                  alt="Sculpted skirt story"
+                  loading="lazy"
+                  decoding="async"
+                >
+              {% endif %}
             </figure>
             <div class="ru-product-card__meta">
               <h3 class="ru-product-card__name">Sculpted skirt story</h3>
@@ -248,6 +275,25 @@
       "type": "image_picker",
       "id": "muse_image_3",
       "label": "Muse image 3"
+    },
+    {
+      "type": "header",
+      "content": "Featured pieces images"
+    },
+    {
+      "type": "image_picker",
+      "id": "featured_image_1",
+      "label": "Featured image 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "featured_image_2",
+      "label": "Featured image 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "featured_image_3",
+      "label": "Featured image 3"
     }
   ],
   "presets": [{ "name": "Glazur home" }]
