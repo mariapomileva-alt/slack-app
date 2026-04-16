@@ -1,13 +1,156 @@
 <section class="section-main-product container" style="padding: 2rem 1rem;">
-  <div style="display: grid; gap: 2rem; max-width: 1100px; margin: 0 auto;">
-    {% if product.featured_media %}
-      <div>
-        {% assign img_alt = product.featured_media.alt | default: product.title %}
-        {{
-          product.featured_media
-          | image_url: width: 1200
-          | image_tag: loading: 'lazy', alt: img_alt, class: 'product-main-image'
-        }}
+  {%- assign lifestyle_gallery = product.metafields.custom.lifestyle_gallery.value -%}
+  <style>
+    .product-page {
+      display: grid;
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .product-gallery {
+      display: grid;
+      gap: 0.85rem;
+    }
+
+    .product-gallery__track {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 100%;
+      gap: 0.75rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      padding-bottom: 0.25rem;
+    }
+
+    .product-gallery__slide {
+      scroll-snap-align: start;
+      border-radius: 0.35rem;
+      overflow: hidden;
+      background: #f7f3f1;
+    }
+
+    .product-gallery__slide img,
+    .product-gallery__slide video,
+    .product-gallery__slide model-viewer,
+    .product-gallery__slide iframe {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .product-gallery__thumbs {
+      display: flex;
+      gap: 0.5rem;
+      overflow-x: auto;
+      padding-bottom: 0.2rem;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+
+    .product-gallery__thumb {
+      flex: 0 0 4.5rem;
+      display: block;
+      border-radius: 0.3rem;
+      overflow: hidden;
+      background: #f7f3f1;
+      border: 1px solid rgba(44, 18, 32, 0.08);
+    }
+
+    .product-gallery__thumb img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    .product-lifestyle {
+      max-width: 1100px;
+      margin: 2rem auto 0;
+    }
+
+    .product-lifestyle__heading {
+      margin: 0 0 1rem;
+      font-family: var(--font-heading, Syne, sans-serif);
+      font-size: clamp(1.25rem, 2vw, 1.75rem);
+    }
+
+    .product-lifestyle__grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .product-lifestyle__item {
+      border-radius: 0.35rem;
+      overflow: hidden;
+      background: #f7f3f1;
+    }
+
+    .product-lifestyle__item img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      aspect-ratio: 4 / 5;
+    }
+
+    @media (min-width: 901px) {
+      .product-page {
+        grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+        align-items: start;
+      }
+
+      .product-lifestyle__grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+    }
+  </style>
+
+  <div class="product-page">
+    {% if product.media.size > 0 %}
+      <div class="product-gallery">
+        <div class="product-gallery__track" aria-label="Product media gallery">
+          {% for media in product.media %}
+            <div class="product-gallery__slide" id="ProductMedia-{{ section.id }}-{{ media.id }}">
+              {% case media.media_type %}
+                {% when 'image' %}
+                  {% assign img_alt = media.alt | default: product.title %}
+                  {{
+                    media
+                    | image_url: width: 1600
+                    | image_tag: loading: 'lazy', alt: img_alt
+                  }}
+                {% when 'video' %}
+                  {{ media | media_tag: image_size: '1600x', controls: true, preload: 'metadata' }}
+                {% when 'external_video' %}
+                  {{ media | media_tag }}
+                {% else %}
+                  {{ media | media_tag }}
+              {% endcase %}
+            </div>
+          {% endfor %}
+        </div>
+
+        {% if product.media.size > 1 %}
+          <div class="product-gallery__thumbs" aria-label="Product gallery thumbnails">
+            {% for media in product.media %}
+              {% assign thumb_alt = media.alt | default: product.title %}
+              <a class="product-gallery__thumb" href="#ProductMedia-{{ section.id }}-{{ media.id }}" aria-label="Open media {{ forloop.index }}">
+                {% if media.preview_image %}
+                  {{
+                    media.preview_image
+                    | image_url: width: 240
+                    | image_tag: loading: 'lazy', alt: thumb_alt
+                  }}
+                {% endif %}
+              </a>
+            {% endfor %}
+          </div>
+        {% endif %}
       </div>
     {% endif %}
     <div>
@@ -48,6 +191,23 @@
       {% endform %}
     </div>
   </div>
+
+  {% if lifestyle_gallery != blank %}
+    <div class="product-lifestyle">
+      <h2 class="product-lifestyle__heading">Seen in real life</h2>
+      <div class="product-lifestyle__grid">
+        {% for image in lifestyle_gallery %}
+          <div class="product-lifestyle__item">
+            {{
+              image
+              | image_url: width: 900
+              | image_tag: loading: 'lazy', alt: product.title
+            }}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
 </section>
 
 {% schema %}
@@ -55,6 +215,11 @@
   "name": "Product",
   "tag": "section",
   "class": "section-main-product",
-  "settings": []
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "The product page now shows all product media as a swipeable gallery. To add the lower lifestyle gallery, create a product metafield `custom.lifestyle_gallery` as a list of files and attach your model / real-life photos there."
+    }
+  ]
 }
 {% endschema %}
