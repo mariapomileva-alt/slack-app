@@ -210,7 +210,13 @@
         "type": "text",
         "id": "promo_success_message",
         "label": "Success message (after signup attempt)",
-        "default": "Thank you — check your inbox."
+        "default": "Thank you for subscribing. Your welcome code is ready:"
+      },
+      {
+        "type": "text",
+        "id": "promo_discount_code",
+        "label": "Promo code shown after signup",
+        "default": "WELCOME10"
       }
     ]
   },

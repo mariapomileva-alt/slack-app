@@ -87,7 +87,7 @@
     var overlay = $(".promo-modal__overlay", modal);
     var closeBtn = $(".promo-modal__close", modal);
     var form = $("#promo-form");
-    var email = document.body.dataset.contactEmail || "";
+    var success = $("#promo-success");
 
     function open() {
       modal.hidden = false;
@@ -104,24 +104,22 @@
     });
     if (overlay) overlay.addEventListener("click", close);
     if (closeBtn) closeBtn.addEventListener("click", close);
+    if (success && success.dataset.openOnLoad === "true") {
+      open();
+      if (form) form.hidden = true;
+    }
     document.addEventListener("keydown", function (e) {
       if (e.key === "Escape" && !modal.hidden) close();
     });
 
     if (form) {
       form.addEventListener("submit", function (e) {
-        e.preventDefault();
         var input = $("#promo-email");
         var em = input && input.value.trim();
         if (!em) return;
-        if (email) {
-          var subj = encodeURIComponent("Glazur newsletter — 10% signup");
-          var body = encodeURIComponent("Please add this email to the newsletter list:\n\n" + em);
-          window.location.href = "mailto:" + email + "?subject=" + subj + "&body=" + body;
-        }
-        var ok = $("#promo-success");
-        if (ok) ok.hidden = false;
-        form.hidden = true;
+        try {
+          sessionStorage.setItem("glazur_promo_submit", "1");
+        } catch (err) {}
       });
     }
   }

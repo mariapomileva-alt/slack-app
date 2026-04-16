@@ -49,13 +49,35 @@
       <button type="button" class="promo-modal__close" aria-label="Close">×</button>
       <h2 id="promo-dialog-title">{{ settings.promo_modal_title | escape }}</h2>
       <p class="sub" id="promo-subline">{{ settings.promo_modal_subline | escape }}</p>
-      <form id="promo-form">
-        <label class="sr-only" for="promo-email">Email</label>
-        <input id="promo-email" type="email" required placeholder="Your email" autocomplete="email">
-        <button type="submit" class="btn btn--fill" style="width: 100%;" id="promo-cta">{{ settings.promo_modal_cta | escape }}</button>
-        <p class="legal" id="promo-legal-modal">{{ settings.promo_legal | escape }}</p>
-      </form>
-      <p id="promo-success" class="success" hidden>{{ settings.promo_success_message | escape }}</p>
+      {% form 'customer', id: 'promo-form' %}
+        {% if form.posted_successfully? %}
+          <div id="promo-success" class="success" data-open-on-load="true">
+            <p>{{ settings.promo_success_message | escape }}</p>
+            {% if settings.promo_discount_code != blank %}
+              <p><strong>{{ settings.promo_discount_code | escape }}</strong></p>
+              <p>Use this code at checkout.</p>
+            {% endif %}
+          </div>
+        {% else %}
+          <input type="hidden" name="contact[tags]" value="newsletter, glazur-site, promo-popup">
+          <label class="sr-only" for="promo-email">Email</label>
+          <input
+            id="promo-email"
+            type="email"
+            name="contact[email]"
+            required
+            placeholder="Your email"
+            autocomplete="email"
+            value="{% if form.email %}{{ form.email }}{% endif %}"
+          >
+          <button type="submit" class="btn btn--fill" style="width: 100%;" id="promo-cta">{{ settings.promo_modal_cta | escape }}</button>
+          <p class="legal" id="promo-legal-modal">{{ settings.promo_legal | escape }}</p>
+
+          {% if form.errors %}
+            <div id="promo-error" class="success" style="color: #7a163c;">{{ form.errors | default_errors }}</div>
+          {% endif %}
+        {% endif %}
+      {% endform %}
     </div>
   </div>
 {%- endunless -%}
