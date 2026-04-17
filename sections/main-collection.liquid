@@ -1,8 +1,86 @@
 <section class="section-main-collection container" style="padding: 2rem 1rem;">
+  <style>
+    .collection-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0 0 1.25rem;
+    }
+
+    .collection-toolbar__label {
+      font-family: var(--font-ui, Syne, sans-serif);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #6f5a62;
+      margin-right: 0.1rem;
+    }
+
+    .collection-filter-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(74, 21, 54, 0.2);
+      color: #4a1536;
+      text-decoration: none;
+      font-family: var(--font-ui, Syne, sans-serif);
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.68rem;
+      border-radius: 999px;
+      background: #fff;
+      transition: all 0.18s ease;
+    }
+
+    .collection-filter-chip:hover {
+      border-color: rgba(74, 21, 54, 0.45);
+      background: #fff9fc;
+    }
+
+    .collection-filter-chip.is-active {
+      background: #4a1536;
+      color: #fff;
+      border-color: #4a1536;
+    }
+  </style>
+
   <h1 style="font-family: var(--font-heading, Syne, sans-serif); margin-bottom: 1.5rem;">{{ collection.title }}</h1>
   {% if collection.description != blank %}
-    <div class="rte" style="margin-bottom: 2rem;">{{ collection.description }}</div>
+    <div class="rte" style="margin-bottom: 1.25rem;">{{ collection.description }}</div>
   {% endif %}
+
+  {% assign has_category_tags = false %}
+  {% for tag in collection.all_tags %}
+    {% if tag contains 'category-' %}
+      {% assign has_category_tags = true %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
+  {% if has_category_tags %}
+    <nav class="collection-toolbar" aria-label="Collection category filters">
+      <span class="collection-toolbar__label">Categories</span>
+      {% if current_tags %}
+        <a class="collection-filter-chip" href="{{ collection.url }}">All</a>
+      {% else %}
+        <span class="collection-filter-chip is-active">All</span>
+      {% endif %}
+
+      {% for tag in collection.all_tags %}
+        {% if tag contains 'category-' %}
+          {% assign label = tag | remove: 'category-' | replace: '-', ' ' %}
+          {% if current_tags contains tag %}
+            <span class="collection-filter-chip is-active">{{ label }}</span>
+          {% else %}
+            {{ tag | link_to_add_tag: label | replace: '<a ', '<a class="collection-filter-chip" ' }}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </nav>
+  {% endif %}
+
   <div
     class="collection-grid"
     style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;"
