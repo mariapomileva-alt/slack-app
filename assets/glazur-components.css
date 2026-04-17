@@ -2,9 +2,9 @@
   position: sticky;
   top: 0;
   z-index: 200;
-  background: var(--color-surface);
-  color: var(--color-ink-muted);
-  border-bottom: 1px solid var(--color-line);
+  background: var(--color-footer-olive, #88a620);
+  color: var(--color-gold);
+  border-bottom: 1px solid rgba(245, 237, 212, 0.22);
   font-size: 0.72rem;
   text-align: center;
   padding: 0.55rem 2.5rem 0.55rem 1rem;
@@ -16,7 +16,7 @@
 
 .promo-bar a,
 .promo-bar__open {
-  color: var(--color-plum);
+  color: var(--color-gold);
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -44,7 +44,7 @@
   transform: translateY(-50%);
   background: none;
   border: none;
-  color: rgba(92, 69, 80, 0.45);
+  color: rgba(245, 237, 212, 0.65);
   font-size: 1.25rem;
   line-height: 1;
   cursor: pointer;
@@ -52,7 +52,7 @@
 }
 
 .promo-bar__close:hover {
-  color: var(--color-plum);
+  color: #fff9e6;
 }
 
 body.has-promo .site-header {
@@ -933,7 +933,7 @@ body.has-promo .site-header {
 .site-footer {
   position: relative;
   z-index: 2;
-  background: #88a620;
+  background: var(--color-footer-olive, #88a620);
   color: var(--color-gold);
   padding: clamp(2.5rem, 6vw, 4rem) 0 2rem;
   font-size: 0.9rem;

@@ -45,6 +45,8 @@
   --color-accent-soft: #e58bad;
   --color-magenta: #d70c7a;
   --color-olive: var(--color-pack-lime-deep);
+  /* Совпадает с футером — для промо-полоски и единого бренд-зелёного */
+  --color-footer-olive: #88a620;
   --color-lavender: var(--color-pack-pink-mid);
   --color-rose-ui: #e58bad;
 
