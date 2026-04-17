@@ -1639,7 +1639,8 @@ body.has-promo .site-header {
 .ru-product-card__img {
   width: 100%;
   aspect-ratio: 3 / 4;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
   display: block;
   transition: transform 0.28s ease;
 }
