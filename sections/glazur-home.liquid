@@ -1,37 +1,63 @@
 <div class="glazur-home-root">
-  <section class="ru-hero" aria-labelledby="hero-title">
-    <div class="ru-hero__grid">
-      <div class="ru-hero__copy">
-        <p class="ru-hero__eyebrow">Natural fabrics · Paris-designed</p>
-        <h1 id="hero-title">{{ section.settings.hero_heading | escape }}</h1>
-        <p class="ru-hero__lead">{{ section.settings.hero_lead | escape }}</p>
-        <div class="ru-hero__actions">
-          <a class="btn btn--hero-pink" href="{% render 'glazur-collection-url', key: 'default' %}">View catalog</a>
-          <a class="btn" href="#story">Read more</a>
+  {% assign hero_video_src = section.settings.hero_video_url | strip %}
+  {% if hero_video_src != blank %}
+    <section class="ru-hero ru-hero--video" aria-labelledby="hero-title">
+      <video
+        class="ru-hero__video-media"
+        src="{{ hero_video_src | escape }}"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+      ></video>
+      <div class="ru-hero__video-overlay">
+        <div class="ru-hero__video-copy">
+          <p class="ru-hero__eyebrow">Natural fabrics · Paris-designed</p>
+          <h1 id="hero-title">{{ section.settings.hero_heading | escape }}</h1>
+          <p class="ru-hero__lead">{{ section.settings.hero_lead | escape }}</p>
+          <div class="ru-hero__actions">
+            <a class="btn btn--hero-pink" href="{% render 'glazur-collection-url', key: 'default' %}">View catalog</a>
+            <a class="btn" href="#story">Read more</a>
+          </div>
         </div>
       </div>
-      <figure class="ru-hero__figure">
-        {% if section.settings.hero_image != blank %}
-          {% assign hero_alt = section.settings.hero_image.alt | default: shop.name %}
-          {{
-            section.settings.hero_image
-            | image_url: width: 1200
-            | image_tag: class: 'ru-hero__img', loading: 'eager', decoding: 'async', alt: hero_alt
-          }}
-        {% else %}
-          <img
-            class="ru-hero__img"
-            src="{{ 'glazur-hero-pink-studio.png' | asset_url }}"
-            width="538"
-            height="716"
-            alt="{{ shop.name }} — hero"
-            loading="eager"
-            decoding="async"
-          >
-        {% endif %}
-      </figure>
-    </div>
-  </section>
+    </section>
+  {% else %}
+    <section class="ru-hero" aria-labelledby="hero-title">
+      <div class="ru-hero__grid">
+        <div class="ru-hero__copy">
+          <p class="ru-hero__eyebrow">Natural fabrics · Paris-designed</p>
+          <h1 id="hero-title">{{ section.settings.hero_heading | escape }}</h1>
+          <p class="ru-hero__lead">{{ section.settings.hero_lead | escape }}</p>
+          <div class="ru-hero__actions">
+            <a class="btn btn--hero-pink" href="{% render 'glazur-collection-url', key: 'default' %}">View catalog</a>
+            <a class="btn" href="#story">Read more</a>
+          </div>
+        </div>
+        <figure class="ru-hero__figure">
+          {% if section.settings.hero_image != blank %}
+            {% assign hero_alt = section.settings.hero_image.alt | default: shop.name %}
+            {{
+              section.settings.hero_image
+              | image_url: width: 1200
+              | image_tag: class: 'ru-hero__img', loading: 'eager', decoding: 'async', alt: hero_alt
+            }}
+          {% else %}
+            <img
+              class="ru-hero__img"
+              src="{{ 'glazur-hero-pink-studio.png' | asset_url }}"
+              width="538"
+              height="716"
+              alt="{{ shop.name }} — hero"
+              loading="eager"
+              decoding="async"
+            >
+          {% endif %}
+        </figure>
+      </div>
+    </section>
+  {% endif %}
 
   <section class="ru-muses" aria-labelledby="muses-title">
     <div class="container">
@@ -250,6 +276,12 @@
       "type": "image_picker",
       "id": "hero_image",
       "label": "Hero image (optional — falls back to theme asset)"
+    },
+    {
+      "type": "url",
+      "id": "hero_video_url",
+      "label": "Hero video URL (full screen)",
+      "info": "Paste a direct .mp4 link from Shopify Files (Content → Files). When set, hero switches to full-screen video under header."
     },
     {
       "type": "richtext",
