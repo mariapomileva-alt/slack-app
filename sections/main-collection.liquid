@@ -37,7 +37,7 @@
     .collection-tools input {
       min-width: 190px;
     }
-    .collection-card {
+    .collection-grid-card {
       text-decoration: none;
       color: inherit;
       display: block;
@@ -114,7 +114,7 @@
       {% assign product_tags_csv = product.tags | join: ',' | downcase %}
       <a
         href="{{ product.url }}"
-        class="collection-card"
+        class="collection-grid-card"
         data-title="{{ product.title | downcase | escape }}"
         data-price="{{ product.price_min }}"
         data-tags="{{ product_tags_csv | escape }}"
@@ -149,7 +149,7 @@
       var count = root.querySelector('#CollectionCount-{{ section.id }}');
       if (!grid) return;
 
-      var cards = Array.prototype.slice.call(grid.querySelectorAll('.collection-card'));
+      var cards = Array.prototype.slice.call(grid.querySelectorAll('.collection-grid-card'));
 
       function parsePriceRange(value) {
         if (!value) return null;
