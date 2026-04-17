@@ -1,48 +1,56 @@
-<section class="section-main-collection container" style="padding: 2rem 1rem;">
+<section class="section-main-collection container" id="collection-{{ section.id }}" style="padding: 2rem 1rem;">
   <style>
-    .collection-toolbar {
+    .collection-tools {
       display: flex;
       flex-wrap: wrap;
-      align-items: center;
-      gap: 0.5rem;
-      margin: 0 0 1.25rem;
+      justify-content: space-between;
+      gap: 0.8rem;
+      margin: 0 0 1.2rem;
     }
-
-    .collection-toolbar__label {
+    .collection-tools__left,
+    .collection-tools__right {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      align-items: center;
+    }
+    .collection-tools select,
+    .collection-tools input {
+      height: 2.2rem;
+      border: 1px solid rgba(74, 21, 54, 0.22);
+      background: #fff;
+      color: #4a1536;
+      padding: 0 0.65rem;
+      font-family: var(--font-ui, Syne, sans-serif);
+      font-size: 0.76rem;
+      letter-spacing: 0.04em;
+      border-radius: 2px;
+      min-width: 150px;
+    }
+    .collection-tools input {
+      min-width: 190px;
+    }
+    .collection-card {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .collection-tools__count {
       font-family: var(--font-ui, Syne, sans-serif);
       font-size: 0.72rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
       color: #6f5a62;
-      margin-right: 0.1rem;
+      letter-spacing: 0.05em;
     }
-
-    .collection-filter-chip {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border: 1px solid rgba(74, 21, 54, 0.2);
-      color: #4a1536;
-      text-decoration: none;
-      font-family: var(--font-ui, Syne, sans-serif);
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 0.4rem 0.68rem;
-      border-radius: 999px;
-      background: #fff;
-      transition: all 0.18s ease;
-    }
-
-    .collection-filter-chip:hover {
-      border-color: rgba(74, 21, 54, 0.45);
-      background: #fff9fc;
-    }
-
-    .collection-filter-chip.is-active {
-      background: #4a1536;
-      color: #fff;
-      border-color: #4a1536;
+    @media (max-width: 860px) {
+      .collection-tools__left,
+      .collection-tools__right {
+        width: 100%;
+      }
+      .collection-tools select,
+      .collection-tools input {
+        flex: 1 1 calc(50% - 0.3rem);
+        min-width: 0;
+      }
     }
   </style>
 
@@ -51,42 +59,59 @@
     <div class="rte" style="margin-bottom: 1.25rem;">{{ collection.description }}</div>
   {% endif %}
 
-  {% assign has_category_tags = false %}
-  {% for tag in collection.all_tags %}
-    {% if tag contains 'category-' %}
-      {% assign has_category_tags = true %}
-      {% break %}
-    {% endif %}
-  {% endfor %}
-
-  {% if has_category_tags %}
-    <nav class="collection-toolbar" aria-label="Collection category filters">
-      <span class="collection-toolbar__label">Categories</span>
-      {% if current_tags %}
-        <a class="collection-filter-chip" href="{{ collection.url }}">All</a>
-      {% else %}
-        <span class="collection-filter-chip is-active">All</span>
-      {% endif %}
-
-      {% for tag in collection.all_tags %}
-        {% if tag contains 'category-' %}
-          {% assign label = tag | remove: 'category-' | replace: '-', ' ' %}
-          {% if current_tags contains tag %}
-            <span class="collection-filter-chip is-active">{{ label }}</span>
-          {% else %}
-            {{ tag | link_to_add_tag: label | replace: '<a ', '<a class="collection-filter-chip" ' }}
+  <div class="collection-tools" aria-label="Collection filters and sorting">
+    <div class="collection-tools__left">
+      <select id="CategoryFilter-{{ section.id }}" aria-label="Filter by category">
+        <option value="">Category</option>
+        {% for tag in collection.all_tags %}
+          {% if tag contains 'category-' %}
+            <option value="{{ tag | downcase }}">{{ tag | remove: 'category-' | replace: '-', ' ' }}</option>
           {% endif %}
-        {% endif %}
-      {% endfor %}
-    </nav>
-  {% endif %}
+        {% endfor %}
+      </select>
 
-  <div
-    class="collection-grid"
-    style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;"
-  >
+      <select id="PriceFilter-{{ section.id }}" aria-label="Filter by price">
+        <option value="">Price</option>
+        <option value="0-10000">Under {{ 10000 | money }}</option>
+        <option value="10000-20000">{{ 10000 | money }} – {{ 20000 | money }}</option>
+        <option value="20000-40000">{{ 20000 | money }} – {{ 40000 | money }}</option>
+        <option value="40000-99999999">Over {{ 40000 | money }}</option>
+      </select>
+
+      <select id="ColorFilter-{{ section.id }}" aria-label="Filter by color">
+        <option value="">Color</option>
+        {% for tag in collection.all_tags %}
+          {% if tag contains 'color-' or tag contains 'colour-' %}
+            {% assign label = tag | replace: 'color-', '' | replace: 'colour-', '' | replace: '-', ' ' %}
+            <option value="{{ tag | downcase }}">{{ label }}</option>
+          {% endif %}
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="collection-tools__right">
+      <input id="SearchFilter-{{ section.id }}" type="search" placeholder="Search" aria-label="Search in this collection">
+      <select id="SortFilter-{{ section.id }}" aria-label="Sort products">
+        <option value="default">Sort: default</option>
+        <option value="price-asc">Price: low to high</option>
+        <option value="price-desc">Price: high to low</option>
+        <option value="title-asc">Name: A to Z</option>
+        <option value="title-desc">Name: Z to A</option>
+      </select>
+      <span id="CollectionCount-{{ section.id }}" class="collection-tools__count"></span>
+    </div>
+  </div>
+
+  <div class="collection-grid" id="CollectionGrid-{{ section.id }}" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem;">
     {% for product in collection.products %}
-      <a href="{{ product.url }}" style="text-decoration: none; color: inherit;">
+      {% assign product_tags_csv = product.tags | join: ',' | downcase %}
+      <a
+        href="{{ product.url }}"
+        class="collection-card"
+        data-title="{{ product.title | downcase | escape }}"
+        data-price="{{ product.price_min }}"
+        data-tags="{{ product_tags_csv | escape }}"
+      >
         {% if product.featured_media %}
           {% assign card_alt = product.featured_media.alt | default: product.title %}
           {{
@@ -102,6 +127,78 @@
       <p>No products in this collection yet.</p>
     {% endfor %}
   </div>
+
+  <script>
+    (function () {
+      var root = document.getElementById('collection-{{ section.id }}');
+      if (!root) return;
+
+      var category = root.querySelector('#CategoryFilter-{{ section.id }}');
+      var price = root.querySelector('#PriceFilter-{{ section.id }}');
+      var color = root.querySelector('#ColorFilter-{{ section.id }}');
+      var search = root.querySelector('#SearchFilter-{{ section.id }}');
+      var sort = root.querySelector('#SortFilter-{{ section.id }}');
+      var grid = root.querySelector('#CollectionGrid-{{ section.id }}');
+      var count = root.querySelector('#CollectionCount-{{ section.id }}');
+      if (!grid) return;
+
+      var cards = Array.prototype.slice.call(grid.querySelectorAll('.collection-card'));
+
+      function parsePriceRange(value) {
+        if (!value) return null;
+        var parts = value.split('-');
+        if (parts.length !== 2) return null;
+        return { min: parseInt(parts[0], 10), max: parseInt(parts[1], 10) };
+      }
+
+      function applyFilters() {
+        var categoryValue = (category && category.value || '').toLowerCase();
+        var colorValue = (color && color.value || '').toLowerCase();
+        var searchValue = (search && search.value || '').toLowerCase().trim();
+        var priceRange = parsePriceRange(price && price.value || '');
+
+        var visibleCards = [];
+        cards.forEach(function (card) {
+          var title = card.dataset.title || '';
+          var tags = card.dataset.tags || '';
+          var priceValue = parseInt(card.dataset.price || '0', 10);
+
+          var matchCategory = !categoryValue || tags.indexOf(categoryValue) !== -1;
+          var matchColor = !colorValue || tags.indexOf(colorValue) !== -1;
+          var matchSearch = !searchValue || title.indexOf(searchValue) !== -1;
+          var matchPrice = !priceRange || (priceValue >= priceRange.min && priceValue <= priceRange.max);
+
+          var visible = matchCategory && matchColor && matchSearch && matchPrice;
+          card.style.display = visible ? '' : 'none';
+          if (visible) visibleCards.push(card);
+        });
+
+        var sortValue = sort && sort.value || 'default';
+        if (sortValue !== 'default') {
+          visibleCards.sort(function (a, b) {
+            var ap = parseInt(a.dataset.price || '0', 10);
+            var bp = parseInt(b.dataset.price || '0', 10);
+            var at = a.dataset.title || '';
+            var bt = b.dataset.title || '';
+            if (sortValue === 'price-asc') return ap - bp;
+            if (sortValue === 'price-desc') return bp - ap;
+            if (sortValue === 'title-asc') return at.localeCompare(bt);
+            if (sortValue === 'title-desc') return bt.localeCompare(at);
+            return 0;
+          });
+          visibleCards.forEach(function (card) { grid.appendChild(card); });
+        }
+
+        if (count) count.textContent = visibleCards.length + ' items';
+      }
+
+      [category, price, color, sort].forEach(function (el) {
+        if (el) el.addEventListener('change', applyFilters);
+      });
+      if (search) search.addEventListener('input', applyFilters);
+      applyFilters();
+    })();
+  </script>
 </section>
 
 {% schema %}
