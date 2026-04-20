@@ -175,6 +175,24 @@
         "type": "image_picker",
         "id": "size_guide_img_hips",
         "label": "Image — Hips"
+      },
+      {
+        "type": "header",
+        "content": "About page photos"
+      },
+      {
+        "type": "paragraph",
+        "content": "Used on /pages/about. You can update these anytime in Theme settings, no code editing needed."
+      },
+      {
+        "type": "image_picker",
+        "id": "about_photo_1",
+        "label": "About photo 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "about_photo_2",
+        "label": "About photo 2"
       }
     ]
   },

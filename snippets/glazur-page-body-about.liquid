@@ -37,27 +37,48 @@
   }
 </style>
 
+{%- assign about_photo_1 = settings.about_photo_1 -%}
+{%- assign about_photo_2 = settings.about_photo_2 -%}
+
 <div class="glazur-about-page">
   <div class="glazur-about-page__gallery" aria-label="Glazur founder photos">
     <figure class="glazur-about-page__photo">
-      <img
-        src="{{ 'glazur-about-photo-1.png' | asset_url }}"
-        width="995"
-        height="1003"
-        alt="Glazur portrait in Paris"
-        loading="lazy"
-        decoding="async"
-      >
+      {% if about_photo_1 != blank %}
+        {% assign about_photo_1_alt = about_photo_1.alt | default: 'Glazur portrait in Paris' %}
+        {{
+          about_photo_1
+          | image_url: width: 1200
+          | image_tag: alt: about_photo_1_alt, loading: 'lazy', decoding: 'async'
+        }}
+      {% else %}
+        <img
+          src="{{ 'glazur-about-photo-1.png' | asset_url }}"
+          width="995"
+          height="1003"
+          alt="Glazur portrait in Paris"
+          loading="lazy"
+          decoding="async"
+        >
+      {% endif %}
     </figure>
     <figure class="glazur-about-page__photo">
-      <img
-        src="{{ 'glazur-about-photo-2.png' | asset_url }}"
-        width="666"
-        height="888"
-        alt="Glazur style look in city"
-        loading="lazy"
-        decoding="async"
-      >
+      {% if about_photo_2 != blank %}
+        {% assign about_photo_2_alt = about_photo_2.alt | default: 'Glazur style look in city' %}
+        {{
+          about_photo_2
+          | image_url: width: 1200
+          | image_tag: alt: about_photo_2_alt, loading: 'lazy', decoding: 'async'
+        }}
+      {% else %}
+        <img
+          src="{{ 'glazur-about-photo-2.png' | asset_url }}"
+          width="666"
+          height="888"
+          alt="Glazur style look in city"
+          loading="lazy"
+          decoding="async"
+        >
+      {% endif %}
     </figure>
   </div>
 
