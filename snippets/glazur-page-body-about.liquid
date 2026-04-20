@@ -1,0 +1,86 @@
+<style>
+  .glazur-about-page {
+    display: grid;
+    gap: 1.35rem;
+  }
+
+  .glazur-about-page__gallery {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.85rem;
+  }
+
+  .glazur-about-page__photo {
+    margin: 0;
+    background: var(--color-surface, #fff);
+    border: 1px solid rgba(74, 21, 54, 0.12);
+  }
+
+  .glazur-about-page__photo img {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+  }
+
+  .glazur-about-page__copy p {
+    margin: 0 0 1rem;
+    line-height: 1.62;
+    color: var(--color-ink-muted, #5c4550);
+  }
+
+  @media (max-width: 760px) {
+    .glazur-about-page__gallery {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="glazur-about-page">
+  <div class="glazur-about-page__gallery" aria-label="Glazur founder photos">
+    <figure class="glazur-about-page__photo">
+      <img
+        src="{{ 'glazur-about-photo-1.png' | asset_url }}"
+        width="995"
+        height="1003"
+        alt="Glazur portrait in Paris"
+        loading="lazy"
+        decoding="async"
+      >
+    </figure>
+    <figure class="glazur-about-page__photo">
+      <img
+        src="{{ 'glazur-about-photo-2.png' | asset_url }}"
+        width="666"
+        height="888"
+        alt="Glazur style look in city"
+        loading="lazy"
+        decoding="async"
+      >
+    </figure>
+  </div>
+
+  <div class="glazur-about-page__copy">
+    <p>
+      Glazur is a brand for women who believe that everyday life can be beautiful. We create clothing that transforms
+      ordinary days into small moments of magic: soft fabrics, thoughtful fit, and refined details make a woman feel
+      confident, graceful, and inspired.
+    </p>
+    <p>
+      Our pieces are designed in Paris and crafted with careful attention to every detail. We release limited editions,
+      where each item is unique and features a signature touch - a Glazur Detail, a small element that makes the look
+      truly special.
+    </p>
+    <p>
+      We use only natural fabrics - cotton and linen - because we believe in beauty you can touch and feel. Lace,
+      embroidery, delicate bows, and fine finishes create a sense of quiet luxury and gentle transformation: from tired
+      and busy to inspired and graceful.
+    </p>
+    <p>
+      Glazur is not about an outfit, it is a state of being. Every day in our clothing feels more beautiful, and the
+      subtle admiration of those around you confirms it: you stand out gracefully, feminine, and uniquely. This is for
+      women who want to feel exceptional, here and now.
+    </p>
+  </div>
+</div>

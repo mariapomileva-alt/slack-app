@@ -1,6 +1,7 @@
 {% liquid
   assign size_page_setting = settings.footer_page_size_guide
   assign is_glazur_size_guide = false
+  assign is_glazur_about = false
   if page.handle == 'size-guide' or page.handle == 'sizeguide'
     assign is_glazur_size_guide = true
   elsif page.handle contains 'size-guide'
@@ -8,9 +9,12 @@
   elsif size_page_setting != blank and size_page_setting.id == page.id
     assign is_glazur_size_guide = true
   endif
+  if page.handle == 'about'
+    assign is_glazur_about = true
+  endif
 
   assign policy_like = false
-  if page.handle == 'care' or page.handle == 'faq' or is_glazur_size_guide or page.handle == 'shipping-returns'
+  if page.handle == 'care' or page.handle == 'faq' or is_glazur_size_guide or page.handle == 'shipping-returns' or is_glazur_about
     assign policy_like = true
   endif
 %}
@@ -26,6 +30,8 @@
       {% render 'glazur-page-body-shipping-returns' %}
     {% elsif page.handle == 'faq' %}
       {% render 'glazur-page-body-faq' %}
+    {% elsif is_glazur_about %}
+      {% render 'glazur-page-body-about' %}
     {% endif %}
   </div>
 {% else %}
