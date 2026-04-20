@@ -124,9 +124,8 @@
         </figure>
       </div>
       <div class="ru-muses__footer">
-        {% if settings.social_instagram != blank %}
-          <a class="btn" href="{{ settings.social_instagram }}" target="_blank" rel="noopener noreferrer">Load more</a>
-        {% endif %}
+        {% assign instagram_href = settings.social_instagram | default: 'https://www.instagram.com/' %}
+        <a class="btn" href="{{ instagram_href | escape }}" target="_blank" rel="noopener noreferrer">See more on Instagram</a>
       </div>
     </div>
   </section>
