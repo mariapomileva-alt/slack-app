@@ -14,11 +14,8 @@
     }
 
     .product-gallery__track {
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: 100%;
+      display: flex;
       gap: 0.75rem;
-      align-items: start;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       -webkit-overflow-scrolling: touch;
@@ -27,10 +24,10 @@
     }
 
     .product-gallery__slide {
+      flex: 0 0 100%;
       scroll-snap-align: start;
       border-radius: 0.35rem;
       overflow: hidden;
-      align-self: start;
       background: transparent;
     }
 
