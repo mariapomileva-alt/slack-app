@@ -146,6 +146,55 @@
       aspect-ratio: 4 / 5;
     }
 
+    .product-one-size {
+      margin-top: 1.4rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(44, 18, 32, 0.14);
+    }
+
+    .product-one-size__title {
+      margin: 0 0 0.35rem;
+      font-family: var(--font-ui, Syne, sans-serif);
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-plum, #4a1536);
+    }
+
+    .product-one-size__lead {
+      margin: 0 0 0.75rem;
+      color: var(--color-ink-muted, #5c4550);
+      line-height: 1.5;
+      font-size: 0.92rem;
+    }
+
+    .product-one-size__grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.55rem;
+    }
+
+    .product-one-size__item {
+      margin: 0;
+    }
+
+    .product-one-size__item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      border-radius: 0.2rem;
+    }
+
+    .product-one-size__caption {
+      display: block;
+      margin-top: 0.28rem;
+      color: var(--color-ink-muted, #5c4550);
+      font-size: 0.74rem;
+      line-height: 1.35;
+    }
+
     @media (min-width: 901px) {
       .product-page {
         grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
@@ -243,6 +292,65 @@
           {% endif %}
         </button>
       {% endform %}
+
+      {% if section.settings.one_size_enabled %}
+        <div class="product-one-size">
+          <h3 class="product-one-size__title">{{ section.settings.one_size_title | escape }}</h3>
+          {% if section.settings.one_size_lead != blank %}
+            <p class="product-one-size__lead">{{ section.settings.one_size_lead | escape }}</p>
+          {% endif %}
+          <div class="product-one-size__grid">
+            {% if section.settings.one_size_image_1 != blank %}
+              <figure class="product-one-size__item">
+                {{
+                  section.settings.one_size_image_1
+                  | image_url: width: 600
+                  | image_tag: loading: 'lazy', alt: section.settings.one_size_caption_1 | default: 'One size fit example'
+                }}
+                {% if section.settings.one_size_caption_1 != blank %}
+                  <figcaption class="product-one-size__caption">{{ section.settings.one_size_caption_1 | escape }}</figcaption>
+                {% endif %}
+              </figure>
+            {% endif %}
+            {% if section.settings.one_size_image_2 != blank %}
+              <figure class="product-one-size__item">
+                {{
+                  section.settings.one_size_image_2
+                  | image_url: width: 600
+                  | image_tag: loading: 'lazy', alt: section.settings.one_size_caption_2 | default: 'One size fit example'
+                }}
+                {% if section.settings.one_size_caption_2 != blank %}
+                  <figcaption class="product-one-size__caption">{{ section.settings.one_size_caption_2 | escape }}</figcaption>
+                {% endif %}
+              </figure>
+            {% endif %}
+            {% if section.settings.one_size_image_3 != blank %}
+              <figure class="product-one-size__item">
+                {{
+                  section.settings.one_size_image_3
+                  | image_url: width: 600
+                  | image_tag: loading: 'lazy', alt: section.settings.one_size_caption_3 | default: 'One size fit example'
+                }}
+                {% if section.settings.one_size_caption_3 != blank %}
+                  <figcaption class="product-one-size__caption">{{ section.settings.one_size_caption_3 | escape }}</figcaption>
+                {% endif %}
+              </figure>
+            {% endif %}
+            {% if section.settings.one_size_image_4 != blank %}
+              <figure class="product-one-size__item">
+                {{
+                  section.settings.one_size_image_4
+                  | image_url: width: 600
+                  | image_tag: loading: 'lazy', alt: section.settings.one_size_caption_4 | default: 'One size fit example'
+                }}
+                {% if section.settings.one_size_caption_4 != blank %}
+                  <figcaption class="product-one-size__caption">{{ section.settings.one_size_caption_4 | escape }}</figcaption>
+                {% endif %}
+              </figure>
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
     </div>
   </div>
 
@@ -305,6 +413,72 @@
     {
       "type": "paragraph",
       "content": "The product page now shows all product media as a swipeable gallery. To add the lower lifestyle gallery, create a product metafield `custom.lifestyle_gallery` as a list of files and attach your model / real-life photos there."
+    },
+    {
+      "type": "header",
+      "content": "One size fit section"
+    },
+    {
+      "type": "checkbox",
+      "id": "one_size_enabled",
+      "label": "Show one size fit section",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "one_size_title",
+      "label": "Section title",
+      "default": "One size on different body types"
+    },
+    {
+      "type": "textarea",
+      "id": "one_size_lead",
+      "label": "Section text",
+      "default": "See how this piece looks on different body types. Use real fit photos and add short notes with height or measurements."
+    },
+    {
+      "type": "image_picker",
+      "id": "one_size_image_1",
+      "label": "Photo 1"
+    },
+    {
+      "type": "text",
+      "id": "one_size_caption_1",
+      "label": "Photo 1 caption",
+      "default": "Height 162 cm"
+    },
+    {
+      "type": "image_picker",
+      "id": "one_size_image_2",
+      "label": "Photo 2"
+    },
+    {
+      "type": "text",
+      "id": "one_size_caption_2",
+      "label": "Photo 2 caption",
+      "default": "Height 170 cm"
+    },
+    {
+      "type": "image_picker",
+      "id": "one_size_image_3",
+      "label": "Photo 3"
+    },
+    {
+      "type": "text",
+      "id": "one_size_caption_3",
+      "label": "Photo 3 caption",
+      "default": "Height 176 cm"
+    },
+    {
+      "type": "image_picker",
+      "id": "one_size_image_4",
+      "label": "Photo 4"
+    },
+    {
+      "type": "text",
+      "id": "one_size_caption_4",
+      "label": "Photo 4 caption",
+      "default": "Height 182 cm"
     }
   ]
 }
