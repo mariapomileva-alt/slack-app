@@ -59,90 +59,6 @@
     </section>
   {% endif %}
 
-  <section class="ru-muses" aria-labelledby="muses-title">
-    <div class="container">
-      <p class="ru-muses__eyebrow">Your reviews</p>
-      <h2 id="muses-title" class="ru-muses__title">You in Glazur</h2>
-      <p class="ru-muses__sub">our beautiful muses</p>
-      <div class="ru-muses__gallery">
-        <figure>
-          {% if section.settings.muse_image_1 != blank %}
-            {% assign muse_alt_1 = section.settings.muse_image_1.alt | default: 'Glazur muse 1' %}
-            {{
-              section.settings.muse_image_1
-              | image_url: width: 900
-              | image_tag: width: 768, loading: 'lazy', decoding: 'async', alt: muse_alt_1
-            }}
-          {% else %}
-            <img
-              src="{{ 'glazur-muse-1.png' | asset_url }}"
-              width="768"
-              height="1024"
-              alt="Glazur muse — pink striped top with floral applique and white skirt on a blue sofa"
-              loading="lazy"
-              decoding="async"
-            >
-          {% endif %}
-        </figure>
-        <figure>
-          {% if section.settings.muse_image_2 != blank %}
-            {% assign muse_alt_2 = section.settings.muse_image_2.alt | default: 'Glazur muse 2' %}
-            {{
-              section.settings.muse_image_2
-              | image_url: width: 900
-              | image_tag: width: 682, loading: 'lazy', decoding: 'async', alt: muse_alt_2
-            }}
-          {% else %}
-            <img
-              src="{{ 'glazur-muse-4.png' | asset_url }}"
-              width="682"
-              height="1024"
-              alt="Glazur muse 2"
-              loading="lazy"
-              decoding="async"
-            >
-          {% endif %}
-        </figure>
-        <figure>
-          {% if section.settings.muse_image_3 != blank %}
-            {% assign muse_alt_3 = section.settings.muse_image_3.alt | default: 'Glazur muse 3' %}
-            {{
-              section.settings.muse_image_3
-              | image_url: width: 900
-              | image_tag: width: 768, loading: 'lazy', decoding: 'async', alt: muse_alt_3
-            }}
-          {% else %}
-            <img
-              src="{{ 'glazur-muse-3.png' | asset_url }}"
-              width="768"
-              height="1024"
-              alt="Glazur muse 3"
-              loading="lazy"
-              decoding="async"
-            >
-          {% endif %}
-        </figure>
-      </div>
-      <div class="ru-muses__footer">
-        {% assign instagram_href = settings.social_instagram | default: 'https://www.instagram.com/' %}
-        <a class="btn" href="{{ instagram_href | escape }}" target="_blank" rel="noopener noreferrer">See more on Instagram</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="story" class="ru-philosophy">
-    <div class="container">
-      <h2 class="ru-philosophy__h"><span class="ru-hash">#</span> Soft transformation</h2>
-      <div class="ru-philosophy__body">
-        {% if section.settings.story_richtext != blank %}
-          {{ section.settings.story_richtext }}
-        {% else %}
-          {% render 'glazur-story-default' %}
-        {% endif %}
-      </div>
-    </div>
-  </section>
-
   <section id="about-products" class="ru-products" aria-labelledby="products-title">
     <div class="container">
       <p class="ru-products__eyebrow">Products</p>
@@ -233,6 +149,90 @@
             </div>
           </a>
         </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="ru-muses" aria-labelledby="muses-title">
+    <div class="container">
+      <p class="ru-muses__eyebrow">Your reviews</p>
+      <h2 id="muses-title" class="ru-muses__title">You in Glazur</h2>
+      <p class="ru-muses__sub">our beautiful muses</p>
+      <div class="ru-muses__gallery">
+        <figure>
+          {% if section.settings.muse_image_1 != blank %}
+            {% assign muse_alt_1 = section.settings.muse_image_1.alt | default: 'Glazur muse 1' %}
+            {{
+              section.settings.muse_image_1
+              | image_url: width: 900
+              | image_tag: width: 768, loading: 'lazy', decoding: 'async', alt: muse_alt_1
+            }}
+          {% else %}
+            <img
+              src="{{ 'glazur-muse-1.png' | asset_url }}"
+              width="768"
+              height="1024"
+              alt="Glazur muse — pink striped top with floral applique and white skirt on a blue sofa"
+              loading="lazy"
+              decoding="async"
+            >
+          {% endif %}
+        </figure>
+        <figure>
+          {% if section.settings.muse_image_2 != blank %}
+            {% assign muse_alt_2 = section.settings.muse_image_2.alt | default: 'Glazur muse 2' %}
+            {{
+              section.settings.muse_image_2
+              | image_url: width: 900
+              | image_tag: width: 682, loading: 'lazy', decoding: 'async', alt: muse_alt_2
+            }}
+          {% else %}
+            <img
+              src="{{ 'glazur-muse-4.png' | asset_url }}"
+              width="682"
+              height="1024"
+              alt="Glazur muse 2"
+              loading="lazy"
+              decoding="async"
+            >
+          {% endif %}
+        </figure>
+        <figure>
+          {% if section.settings.muse_image_3 != blank %}
+            {% assign muse_alt_3 = section.settings.muse_image_3.alt | default: 'Glazur muse 3' %}
+            {{
+              section.settings.muse_image_3
+              | image_url: width: 900
+              | image_tag: width: 768, loading: 'lazy', decoding: 'async', alt: muse_alt_3
+            }}
+          {% else %}
+            <img
+              src="{{ 'glazur-muse-3.png' | asset_url }}"
+              width="768"
+              height="1024"
+              alt="Glazur muse 3"
+              loading="lazy"
+              decoding="async"
+            >
+          {% endif %}
+        </figure>
+      </div>
+      <div class="ru-muses__footer">
+        {% assign instagram_href = settings.social_instagram | default: 'https://www.instagram.com/' %}
+        <a class="btn" href="{{ instagram_href | escape }}" target="_blank" rel="noopener noreferrer">See more on Instagram</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="story" class="ru-philosophy">
+    <div class="container">
+      <h2 class="ru-philosophy__h"><span class="ru-hash">#</span> Soft transformation</h2>
+      <div class="ru-philosophy__body">
+        {% if section.settings.story_richtext != blank %}
+          {{ section.settings.story_richtext }}
+        {% else %}
+          {% render 'glazur-story-default' %}
+        {% endif %}
       </div>
     </div>
   </section>
