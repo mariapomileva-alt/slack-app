@@ -153,6 +153,42 @@
     </div>
   </section>
 
+  <section class="ru-stripes-story" aria-labelledby="stripes-story-title">
+    <div class="container ru-stripes-story__inner">
+      <div class="ru-stripes-story__media-wrap">
+        <span class="ru-stripes-story__blob ru-stripes-story__blob--pink" aria-hidden="true"></span>
+        <span class="ru-stripes-story__blob ru-stripes-story__blob--lime" aria-hidden="true"></span>
+        <figure class="ru-stripes-story__media">
+          {% if section.settings.stripes_story_image != blank %}
+            {% assign stripes_story_alt = section.settings.stripes_story_image.alt | default: 'Parisian stripe tops' %}
+            {{
+              section.settings.stripes_story_image
+              | image_url: width: 1200
+              | image_tag: loading: 'lazy', decoding: 'async', alt: stripes_story_alt
+            }}
+          {% else %}
+            <img
+              src="{{ 'glazur-featured-stripes-violet.png' | asset_url }}"
+              width="768"
+              height="1024"
+              alt="Parisian stripe tops"
+              loading="lazy"
+              decoding="async"
+            >
+          {% endif %}
+        </figure>
+      </div>
+      <div class="ru-stripes-story__copy">
+        <p class="ru-stripes-story__eyebrow">Stripe chapter</p>
+        <h2 id="stripes-story-title">{{ section.settings.stripes_story_heading | escape }}</h2>
+        <p class="ru-stripes-story__lead">{{ section.settings.stripes_story_lead | escape }}</p>
+        <a class="btn btn--hero-pink" href="{% render 'glazur-collection-url', key: 'stripes' %}">
+          {{ section.settings.stripes_story_cta | escape }}
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section class="ru-muses" aria-labelledby="muses-title">
     <div class="container">
       <p class="ru-muses__eyebrow">Your reviews</p>
@@ -322,6 +358,33 @@
       "type": "image_picker",
       "id": "featured_image_3",
       "label": "Featured image 3"
+    },
+    {
+      "type": "header",
+      "content": "Stripe story section"
+    },
+    {
+      "type": "text",
+      "id": "stripes_story_heading",
+      "label": "Stripe story heading",
+      "default": "The stripes story"
+    },
+    {
+      "type": "textarea",
+      "id": "stripes_story_lead",
+      "label": "Stripe story text",
+      "default": "Our signature telnashki blend Paris ease with soft femininity. Lightweight cotton, flattering lines, and one detail that makes every look feel unmistakably Glazur."
+    },
+    {
+      "type": "text",
+      "id": "stripes_story_cta",
+      "label": "Stripe story button",
+      "default": "Explore stripe tops"
+    },
+    {
+      "type": "image_picker",
+      "id": "stripes_story_image",
+      "label": "Stripe story image"
     }
   ],
   "presets": [{ "name": "Glazur home" }]
