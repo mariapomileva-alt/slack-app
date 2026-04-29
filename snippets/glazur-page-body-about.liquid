@@ -30,6 +30,32 @@
     color: var(--color-ink-muted, #5c4550);
   }
 
+  .glazur-about-page__approach {
+    margin-top: 1.35rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(74, 21, 54, 0.12);
+  }
+
+  .glazur-about-page__approach h3 {
+    margin: 0 0 0.7rem;
+    font-family: var(--font-ui, Syne, sans-serif);
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-plum, #4a1536);
+  }
+
+  .glazur-about-page__approach ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    color: var(--color-ink-muted, #5c4550);
+    line-height: 1.62;
+  }
+
+  .glazur-about-page__cta {
+    margin-top: 1.2rem;
+  }
+
   @media (max-width: 760px) {
     .glazur-about-page__gallery {
       grid-template-columns: 1fr;
@@ -103,5 +129,18 @@
       subtle admiration of those around you confirms it: you stand out gracefully, feminine, and uniquely. This is for
       women who want to feel exceptional, here and now.
     </p>
+
+    <div class="glazur-about-page__approach">
+      <h3>Our approach</h3>
+      <ul>
+        <li>Limited drops designed in Paris and crafted with attention to detail.</li>
+        <li>Natural fabrics with tactile finishes for everyday elegance.</li>
+        <li>Signature Glazur Details that make each piece feel personal.</li>
+      </ul>
+    </div>
+
+    <div class="glazur-about-page__cta">
+      <a class="btn btn--fill" href="{% render 'glazur-collection-url', key: 'default' %}">Go to catalog</a>
+    </div>
   </div>
 </div>
