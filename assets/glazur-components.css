@@ -1052,6 +1052,33 @@ body.has-promo .site-header {
   gap: 1rem;
 }
 
+.site-footer__social-icons {
+  max-width: var(--max);
+  margin: 0.85rem auto 0;
+  padding: 0 clamp(1.25rem, 4vw, 2rem);
+  display: flex;
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+.site-footer__social-icons a {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(245, 237, 212, 0.45);
+  color: var(--color-gold);
+}
+
+.site-footer__social-icons a:hover {
+  background: rgba(0, 0, 0, 0.2);
+  color: #fff9e6;
+  border-color: #fff9e6;
+}
+
 /* Центрированная шапка (без shopru — узкий сайт) */
 .site-header--mirror:not(.site-header--shopru) .site-header__inner {
   flex-direction: column;
