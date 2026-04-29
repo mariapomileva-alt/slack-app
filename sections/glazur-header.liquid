@@ -1,5 +1,5 @@
 {%- unless settings.promo_bar_enabled == false -%}
-  {% if template.name == 'index' and settings.promo_home_swan_banner_enabled != false %}
+  {% if settings.promo_home_swan_banner_enabled != false %}
     {% assign swan_guide_url = '' %}
     {% if settings.footer_page_size_guide != blank %}
       {% assign swan_guide_url = settings.footer_page_size_guide.url %}
