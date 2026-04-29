@@ -212,6 +212,28 @@
         "default": "Transform Your Day — Get 10% Off Your First Order"
       },
       {
+        "type": "header",
+        "content": "Homepage swan banner (replaces top promo strip on home)"
+      },
+      {
+        "type": "checkbox",
+        "id": "promo_home_swan_banner_enabled",
+        "label": "Show swan banner on homepage",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "promo_home_swan_text",
+        "label": "Swan banner text",
+        "default": "Find your perfect fit with our Glazur size guide."
+      },
+      {
+        "type": "text",
+        "id": "promo_home_swan_cta",
+        "label": "Swan banner button",
+        "default": "Open size guide"
+      },
+      {
         "type": "text",
         "id": "promo_modal_title",
         "label": "Modal title",

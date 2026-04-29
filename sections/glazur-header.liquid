@@ -1,10 +1,38 @@
 {%- unless settings.promo_bar_enabled == false -%}
-  <div id="promo-bar" class="promo-bar">
-    <button type="button" class="promo-bar__open" id="promo-open-modal" aria-haspopup="dialog">
-      <span id="promo-headline">{{ settings.promo_bar_text | escape }}</span>
-    </button>
-    <button type="button" class="promo-bar__close" id="promo-close" aria-label="Dismiss promotion">×</button>
-  </div>
+  {% if template.name == 'index' and settings.promo_home_swan_banner_enabled != false %}
+    {% assign swan_guide_url = '' %}
+    {% if settings.footer_page_size_guide != blank %}
+      {% assign swan_guide_url = settings.footer_page_size_guide.url %}
+    {% else %}
+      {% capture swan_guide_fallback %}{% render 'glazur-page-url', handle: 'size-guide' %}{% endcapture %}
+      {% assign swan_guide_url = swan_guide_fallback | strip %}
+    {% endif %}
+    <div class="swan-guide-banner" role="region" aria-label="Size guide banner">
+      <div class="swan-guide-banner__inner">
+        <img
+          class="swan-guide-banner__icon"
+          src="{{ 'glazur-swan.svg' | asset_url }}"
+          width="42"
+          height="42"
+          alt=""
+          aria-hidden="true"
+          loading="eager"
+          decoding="async"
+        >
+        <div class="swan-guide-banner__copy">
+          <p class="swan-guide-banner__text">{{ settings.promo_home_swan_text | escape }}</p>
+          <a class="swan-guide-banner__cta" href="{{ swan_guide_url }}">{{ settings.promo_home_swan_cta | escape }}</a>
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <div id="promo-bar" class="promo-bar">
+      <button type="button" class="promo-bar__open" id="promo-open-modal" aria-haspopup="dialog">
+        <span id="promo-headline">{{ settings.promo_bar_text | escape }}</span>
+      </button>
+      <button type="button" class="promo-bar__close" id="promo-close" aria-label="Dismiss promotion">×</button>
+    </div>
+  {% endif %}
 {%- endunless -%}
 
 <header class="site-header site-header--mirror site-header--shopru">
