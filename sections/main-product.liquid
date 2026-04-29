@@ -195,6 +195,21 @@
       line-height: 1.35;
     }
 
+    .product-shipping-note {
+      margin: 0 0 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.34rem 0.6rem;
+      border: 1px solid rgba(74, 21, 54, 0.18);
+      background: rgba(255, 255, 255, 0.65);
+      color: var(--color-plum, #4a1536);
+      font-family: var(--font-ui, Syne, sans-serif);
+      font-size: 0.72rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+    }
+
     @media (min-width: 901px) {
       .product-page {
         grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
@@ -259,6 +274,7 @@
     <div>
       <h1 style="font-family: var(--font-heading, Syne, sans-serif);">{{ product.title }}</h1>
       <p class="product__price" style="font-size: 1.25rem; margin: 1rem 0;">{{ product.selected_or_first_available_variant.price | money }}</p>
+      <p class="product-shipping-note">Free shipping from $150</p>
       <div class="rte" style="margin-bottom: 1.5rem;">{{ product.description }}</div>
       {% form 'product', product, class: 'product-form' %}
         <select name="id" aria-label="Variant">
