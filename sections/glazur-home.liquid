@@ -1,64 +1,4 @@
 <div class="glazur-home-root">
-  {% assign hero_video_src = section.settings.hero_video_url | strip %}
-  {% if hero_video_src != blank %}
-    <section class="ru-hero ru-hero--video" aria-labelledby="hero-title">
-      <video
-        class="ru-hero__video-media"
-        src="{{ hero_video_src | escape }}"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="metadata"
-      ></video>
-      <div class="ru-hero__video-overlay">
-        <div class="ru-hero__video-copy">
-          <p class="ru-hero__eyebrow">Natural fabrics · Paris-designed</p>
-          <h1 id="hero-title">{{ section.settings.hero_heading | escape }}</h1>
-          <p class="ru-hero__lead">{{ section.settings.hero_lead | escape }}</p>
-          <div class="ru-hero__actions">
-            <a class="btn btn--hero-pink" href="{% render 'glazur-collection-url', key: 'default' %}">View catalog</a>
-            <a class="btn" href="#story">Read more</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  {% else %}
-    <section class="ru-hero" aria-labelledby="hero-title">
-      <div class="ru-hero__grid">
-        <div class="ru-hero__copy">
-          <p class="ru-hero__eyebrow">Natural fabrics · Paris-designed</p>
-          <h1 id="hero-title">{{ section.settings.hero_heading | escape }}</h1>
-          <p class="ru-hero__lead">{{ section.settings.hero_lead | escape }}</p>
-          <div class="ru-hero__actions">
-            <a class="btn btn--hero-pink" href="{% render 'glazur-collection-url', key: 'default' %}">View catalog</a>
-            <a class="btn" href="#story">Read more</a>
-          </div>
-        </div>
-        <figure class="ru-hero__figure">
-          {% if section.settings.hero_image != blank %}
-            {% assign hero_alt = section.settings.hero_image.alt | default: shop.name %}
-            {{
-              section.settings.hero_image
-              | image_url: width: 1200
-              | image_tag: class: 'ru-hero__img', loading: 'eager', decoding: 'async', alt: hero_alt
-            }}
-          {% else %}
-            <img
-              class="ru-hero__img"
-              src="{{ 'glazur-hero-pink-studio.png' | asset_url }}"
-              width="538"
-              height="716"
-              alt="{{ shop.name }} — hero"
-              loading="eager"
-              decoding="async"
-            >
-          {% endif %}
-        </figure>
-      </div>
-    </section>
-  {% endif %}
-
   <section id="about-products" class="ru-products" aria-labelledby="products-title">
     <div class="container">
       <p class="ru-products__eyebrow">Products</p>
@@ -152,6 +92,66 @@
       </div>
     </div>
   </section>
+
+  {% assign hero_video_src = section.settings.hero_video_url | strip %}
+  {% if hero_video_src != blank %}
+    <section class="ru-hero ru-hero--video" aria-labelledby="hero-title">
+      <video
+        class="ru-hero__video-media"
+        src="{{ hero_video_src | escape }}"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+      ></video>
+      <div class="ru-hero__video-overlay">
+        <div class="ru-hero__video-copy">
+          <p class="ru-hero__eyebrow">Natural fabrics · Paris-designed</p>
+          <h1 id="hero-title">{{ section.settings.hero_heading | escape }}</h1>
+          <p class="ru-hero__lead">{{ section.settings.hero_lead | escape }}</p>
+          <div class="ru-hero__actions">
+            <a class="btn btn--hero-pink" href="{% render 'glazur-collection-url', key: 'default' %}">View catalog</a>
+            <a class="btn" href="#story">Read more</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  {% else %}
+    <section class="ru-hero" aria-labelledby="hero-title">
+      <div class="ru-hero__grid">
+        <div class="ru-hero__copy">
+          <p class="ru-hero__eyebrow">Natural fabrics · Paris-designed</p>
+          <h1 id="hero-title">{{ section.settings.hero_heading | escape }}</h1>
+          <p class="ru-hero__lead">{{ section.settings.hero_lead | escape }}</p>
+          <div class="ru-hero__actions">
+            <a class="btn btn--hero-pink" href="{% render 'glazur-collection-url', key: 'default' %}">View catalog</a>
+            <a class="btn" href="#story">Read more</a>
+          </div>
+        </div>
+        <figure class="ru-hero__figure">
+          {% if section.settings.hero_image != blank %}
+            {% assign hero_alt = section.settings.hero_image.alt | default: shop.name %}
+            {{
+              section.settings.hero_image
+              | image_url: width: 1200
+              | image_tag: class: 'ru-hero__img', loading: 'eager', decoding: 'async', alt: hero_alt
+            }}
+          {% else %}
+            <img
+              class="ru-hero__img"
+              src="{{ 'glazur-hero-pink-studio.png' | asset_url }}"
+              width="538"
+              height="716"
+              alt="{{ shop.name }} — hero"
+              loading="eager"
+              decoding="async"
+            >
+          {% endif %}
+        </figure>
+      </div>
+    </section>
+  {% endif %}
 
   <section class="ru-stripes-story" aria-labelledby="stripes-story-title">
     <div class="container ru-stripes-story__inner">
@@ -274,13 +274,31 @@
   </section>
 
   <section class="ru-catalog" aria-labelledby="catalog-title">
+    {%- liquid
+      assign ig_href = settings.social_instagram | default: 'https://www.instagram.com/'
+      assign th_href = settings.social_threads | default: 'https://www.threads.net/'
+      assign fb_href = settings.social_facebook | default: 'https://www.facebook.com/'
+      assign pt_href = settings.social_pinterest | default: 'https://www.pinterest.com/'
+      assign yt_href = settings.social_youtube | default: 'https://www.youtube.com/'
+    -%}
     <div class="container ru-catalog__inner">
-      <h2 id="catalog-title" class="ru-catalog__title">Catalog</h2>
-      <nav class="ru-catalog__links" aria-label="Product categories">
-        <a href="{% render 'glazur-collection-url', key: 'blouses' %}">Blouses</a>
-        <a href="{% render 'glazur-collection-url', key: 'stripes' %}">Parisian stripe tops</a>
-        <a href="{% render 'glazur-collection-url', key: 'skirts' %}">Skirts</a>
-        <a href="{% render 'glazur-collection-url', key: 'default' %}">Full collection</a>
+      <h2 id="catalog-title" class="ru-catalog__title">Follow Glazur</h2>
+      <nav class="ru-catalog__links" aria-label="Social links">
+        <a href="{{ ig_href | escape }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95h-8.5zm8.95 1.45a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2zM12 7a5 5 0 1 1 0 10a5 5 0 0 1 0-10zm0 1.8a3.2 3.2 0 1 0 0 6.4a3.2 3.2 0 0 0 0-6.4z"/></svg>
+        </a>
+        <a href="{{ th_href | escape }}" target="_blank" rel="noopener noreferrer" aria-label="Threads">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 10.2c-1-.06-1.98.1-2.83.53-.76.38-1.4 1.01-1.61 1.87-.24.95.2 1.95 1.02 2.47.8.52 1.85.63 2.8.45.84-.16 1.7-.56 2.25-1.23.31-.38.5-.85.46-1.35-.04-.55-.35-1.02-.77-1.35-.37-.28-.83-.45-1.3-.57zm6.1 3.53c-.08 1.94-1.13 3.65-2.8 4.63-2.06 1.2-4.61 1.42-6.89.78-2.18-.61-3.93-2.26-4.66-4.4-.72-2.11-.39-4.53.9-6.37 1.35-1.92 3.58-3.03 5.93-3.08 1.64-.03 3.32.46 4.64 1.47 1.21.92 2.09 2.3 2.45 3.8.1.44.17.9.18 1.35.1.07.19.14.28.22.8.69 1.13 1.75 1.07 2.8zm-2.29-.45c-.03-.48-.24-.93-.61-1.25a4.16 4.16 0 0 0-1.03-.65c-.44-1.9-1.75-3.3-3.65-3.88-2.08-.63-4.4-.05-5.86 1.57-1.47 1.62-1.86 4-.98 6.02.81 1.86 2.67 3.05 4.68 3.13 1.7.07 3.53-.43 4.74-1.68.92-.95 1.4-2.22 1.45-3.47.44.09.87.25 1.26.49z"/></svg>
+        </a>
+        <a href="{{ fb_href | escape }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M13.5 21v-7.4h2.5l.4-2.9h-2.9V8.85c0-.84.23-1.41 1.44-1.41h1.54V4.85a20.3 20.3 0 0 0-2.24-.11c-2.21 0-3.72 1.34-3.72 3.82v2.14H8v2.9h2.47V21h3.03z"/></svg>
+        </a>
+        <a href="{{ pt_href | escape }}" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-3.58 19.34c-.05-.83-.1-2.11.02-3.01l1.06-4.49s-.26-.52-.26-1.29c0-1.21.7-2.12 1.57-2.12.74 0 1.1.56 1.1 1.22 0 .75-.48 1.86-.72 2.89-.21.87.44 1.58 1.3 1.58 1.56 0 2.76-1.65 2.76-4.03 0-2.1-1.5-3.57-3.65-3.57-2.49 0-3.95 1.87-3.95 3.8 0 .75.29 1.56.66 2 .07.08.08.15.06.24l-.24.99c-.04.16-.13.2-.3.12-1.12-.52-1.83-2.15-1.83-3.47 0-2.82 2.05-5.41 5.9-5.41 3.1 0 5.5 2.21 5.5 5.16 0 3.08-1.94 5.56-4.63 5.56-.9 0-1.75-.47-2.03-1.03l-.56 2.14c-.2.78-.74 1.76-1.1 2.36A10 10 0 1 0 12 2z"/></svg>
+        </a>
+        <a href="{{ yt_href | escape }}" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path fill="currentColor" d="M21.58 7.19a2.98 2.98 0 0 0-2.1-2.1C17.62 4.6 12 4.6 12 4.6s-5.62 0-7.48.49a2.98 2.98 0 0 0-2.1 2.1C1.93 9.05 1.93 12 1.93 12s0 2.95.49 4.81a2.98 2.98 0 0 0 2.1 2.1c1.86.49 7.48.49 7.48.49s5.62 0 7.48-.49a2.98 2.98 0 0 0 2.1-2.1c.49-1.86.49-4.81.49-4.81s0-2.95-.49-4.81zM10.2 14.97V9.03L15.36 12l-5.16 2.97z"/></svg>
+        </a>
       </nav>
     </div>
   </section>
