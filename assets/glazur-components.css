@@ -1317,10 +1317,11 @@ body.has-promo .site-header {
 }
 
 .header-cart {
-  position: absolute;
-  right: clamp(0.8rem, 2vw, 1.35rem);
-  top: 50%;
-  transform: translateY(-50%);
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: calc(max(1rem, env(safe-area-inset-bottom)) + 4.35rem);
+  top: auto;
+  transform: none;
   width: 2.15rem;
   height: 2.15rem;
   border-radius: 50%;
@@ -1333,7 +1334,7 @@ body.has-promo .site-header {
   box-shadow:
     0 1px 2px rgba(44, 18, 32, 0.12),
     0 0 0 1px rgba(255, 255, 255, 0.7) inset;
-  z-index: 4;
+  z-index: 279;
 }
 
 .header-cart__icon {
@@ -1454,13 +1455,6 @@ body.has-promo .site-header {
   }
 
   .header-cart {
-    grid-area: cart;
-    position: relative;
-    left: auto;
-    right: auto;
-    top: auto;
-    transform: none;
-    justify-self: start;
     width: 2rem;
     height: 2rem;
   }
@@ -1506,6 +1500,7 @@ body.has-promo .site-header {
   .header-cart {
     width: 1.9rem;
     height: 1.9rem;
+    bottom: calc(max(0.9rem, env(safe-area-inset-bottom)) + 4.1rem);
   }
 }
 
