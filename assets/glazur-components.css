@@ -1426,29 +1426,41 @@ body.has-promo .site-header {
 
 @media (max-width: 900px) {
   .site-header--shopru .site-header__inner--shopru {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas:
+      "cart logo menu"
+      ". social .";
     align-items: center;
     position: relative;
-    padding-top: 0.5rem;
+    padding-top: 0.55rem;
     padding-bottom: 0.5rem;
+    column-gap: 0.6rem;
   }
 
   .site-header--shopru .logo {
-    order: 1;
+    grid-area: logo;
+    justify-self: center;
+    padding-left: 0;
+    padding-right: 0;
+    max-width: calc(100% - 1rem);
   }
 
   .site-header--shopru .header-social {
-    order: 2;
+    grid-area: social;
     margin-top: 0.2rem;
     padding-right: 0;
     display: none;
   }
 
   .header-cart {
-    right: calc(clamp(0.85rem, 4vw, 1.4rem) + 5.6rem);
-    top: 0.55rem;
+    grid-area: cart;
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
     transform: none;
+    justify-self: start;
     width: 2rem;
     height: 2rem;
   }
@@ -1471,9 +1483,11 @@ body.has-promo .site-header {
   }
 
   .site-header--shopru .nav-toggle {
-    position: absolute;
-    top: 0.55rem;
-    right: clamp(0.85rem, 4vw, 1.4rem);
+    grid-area: menu;
+    position: relative;
+    top: auto;
+    right: auto;
+    justify-self: end;
     min-width: 5.2rem;
     padding-left: 0.8rem;
     padding-right: 0.8rem;
@@ -1490,7 +1504,6 @@ body.has-promo .site-header {
 
 @media (max-width: 420px) {
   .header-cart {
-    right: calc(clamp(0.75rem, 4vw, 1.1rem) + 5.2rem);
     width: 1.9rem;
     height: 1.9rem;
   }
