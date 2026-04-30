@@ -1442,12 +1442,15 @@ body.has-promo .site-header {
     order: 2;
     margin-top: 0.2rem;
     padding-right: 0;
+    display: none;
   }
 
   .header-cart {
-    right: clamp(3.95rem, 10vw, 4.9rem);
-    top: 1.6rem;
+    right: calc(clamp(0.85rem, 4vw, 1.4rem) + 5.6rem);
+    top: 0.55rem;
     transform: none;
+    width: 2rem;
+    height: 2rem;
   }
 
   .site-header--shopru .nav {
@@ -1470,7 +1473,11 @@ body.has-promo .site-header {
   .site-header--shopru .nav-toggle {
     position: absolute;
     top: 0.55rem;
-    right: clamp(1.25rem, 4vw, 2rem);
+    right: clamp(0.85rem, 4vw, 1.4rem);
+    min-width: 5.2rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    text-align: center;
     border-color: rgba(255, 255, 255, 0.55);
     background: rgba(255, 255, 255, 0.25);
     color: #fff;
@@ -1478,6 +1485,14 @@ body.has-promo .site-header {
 
   .site-header--shopru .nav-toggle:hover {
     background: rgba(255, 255, 255, 0.4);
+  }
+}
+
+@media (max-width: 420px) {
+  .header-cart {
+    right: calc(clamp(0.75rem, 4vw, 1.1rem) + 5.2rem);
+    width: 1.9rem;
+    height: 1.9rem;
   }
 }
 

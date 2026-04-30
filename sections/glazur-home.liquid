@@ -1,98 +1,4 @@
 <div class="glazur-home-root">
-  <section id="about-products" class="ru-products" aria-labelledby="products-title">
-    <div class="container">
-      <p class="ru-products__eyebrow">Products</p>
-      <h2 id="products-title" class="ru-products__title">Featured pieces</h2>
-      <p class="ru-products__lead">A few favorites from the current line — tap through to the shop.</p>
-      <div class="ru-products__grid">
-        <article class="ru-product-card">
-          <a class="ru-product-card__link" href="{% render 'glazur-collection-url', key: 'stripes' %}">
-            <figure class="ru-product-card__figure">
-              {% if section.settings.featured_image_1 != blank %}
-                {% assign featured_alt_1 = section.settings.featured_image_1.alt | default: 'Violet striped top' %}
-                {{
-                  section.settings.featured_image_1
-                  | image_url: width: 900
-                  | image_tag: class: 'ru-product-card__img', width: 768, loading: 'lazy', decoding: 'async', alt: featured_alt_1
-                }}
-              {% else %}
-                <img
-                  class="ru-product-card__img"
-                  src="{{ 'glazur-featured-stripes-violet.png' | asset_url }}"
-                  width="768"
-                  height="1024"
-                  alt="Violet striped top"
-                  loading="lazy"
-                  decoding="async"
-                >
-              {% endif %}
-            </figure>
-            <div class="ru-product-card__meta">
-              <h3 class="ru-product-card__name">Violet striped top</h3>
-              <p class="ru-product-card__tag">Parisian stripe tops</p>
-            </div>
-          </a>
-        </article>
-        <article class="ru-product-card">
-          <a class="ru-product-card__link" href="{% render 'glazur-collection-url', key: 'blouses' %}">
-            <figure class="ru-product-card__figure">
-              {% if section.settings.featured_image_2 != blank %}
-                {% assign featured_alt_2 = section.settings.featured_image_2.alt | default: 'Embroidered white blouse detail' %}
-                {{
-                  section.settings.featured_image_2
-                  | image_url: width: 900
-                  | image_tag: class: 'ru-product-card__img', width: 768, loading: 'lazy', decoding: 'async', alt: featured_alt_2
-                }}
-              {% else %}
-                <img
-                  class="ru-product-card__img"
-                  src="{{ 'glazur-muse-1.png' | asset_url }}"
-                  width="768"
-                  height="1024"
-                  alt="Embroidered white blouse detail"
-                  loading="lazy"
-                  decoding="async"
-                >
-              {% endif %}
-            </figure>
-            <div class="ru-product-card__meta">
-              <h3 class="ru-product-card__name">Embroidered white blouse</h3>
-              <p class="ru-product-card__tag">Blouses</p>
-            </div>
-          </a>
-        </article>
-        <article class="ru-product-card">
-          <a class="ru-product-card__link" href="{% render 'glazur-collection-url', key: 'skirts' %}">
-            <figure class="ru-product-card__figure">
-              {% if section.settings.featured_image_3 != blank %}
-                {% assign featured_alt_3 = section.settings.featured_image_3.alt | default: 'Sculpted skirt story' %}
-                {{
-                  section.settings.featured_image_3
-                  | image_url: width: 900
-                  | image_tag: class: 'ru-product-card__img', width: 768, loading: 'lazy', decoding: 'async', alt: featured_alt_3
-                }}
-              {% else %}
-                <img
-                  class="ru-product-card__img"
-                  src="{{ 'glazur-muse-5.png' | asset_url }}"
-                  width="768"
-                  height="1024"
-                  alt="Sculpted skirt story"
-                  loading="lazy"
-                  decoding="async"
-                >
-              {% endif %}
-            </figure>
-            <div class="ru-product-card__meta">
-              <h3 class="ru-product-card__name">Sculpted skirt story</h3>
-              <p class="ru-product-card__tag">Skirts</p>
-            </div>
-          </a>
-        </article>
-      </div>
-    </div>
-  </section>
-
   {% assign hero_video_src = section.settings.hero_video_url | strip %}
   {% if hero_video_src != blank %}
     <section class="ru-hero ru-hero--video" aria-labelledby="hero-title">
@@ -152,6 +58,124 @@
       </div>
     </section>
   {% endif %}
+
+  <section id="about-products" class="ru-products" aria-labelledby="products-title">
+    {% assign home_product_1 = section.settings.home_product_1 %}
+    {% assign home_product_2 = section.settings.home_product_2 %}
+    {% assign home_product_3 = section.settings.home_product_3 %}
+    <div class="container">
+      <p class="ru-products__eyebrow">Products</p>
+      <h2 id="products-title" class="ru-products__title">Featured pieces</h2>
+      <p class="ru-products__lead">A few favorites from the current line — tap through to the shop.</p>
+      <div class="ru-products__grid">
+        <article class="ru-product-card">
+          <a class="ru-product-card__link" href="{% if home_product_1 != blank %}{{ home_product_1.url }}{% else %}{% render 'glazur-collection-url', key: 'stripes' %}{% endif %}">
+            <figure class="ru-product-card__figure">
+              {% if home_product_1 != blank and home_product_1.featured_image != blank %}
+                {% assign featured_alt_1 = home_product_1.featured_image.alt | default: home_product_1.title %}
+                {{
+                  home_product_1.featured_image
+                  | image_url: width: 900
+                  | image_tag: class: 'ru-product-card__img', width: 768, loading: 'lazy', decoding: 'async', alt: featured_alt_1
+                }}
+              {% elsif section.settings.featured_image_1 != blank %}
+                {% assign featured_alt_1 = section.settings.featured_image_1.alt | default: 'Violet striped top' %}
+                {{
+                  section.settings.featured_image_1
+                  | image_url: width: 900
+                  | image_tag: class: 'ru-product-card__img', width: 768, loading: 'lazy', decoding: 'async', alt: featured_alt_1
+                }}
+              {% else %}
+                <img
+                  class="ru-product-card__img"
+                  src="{{ 'glazur-featured-stripes-violet.png' | asset_url }}"
+                  width="768"
+                  height="1024"
+                  alt="Violet striped top"
+                  loading="lazy"
+                  decoding="async"
+                >
+              {% endif %}
+            </figure>
+            <div class="ru-product-card__meta">
+              <h3 class="ru-product-card__name">{% if home_product_1 != blank %}{{ home_product_1.title }}{% else %}Violet striped top{% endif %}</h3>
+              <p class="ru-product-card__tag">{% if home_product_1 != blank %}{{ home_product_1.price | money }}{% else %}Parisian stripe tops{% endif %}</p>
+            </div>
+          </a>
+        </article>
+        <article class="ru-product-card">
+          <a class="ru-product-card__link" href="{% if home_product_2 != blank %}{{ home_product_2.url }}{% else %}{% render 'glazur-collection-url', key: 'blouses' %}{% endif %}">
+            <figure class="ru-product-card__figure">
+              {% if home_product_2 != blank and home_product_2.featured_image != blank %}
+                {% assign featured_alt_2 = home_product_2.featured_image.alt | default: home_product_2.title %}
+                {{
+                  home_product_2.featured_image
+                  | image_url: width: 900
+                  | image_tag: class: 'ru-product-card__img', width: 768, loading: 'lazy', decoding: 'async', alt: featured_alt_2
+                }}
+              {% elsif section.settings.featured_image_2 != blank %}
+                {% assign featured_alt_2 = section.settings.featured_image_2.alt | default: 'Blue blouse' %}
+                {{
+                  section.settings.featured_image_2
+                  | image_url: width: 900
+                  | image_tag: class: 'ru-product-card__img', width: 768, loading: 'lazy', decoding: 'async', alt: featured_alt_2
+                }}
+              {% else %}
+                <img
+                  class="ru-product-card__img"
+                  src="{{ 'glazur-muse-1.png' | asset_url }}"
+                  width="768"
+                  height="1024"
+                  alt="Embroidered white blouse detail"
+                  loading="lazy"
+                  decoding="async"
+                >
+              {% endif %}
+            </figure>
+            <div class="ru-product-card__meta">
+              <h3 class="ru-product-card__name">{% if home_product_2 != blank %}{{ home_product_2.title }}{% else %}Blue blouse{% endif %}</h3>
+              <p class="ru-product-card__tag">{% if home_product_2 != blank %}{{ home_product_2.price | money }}{% else %}Blouses{% endif %}</p>
+            </div>
+          </a>
+        </article>
+        <article class="ru-product-card">
+          <a class="ru-product-card__link" href="{% if home_product_3 != blank %}{{ home_product_3.url }}{% else %}{% render 'glazur-collection-url', key: 'skirts' %}{% endif %}">
+            <figure class="ru-product-card__figure">
+              {% if home_product_3 != blank and home_product_3.featured_image != blank %}
+                {% assign featured_alt_3 = home_product_3.featured_image.alt | default: home_product_3.title %}
+                {{
+                  home_product_3.featured_image
+                  | image_url: width: 900
+                  | image_tag: class: 'ru-product-card__img', width: 768, loading: 'lazy', decoding: 'async', alt: featured_alt_3
+                }}
+              {% elsif section.settings.featured_image_3 != blank %}
+                {% assign featured_alt_3 = section.settings.featured_image_3.alt | default: 'White skirt' %}
+                {{
+                  section.settings.featured_image_3
+                  | image_url: width: 900
+                  | image_tag: class: 'ru-product-card__img', width: 768, loading: 'lazy', decoding: 'async', alt: featured_alt_3
+                }}
+              {% else %}
+                <img
+                  class="ru-product-card__img"
+                  src="{{ 'glazur-muse-5.png' | asset_url }}"
+                  width="768"
+                  height="1024"
+                  alt="Sculpted skirt story"
+                  loading="lazy"
+                  decoding="async"
+                >
+              {% endif %}
+            </figure>
+            <div class="ru-product-card__meta">
+              <h3 class="ru-product-card__name">{% if home_product_3 != blank %}{{ home_product_3.title }}{% else %}White skirt{% endif %}</h3>
+              <p class="ru-product-card__tag">{% if home_product_3 != blank %}{{ home_product_3.price | money }}{% else %}Skirts{% endif %}</p>
+            </div>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
 
   <section class="ru-stripes-story" aria-labelledby="stripes-story-title">
     <div class="container ru-stripes-story__inner">
@@ -376,6 +400,25 @@
       "type": "image_picker",
       "id": "featured_image_3",
       "label": "Featured image 3"
+    },
+    {
+      "type": "header",
+      "content": "Featured products (real product cards)"
+    },
+    {
+      "type": "product",
+      "id": "home_product_1",
+      "label": "Card 1 product (violet striped top)"
+    },
+    {
+      "type": "product",
+      "id": "home_product_2",
+      "label": "Card 2 product (blue blouse)"
+    },
+    {
+      "type": "product",
+      "id": "home_product_3",
+      "label": "Card 3 product (white skirt)"
     },
     {
       "type": "header",
