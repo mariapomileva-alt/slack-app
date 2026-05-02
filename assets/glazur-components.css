@@ -1444,7 +1444,7 @@ body.has-promo .site-header {
     position: relative;
     padding-top: 0.55rem;
     padding-bottom: 0.5rem;
-    column-gap: 0.6rem;
+    column-gap: clamp(0.25rem, 1.6vw, 0.65rem);
   }
 
   .site-header--shopru .logo {
@@ -1452,7 +1452,16 @@ body.has-promo .site-header {
     justify-self: center;
     padding-left: 0;
     padding-right: 0;
-    max-width: calc(100% - 1rem);
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .site-header--shopru .logo__img {
+    height: clamp(28px, 7.5vw, 46px);
+    width: auto;
+    max-width: min(240px, 56vw);
+    object-fit: contain;
+    object-position: center center;
   }
 
   .site-header--shopru .header-social {
@@ -1462,7 +1471,7 @@ body.has-promo .site-header {
     display: none;
   }
 
-  .header-cart {
+  .site-header--shopru .header-cart {
     grid-area: cart;
     position: relative;
     left: auto;
@@ -1472,10 +1481,14 @@ body.has-promo .site-header {
     justify-self: start;
     align-self: center;
     z-index: 5;
+    width: clamp(2rem, 8vw + 0.85rem, 3.35rem);
+    height: clamp(2rem, 8vw + 0.85rem, 3.35rem);
+    box-shadow: 0 3px 16px rgba(255, 107, 53, 0.38);
   }
 
   .site-header--shopru .header-cart:hover {
     transform: scale(1.05);
+    box-shadow: 0 5px 22px rgba(255, 107, 53, 0.48);
   }
 
   .site-header--shopru .header-cart .header-cart__icon {
@@ -1506,9 +1519,10 @@ body.has-promo .site-header {
     top: auto;
     right: auto;
     justify-self: end;
-    min-width: 5.2rem;
-    padding-left: 0.8rem;
-    padding-right: 0.8rem;
+    min-width: clamp(3.65rem, 20vw, 5.2rem);
+    padding-left: clamp(0.4rem, 2vw, 0.85rem);
+    padding-right: clamp(0.4rem, 2vw, 0.85rem);
+    font-size: clamp(0.62rem, 2.2vw, 0.75rem);
     text-align: center;
     border-color: rgba(255, 255, 255, 0.55);
     background: rgba(255, 255, 255, 0.25);
@@ -1520,10 +1534,15 @@ body.has-promo .site-header {
   }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 360px) {
   .site-header--shopru .header-cart {
-    width: min(3.35rem, 11vw + 2.4rem);
-    height: min(3.35rem, 11vw + 2.4rem);
+    width: clamp(1.85rem, 7vw + 0.75rem, 3.35rem);
+    height: clamp(1.85rem, 7vw + 0.75rem, 3.35rem);
+  }
+
+  .site-header--shopru .logo__img {
+    max-width: min(220px, 50vw);
+    height: clamp(26px, 6.5vw, 42px);
   }
 }
 
