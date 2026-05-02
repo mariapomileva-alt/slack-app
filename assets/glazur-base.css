@@ -6,6 +6,7 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: calc(100% * var(--glazur-text-scale, 1.125));
 }
 
 body {

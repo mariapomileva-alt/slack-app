@@ -59,6 +59,9 @@
   --font-body: "Ysabeau", Georgia, "Times New Roman", serif;
   --font-display: var(--font-heading);
 
+  /* Глобальный масштаб текста: 1.125 ≈ +1 шаг; для чуть крупнее попробуйте 1.15 */
+  --glazur-text-scale: 1.125;
+
   --max: 1180px;
   --radius: 2px;
   --header-h: 64px;
