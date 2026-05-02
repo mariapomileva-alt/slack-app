@@ -1317,11 +1317,10 @@ body.has-promo .site-header {
 }
 
 .header-cart {
-  position: fixed;
-  right: max(1rem, env(safe-area-inset-right));
-  bottom: calc(max(1rem, env(safe-area-inset-bottom)) + 4.35rem);
-  top: auto;
-  transform: none;
+  position: absolute;
+  right: clamp(0.8rem, 2vw, 1.35rem);
+  top: 50%;
+  transform: translateY(-50%);
   width: 2.15rem;
   height: 2.15rem;
   border-radius: 50%;
@@ -1334,7 +1333,7 @@ body.has-promo .site-header {
   box-shadow:
     0 1px 2px rgba(44, 18, 32, 0.12),
     0 0 0 1px rgba(255, 255, 255, 0.7) inset;
-  z-index: 279;
+  z-index: 4;
 }
 
 .header-cart__icon {
@@ -1367,6 +1366,7 @@ body.has-promo .site-header {
     gap: 0.5rem 1rem;
     padding-top: 0.65rem;
     padding-bottom: 0.65rem;
+    position: relative;
   }
 
   .site-header--shopru .nav {
@@ -1455,8 +1455,25 @@ body.has-promo .site-header {
   }
 
   .header-cart {
-    width: 2rem;
-    height: 2rem;
+    grid-area: cart;
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    transform: none;
+    justify-self: start;
+    align-self: center;
+    width: 3.35rem;
+    height: 3.35rem;
+    box-shadow:
+      0 4px 18px rgba(44, 18, 32, 0.15),
+      0 0 0 1px rgba(255, 255, 255, 0.85) inset;
+    z-index: 5;
+  }
+
+  .site-header--shopru .header-cart .header-cart__icon {
+    width: 58%;
+    height: 58%;
   }
 
   .site-header--shopru .nav {
@@ -1497,10 +1514,9 @@ body.has-promo .site-header {
 }
 
 @media (max-width: 420px) {
-  .header-cart {
-    width: 1.9rem;
-    height: 1.9rem;
-    bottom: calc(max(0.9rem, env(safe-area-inset-bottom)) + 4.1rem);
+  .site-header--shopru .header-cart {
+    width: min(3.35rem, 14vw + 2rem);
+    height: min(3.35rem, 14vw + 2rem);
   }
 }
 
