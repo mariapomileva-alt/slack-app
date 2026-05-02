@@ -1316,46 +1316,54 @@ body.has-promo .site-header {
   height: 0.88rem;
 }
 
+/* Cart button — same size & energy as the orange chat FAB */
 .header-cart {
   position: absolute;
   right: clamp(0.8rem, 2vw, 1.35rem);
   top: 50%;
   transform: translateY(-50%);
-  width: 2.15rem;
-  height: 2.15rem;
+  width: 3.35rem;
+  height: 3.35rem;
   border-radius: 50%;
+  border: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #fff;
-  color: #141414;
+  background: linear-gradient(145deg, #ff8a4c, #ff6b35);
+  color: #fff;
   text-decoration: none;
-  box-shadow:
-    0 1px 2px rgba(44, 18, 32, 0.12),
-    0 0 0 1px rgba(255, 255, 255, 0.7) inset;
+  box-shadow: 0 4px 20px rgba(255, 107, 53, 0.45);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
   z-index: 4;
 }
 
+.header-cart:hover {
+  transform: translateY(-50%) scale(1.05);
+  box-shadow: 0 6px 24px rgba(255, 107, 53, 0.55);
+}
+
 .header-cart__icon {
-  width: 54%;
-  height: 54%;
+  width: 52%;
+  height: 52%;
+  flex-shrink: 0;
 }
 
 .header-cart__count {
   position: absolute;
-  top: -0.25rem;
-  right: -0.28rem;
-  min-width: 1rem;
-  height: 1rem;
+  top: -0.2rem;
+  right: -0.2rem;
+  min-width: 1.1rem;
+  height: 1.1rem;
   border-radius: 999px;
-  padding: 0 0.22rem;
+  padding: 0 0.25rem;
   background: var(--color-plum, #4a1536);
   color: #fff;
   font-family: var(--font-ui, Syne, sans-serif);
-  font-size: 0.58rem;
-  line-height: 1rem;
+  font-size: 0.6rem;
+  line-height: 1.1rem;
   text-align: center;
   font-weight: 700;
+  box-shadow: 0 0 0 2px #fff;
 }
 
 @media (min-width: 901px) {
@@ -1417,7 +1425,7 @@ body.has-promo .site-header {
     grid-row: 1;
     justify-self: end;
     justify-content: flex-end;
-    padding-right: 2.55rem;
+    padding-right: 4rem;
   }
 
   .site-header--shopru .nav-toggle {
@@ -1463,17 +1471,16 @@ body.has-promo .site-header {
     transform: none;
     justify-self: start;
     align-self: center;
-    width: 3.35rem;
-    height: 3.35rem;
-    box-shadow:
-      0 4px 18px rgba(44, 18, 32, 0.15),
-      0 0 0 1px rgba(255, 255, 255, 0.85) inset;
     z-index: 5;
   }
 
+  .site-header--shopru .header-cart:hover {
+    transform: scale(1.05);
+  }
+
   .site-header--shopru .header-cart .header-cart__icon {
-    width: 58%;
-    height: 58%;
+    width: 52%;
+    height: 52%;
   }
 
   .site-header--shopru .nav {
@@ -1515,8 +1522,8 @@ body.has-promo .site-header {
 
 @media (max-width: 420px) {
   .site-header--shopru .header-cart {
-    width: min(3.35rem, 14vw + 2rem);
-    height: min(3.35rem, 14vw + 2rem);
+    width: min(3.35rem, 11vw + 2.4rem);
+    height: min(3.35rem, 11vw + 2.4rem);
   }
 }
 
