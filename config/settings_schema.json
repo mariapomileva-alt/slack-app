@@ -197,8 +197,9 @@
       {
         "type": "checkbox",
         "id": "promo_bar_enabled",
-        "label": "Show top promo bar & signup modal",
-        "default": true
+        "label": "Show top announcement strip & promo signup modal",
+        "default": false,
+        "info": "When off, the green size-guide strip and the old promo line are hidden. Turn on when you want them back."
       },
       {
         "type": "text",
@@ -213,8 +214,8 @@
       {
         "type": "checkbox",
         "id": "promo_home_swan_banner_enabled",
-        "label": "Show swan banner on homepage",
-        "default": true
+        "label": "Use swan / size-guide strip (instead of classic promo line)",
+        "default": false
       },
       {
         "type": "text",

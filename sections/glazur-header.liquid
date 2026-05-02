@@ -1,4 +1,4 @@
-{%- unless settings.promo_bar_enabled == false -%}
+{%- if settings.promo_bar_enabled -%}
   {% if settings.promo_home_swan_banner_enabled != false %}
     {% assign swan_guide_url = '' %}
     {% if settings.footer_page_size_guide != blank %}
@@ -33,7 +33,7 @@
       <button type="button" class="promo-bar__close" id="promo-close" aria-label="Dismiss promotion">×</button>
     </div>
   {% endif %}
-{%- endunless -%}
+{%- endif -%}
 
 <header class="site-header site-header--mirror site-header--shopru">
   <div class="site-header__inner site-header__inner--shopru">
@@ -78,7 +78,7 @@
   </div>
 </header>
 
-{%- unless settings.promo_bar_enabled == false -%}
+{%- if settings.promo_bar_enabled -%}
   <div id="promo-modal" class="promo-modal" hidden>
     <div class="promo-modal__overlay" aria-hidden="true"></div>
     <div class="promo-modal__panel" role="dialog" aria-modal="true" aria-labelledby="promo-dialog-title">
@@ -116,7 +116,7 @@
       {% endform %}
     </div>
   </div>
-{%- endunless -%}
+{%- endif -%}
 
 {% schema %}
 {
