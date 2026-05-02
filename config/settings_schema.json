@@ -38,11 +38,6 @@
       },
       {
         "type": "url",
-        "id": "social_threads",
-        "label": "Threads"
-      },
-      {
-        "type": "url",
         "id": "social_facebook",
         "label": "Facebook"
       },
@@ -58,7 +53,7 @@
       },
       {
         "type": "paragraph",
-        "content": "Header shows five compact links: IG, TH, PT, YT, and email (@). Set URLs below; empty fields use safe homepage fallbacks — replace with your profile links. WhatsApp, account, and other channels stay in the floating contact button if enabled."
+        "content": "Header shows compact links: Instagram, Pinterest, YouTube, and email (@). Set URLs below; empty fields use safe homepage fallbacks — replace with your profile links. WhatsApp, account, and other channels stay in the floating contact button if enabled."
       },
       {
         "type": "url",
