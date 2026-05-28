@@ -17,8 +17,12 @@
           <h1 id="hero-title">{{ section.settings.hero_heading | escape }}</h1>
           <p class="ru-hero__lead">{{ section.settings.hero_lead | escape }}</p>
           <div class="ru-hero__actions">
-            <a class="btn btn--hero-pink" href="{% render 'glazur-collection-url', key: 'default' %}">View catalog</a>
-            <a class="btn" href="#story">Read more</a>
+            <a class="btn btn--hero-pink" href="{% render 'glazur-collection-url', key: 'default' %}">
+              {{ section.settings.hero_primary_cta_text | default: 'View catalog' | escape }}
+            </a>
+            <a class="btn" href="{{ section.settings.hero_secondary_cta_link | default: '#story' | escape }}">
+              {{ section.settings.hero_secondary_cta_text | default: 'Read more' | escape }}
+            </a>
           </div>
         </div>
       </div>
@@ -31,8 +35,12 @@
           <h1 id="hero-title">{{ section.settings.hero_heading | escape }}</h1>
           <p class="ru-hero__lead">{{ section.settings.hero_lead | escape }}</p>
           <div class="ru-hero__actions">
-            <a class="btn btn--hero-pink" href="{% render 'glazur-collection-url', key: 'default' %}">View catalog</a>
-            <a class="btn" href="#story">Read more</a>
+            <a class="btn btn--hero-pink" href="{% render 'glazur-collection-url', key: 'default' %}">
+              {{ section.settings.hero_primary_cta_text | default: 'View catalog' | escape }}
+            </a>
+            <a class="btn" href="{{ section.settings.hero_secondary_cta_link | default: '#story' | escape }}">
+              {{ section.settings.hero_secondary_cta_text | default: 'Read more' | escape }}
+            </a>
           </div>
         </div>
         <figure class="ru-hero__figure">
@@ -358,6 +366,28 @@
       "id": "story_richtext",
       "label": "Story / philosophy",
       "default": "<p>Glazur is a gentle shift in how you see yourself and move through your day. We believe in soft transformation—not a dramatic reinvention, but a quiet return to what already feels right: natural fabrics, clean silhouettes, and thoughtful details you notice when you slow down.</p><p>Like glaze on a dessert, a subtle finish can change the entire impression. Our pieces work the same way—they elevate your look without pulling focus from you.</p><p>We work in cotton, linen, and tactile fabrics you'll want to reach for on repeat. Lace, embroidery, a carefully placed button—each piece carries a signature detail, something small that makes an everyday moment feel a little more considered.</p><p>We're not here to chase trends. We're after a quieter kind of femininity: ease, confidence, and letting beauty live in the details. From a busy morning to a slower afternoon, it's not just what you wear—it's how your day feels when everything falls into place.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Hero buttons"
+    },
+    {
+      "type": "text",
+      "id": "hero_primary_cta_text",
+      "label": "Primary button text",
+      "default": "View catalog"
+    },
+    {
+      "type": "text",
+      "id": "hero_secondary_cta_text",
+      "label": "Secondary button text",
+      "default": "Read more"
+    },
+    {
+      "type": "text",
+      "id": "hero_secondary_cta_link",
+      "label": "Secondary button link (e.g. #story or /pages/about)",
+      "default": "#story"
     },
     {
       "type": "header",
